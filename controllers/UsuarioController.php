@@ -30,16 +30,21 @@ class UsuarioController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $Codigo = $model->id;
-            $PassDes = $model->pwdDes = $model->password_hash;
-            $PassEncryt = Password::hash($model->password_hash);
-            $Fecha_Modi = $model->Fecha_Modificada = $this->ZonaHoraria();
-            $Usu_Modi = $model->Usuario_Modificado = Yii::$app->user->identity->email;
-            $Cod_Rol = $model->auth_key;
 
-            $model->ActualizarPass($Codigo, $PassDes, $PassEncryt, $Fecha_Modi, $Usu_Modi, $Cod_Rol);
-
-            return $this->redirect(['/']);
+           if ($model->password_hash == $model->password_repeat){
+//               die("ok");exit();
+               $Codigo = $model->id;
+               $PassDes = $model->pwdDes = $model->password_hash;
+               $PassEncryt = Password::hash($model->password_hash);
+               $Fecha_Modi = $model->Fecha_Modificada = $this->ZonaHoraria();
+               $Usu_Modi = $model->Usuario_Modificado = Yii::$app->user->identity->email;
+               $model->ActualizarPass($Codigo, $PassDes, $PassEncryt, $Fecha_Modi, $Usu_Modi);
+               Yii::$app->session->setFlash('success', 'Se cambio la contraseña exitosamente.');
+               return $this->redirect(['update', 'id' => $model->id]);
+           }else{
+               Yii::$app->session->setFlash('error', 'Las contraseñas no coinciden, por favor validar.');
+               return $this->redirect(['update', 'id' => $model->id]);
+           }
         } else {
             return $this->render('update', [
                 'model' => $model,

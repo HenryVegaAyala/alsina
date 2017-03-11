@@ -97,7 +97,7 @@ $config = [
             'linkAssets' => true,
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue-light',
+                    'skin' => 'skin-red-light',
                 ],
             ],
         ],
@@ -116,39 +116,9 @@ $config = [
                 /** Sesion **/
                 ['pattern' => '/sesion', 'route' => '/user/security/login', 'suffix' => '.php'],
 
-                /** Producto **/
-                ['pattern' => '/producto', 'route' => '/producto/create', 'suffix' => '.php'],
-
-                /** Cliente **/
-                ['pattern' => '/cliente', 'route' => '/cliente/create', 'suffix' => '.php'],
-                ['pattern' => '/lista', 'route' => '/cliente/lista', 'suffix' => '.php'],
-                ['pattern' => '/detalle/<id:\d+>', 'route' => '/cliente/view'],
-
-                /** Documento */
-                ['pattern' => '/documento', 'route' => '/documento/create', 'suffix' => '.php'],
-
-                /** Anfitrion **/
-                ['pattern' => '/anfitrion', 'route' => '/anfitrion/anfitrion', 'suffix' => '.pdf'],
-
-                /** Anfitrion Reporte **/
-                ['pattern' => '/anfitrion', 'route' => '/anfitrion/reporte', 'suffix' => '.pdf'],
-                ['pattern' => '/asistentes', 'route' => '/reporte/confirmador', 'suffix' => '.php'],
-
-                /** Director de Telemarketing **/
-                ['pattern' => '/asignar', 'route' => '/fecha-asignacion/create', 'suffix' => '.php'],
-                ['pattern' => '/reporteGeneral', 'route' => '/reporte/create', 'suffix' => '.php'],
-                ['pattern' => '/nuevoUsuario', 'route' => '/usuario/create', 'suffix' => '.php'],
-                ['pattern' => '/listaUsuario', 'route' => '/usuario/index', 'suffix' => '.php'],
-                ['pattern' => '/clientesAsignados', 'route' => 'asig-tlmk-cliente/index', 'suffix' => '.php'],
+                /** Usuario **/
                 ['pattern' => '/actualizar/<id:\d+>', 'route' => '/usuario/update'],
-                ['pattern' => '/detalleUsuario/<id:\d+>', 'route' => '/usuario/view'],
-                ['pattern' => '/detalleCliente/<id:\d+>', 'route' => '/cliente/vista'],
-                ['pattern' => '/ClienteAgendar/<id:\d+>', 'route' => '/cliente/agendar'],
 
-                /**Confirmador**/
-                ['pattern' => '/listaConfirmada', 'route' => '/cliente/confirmador', 'suffix' => '.php'],
-                ['pattern' => '/listaClientes', 'route' => 'cliente/index', 'suffix' => '.php'],
-                ['pattern' => '/actualizarCliente/<id:\d+>', 'route' => '/cliente/update'],
 
 
             ],

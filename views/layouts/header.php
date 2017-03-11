@@ -30,8 +30,7 @@ use app\models\Usuario;
                         <li class="user-header">
                             <img src="<?= $directoryAsset ?>/img/user2-160x160.png" class="img-circle"
                                  alt="Foto Usuario"/>
-                            <p>
-
+                            <p style="color: white">
                                 <?php $model = new Usuario(); ?>
                                 <?= Yii::$app->user->identity->username ?>
                                 <small>Miembro
@@ -41,7 +40,7 @@ use app\models\Usuario;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <?php echo Html::a('Cambiar Contraseña', ["/usuario/update?id=" . Yii::$app->user->identity->id], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']); ?>
+                                <?= Html::a('Cambiar Contraseña', ['/usuario/update', 'id' => Yii::$app->user->identity->id], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']) ?>
                             </div>
                             <div class="pull-right">
                                 <?php echo Html::a('Cerrar Sesión', ['/user/security/logout'], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']); ?>

@@ -28,12 +28,16 @@ use Yii;
  * @property string $Usuario_Modificado
  * @property string $Usuario_Eliminado
  * @property string $Ultima_Sesion
+ * @property string $password_repeat
  * @property integer $Codigo_Rol
  * @property string $pwdDes
  * @property integer $estado
  */
 class Usuario extends \yii\db\ActiveRecord
 {
+
+    public $password_repeat;
+
     /**
      * @inheritdoc
      */
@@ -48,7 +52,8 @@ class Usuario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'username', 'email', 'password_hash'], 'required'],
+            [['username', 'email', 'password_hash','password_repeat'], 'required'],
+
             [['id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'last_login_at', 'status', 'Codigo_Rol', 'estado'], 'integer'],
             [['Fecha_Creado', 'Fecha_Modificada', 'Fecha_Eliminada', 'Ultima_Sesion'], 'safe'],
             [['username', 'email', 'password_hash', 'unconfirmed_email'], 'string', 'max' => 255],
@@ -56,6 +61,13 @@ class Usuario extends \yii\db\ActiveRecord
             [['registration_ip'], 'string', 'max' => 45],
             [['password_reset_token'], 'string', 'max' => 256],
             [['Usuario_Creado', 'Usuario_Modificado', 'Usuario_Eliminado', 'pwdDes'], 'string', 'max' => 250],
+
+            ['username', 'match', 'pattern' => "/^.{3,50}$/", 'message' => 'Mínimo 3 caracteres del Nombre del Usuario'],
+            ['email', 'match', 'pattern' => "/^.{5,80}$/", 'message' => 'Mínimo 5 y máximo 80 caracteres'],
+            ['email', 'email', 'message' => 'Formato de correo no válido'],
+            ['password_hash', 'match', 'pattern' => "/^.{6,255}$/", 'message' => 'Mínimo 6 caracteres para la contraseña'],
+            ['password_repeat', 'match', 'pattern' => "/^.{6,255}$/", 'message' => 'Mínimo 6 caracteres para la contraseña'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password_hash', 'message' => 'Las contraseñas no coinciden.'],
         ];
     }
 
@@ -68,7 +80,8 @@ class Usuario extends \yii\db\ActiveRecord
             'id' => 'ID',
             'username' => 'Username',
             'email' => 'Email',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Contraseña',
+            'password_repeat' => 'Repetir Contraseña',
             'auth_key' => 'Auth Key',
             'confirmed_at' => 'Confirmed At',
             'unconfirmed_email' => 'Unconfirmed Email',
@@ -92,7 +105,7 @@ class Usuario extends \yii\db\ActiveRecord
         ];
     }
 
-    public function ActualizarPass($Codigo, $PassDes, $PassEncryt, $Fecha_Modi, $Usu_Modi, $Cod_Rol)
+    public function ActualizarPass($Codigo, $PassDes, $PassEncryt, $Fecha_Modi, $Usu_Modi)
     {
         $db = Yii::$app->db;
         $transaction = $db->beginTransaction();
@@ -100,8 +113,7 @@ class Usuario extends \yii\db\ActiveRecord
                             password_hash = '" . $PassEncryt . "',
                             Usuario_Modificado = '" . $Usu_Modi . "',
                             Fecha_Modificada = '" . $Fecha_Modi . "',
-                            pwdDes = '" . $PassDes . "',
-                            Codigo_Rol = '" . $Cod_Rol . "'
+                            pwdDes = '" . $PassDes . "'
                             WHERE id = '" . $Codigo . "';")->execute();
         $transaction->commit();
 
