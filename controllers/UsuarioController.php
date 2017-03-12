@@ -53,7 +53,7 @@ class UsuarioController extends Controller
             if ($homeUrl == $homeUrlFormato) {
                 return $this->render('update', ['model' => $model,]);
             } else {
-                return $this->render('/site/error_404');
+                return $this->render('/site/error_403');
             }
         }
     }
