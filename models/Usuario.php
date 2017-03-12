@@ -107,15 +107,17 @@ class Usuario extends \yii\db\ActiveRecord
 
     public function ActualizarPass($Codigo, $PassDes, $PassEncryt, $Fecha_Modi, $Usu_Modi)
     {
-        $db = Yii::$app->db;
-        $transaction = $db->beginTransaction();
-        $db->createCommand("UPDATE user SET 
-                            password_hash = '" . $PassEncryt . "',
-                            Usuario_Modificado = '" . $Usu_Modi . "',
-                            Fecha_Modificada = '" . $Fecha_Modi . "',
-                            pwdDes = '" . $PassDes . "'
-                            WHERE id = '" . $Codigo . "';")->execute();
-        $transaction->commit();
+
+        $transaction = Yii::$app->db;
+        $transaction->createCommand()
+            ->update('user',
+                [   'password_hash' => $PassEncryt,
+                    'Usuario_Modificado' => $Usu_Modi,
+                    'Fecha_Modificada' => $Fecha_Modi,
+                    'pwdDes' => $PassDes,
+                ],
+                'id = ' . $Codigo)
+            ->execute();
 
     }
 }
