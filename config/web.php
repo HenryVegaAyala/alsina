@@ -46,24 +46,26 @@ $config = [
             'autoWidget' => true,
 
         ],
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu',
-
-            'controllerMap' => [
-                'assignment' => [
-                    'class' => 'mdm\admin\controllers\AssignmentController',
-                    'userClassName' => 'dektrium\user\models\User',
-                    'idField' => 'id'
-                ]
-            ],
-            'menus' => [
-                'assignment' => [
-                    'label' => 'Acceso Total'
-                ],
-                /* 'route' => null,*/ // disable menu
-            ],
-        ]
+        /*Administrador de usuario*/
+        
+//        'admin' => [
+//            'class' => 'mdm\admin\Module',
+//            'layout' => 'left-menu',
+//
+//            'controllerMap' => [
+//                'assignment' => [
+//                    'class' => 'mdm\admin\controllers\AssignmentController',
+//                    'userClassName' => 'dektrium\user\models\User',
+//                    'idField' => 'id'
+//                ]
+//            ],
+//            'menus' => [
+//                'assignment' => [
+//                    'label' => 'Acceso Total'
+//                ],
+//                /* 'route' => null,*/ // disable menu
+//            ],
+//        ]
     ],
     'components' => [
         'user' => [
