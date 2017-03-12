@@ -1,10 +1,10 @@
 <?php
 
 /*PRODUCCION*/
-//Yii::setAlias('@groupgygUrlError','http://pasaporte.rusticaclub.com/help/alsina.png');
+Yii::setAlias('@alsinaLogo','http://ymsa.pe/alsina/help/alsina.png');
 
 /*LOCAL*/
-Yii::setAlias('@alsinaLogo','http://localhost/alsina/help/alsina.png');
+//Yii::setAlias('@alsinaLogo','http://localhost/alsina/help/alsina.png');
 
 return [
     'adminEmail' => 'admin@example.com',

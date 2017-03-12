@@ -46,4 +46,14 @@ class SiteController extends Controller
         return $this->render('error');
     }
 
+    public function actionError404()
+    {
+        return $this->render('error_404');
+    }
+
+    public function actionError403()
+    {
+        return $this->render('error_403');
+    }
+
 }
