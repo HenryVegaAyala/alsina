@@ -139,9 +139,7 @@ $config = [
 
                 /** Usuario **/
                 ['pattern' => '/actualizar/<id:\d+>', 'route' => '/usuario/update'],
-
-
-
+                
             ],
         ],
 
