@@ -138,8 +138,8 @@ $config = [
                 ['pattern' => '/guia', 'route' => '/guia/reporte', 'suffix' => '.pdf'],
 
                 /** Usuario **/
-                ['pattern' => '/actualizar/<id:\d+>', 'route' => '/usuario/update'],
-                
+                ['pattern' => '/datos/<id:\d+>', 'route' => '/usuario/update'],
+
             ],
         ],
 
