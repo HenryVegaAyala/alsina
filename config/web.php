@@ -119,6 +119,24 @@ $config = [
                 ['pattern' => '/sesion', 'route' => '/user/security/login', 'suffix' => '.php'],
                 ['pattern' => '/sesion', 'route' => '/user/login', 'suffix' => '.php'],
 
+                /**Registrar Guia**/
+                ['pattern' => '/nuevo', 'route' => '/guia/create', 'suffix' => '.php'],
+
+                /**Actualizar Guia**/
+                ['pattern' => '/actualizar/<id:\d+>', 'route' => '/guia/update'],
+
+                /**Vista Guia**/
+                ['pattern' => '/vista', 'route' => '/guia/view', 'suffix' => '.php'],
+
+                /**Lista Guia**/
+                ['pattern' => '/lista', 'route' => '/guia/index', 'suffix' => '.php'],
+
+                /**Reporte Guia**/
+                ['pattern' => '/reporte', 'route' => '/guia/formulario', 'suffix' => '.php'],
+
+                /**Generar Guia**/
+                ['pattern' => '/guia', 'route' => '/guia/reporte', 'suffix' => '.pdf'],
+
                 /** Usuario **/
                 ['pattern' => '/actualizar/<id:\d+>', 'route' => '/usuario/update'],
 
