@@ -6,6 +6,7 @@
             <h4>Menú del Sistema</h4>
         </center>
 
+        <?php yii\widgets\Pjax::begin() ?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
@@ -47,7 +48,7 @@
                 ],
             ]
         ) ?>
-
+        <?php yii\widgets\Pjax::end() ?>
     </section>
 
 </aside>
