@@ -117,6 +117,7 @@ $config = [
 
                 /** Sesion **/
                 ['pattern' => '/sesion', 'route' => '/user/security/login', 'suffix' => '.php'],
+                ['pattern' => '/sesion', 'route' => '/user/login', 'suffix' => '.php'],
 
                 /** Usuario **/
                 ['pattern' => '/actualizar/<id:\d+>', 'route' => '/usuario/update'],
