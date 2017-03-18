@@ -122,3 +122,13 @@ a.desc:after {
 	margin-left: 0px;
     margin-right: 0px;
 }
+
+.fa-pers {
+    font-size: 7.8em;
+    color: ghostwhite;
+}
+
+.fa-home {
+    font-size: 2em;
+    color: ghostwhite;
+}

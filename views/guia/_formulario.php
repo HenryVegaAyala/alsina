@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use kartik\widgets\DatePicker;
-use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Guia */
@@ -70,16 +69,6 @@ use kartik\tabs\TabsX;
                     <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <label class="form-control">Listas De Productos:</label></ul>
-                </div>
-            </div>
-
-
-
-
         </div>
     </div>
 

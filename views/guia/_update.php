@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use kartik\widgets\DatePicker;
-use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Guia */
@@ -70,23 +69,14 @@ use kartik\tabs\TabsX;
                     <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <label class="form-control">Listas De Productos:</label></ul>
-                </div>
-            </div>
-
-
-
-
         </div>
     </div>
 
     <div class="panel-footer container-fluid foo">
         <div class="col-sm-12">
-            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Guardar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
-            <?= Html::resetButton($model->isNewRecord ? "<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
+            <?= Html::submitButton($model->isNewRecord ? "" : '<i class="fa fa-plus-square" aria-hidden="true"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
+            <?= Html::resetButton($model->isNewRecord ? " Cancelar" : '<i class="fa fa-window-close-o" aria-hidden="true"></i> Cancelar', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
+            <?= Html::a("<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar", ['/guia/index'], ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>

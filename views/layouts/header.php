@@ -22,14 +22,13 @@ use app\models\Usuario;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.png" class="user-image" alt="Foto Usuario"/>
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
+                        <i class="fa fa-user-circle-o fa-home user-image" aria-hidden="true"></i>
+                        <span class="hidden-xs">&nbsp<?= Yii::$app->user->identity->username ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.png" class="img-circle"
-                                 alt="Foto Usuario"/>
+                            <i class="fa fa-user-circle-o fa-pers" aria-hidden="true"></i>
                             <p style="color: white">
                                 <?php $model = new Usuario(); ?>
                                 <?= Yii::$app->user->identity->username ?>

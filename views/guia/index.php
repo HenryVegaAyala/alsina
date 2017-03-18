@@ -10,63 +10,69 @@ use yii\widgets\Pjax;
  * @var app\models\GuiaSearch $searchModel
  */
 
-$this->title = 'Guias';
+$this->title = 'Lista de Guías';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="guia-index">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?php /* echo Html::a('Create Guia', ['create'], ['class' => 'btn btn-success'])*/  ?>
-    </p>
-
-    <?php Pjax::begin(); echo GridView::widget([
+    <?php Pjax::begin();
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'COD_GUIA',
             'NUM_OBRA',
             'NUM_GUIA',
-            ['attribute' => 'FECH_LLEGA','format' => ['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y']],
-            ['attribute' => 'FECH_CORTE','format' => ['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y']],
-//            'DI_GRACIA', 
-//            ['attribute' => 'FECH_DIGI','format' => ['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute' => 'FECH_MODI','format' => ['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute' => 'FECH_ELIM','format' => ['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'USU_DIGI', 
-//            'USU_MODI', 
-//            'USU_ELIM', 
-//            'COD_ESTA', 
-
             [
+                'attribute' => 'FECH_LLEGA',
+                'label' => 'Fecha De Llegada',
+                'format' => ['date', 'php:d-m-Y'],
+                'value' => 'FECH_LLEGA'
+            ],
+            [
+                'attribute' => 'FECH_CORTE',
+                'label' => 'Fecha De Corte',
+                'format' => ['date', 'php:d-m-Y'],
+                'value' => 'FECH_CORTE'
+            ],
+            'DI_GRACIA',
+//            'COD_ESTA',
+            [
+
                 'class' => 'yii\grid\ActionColumn',
+                'header' => 'Opciones de Guía',
+                'buttonOptions' => ['class' => 'btn btn-default'],
+                'template' => '<div class="btn-group btn-group-sm text-center" role="group">{view} {update} {delete}</div>',
+                'options' => ['style' => 'width:130px;'],
+                'headerOptions' => ['class' => 'itemHide'],
+                'contentOptions' => ['class' => 'itemHide'],
                 'buttons' => [
-                    'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
-                            Yii::$app->urlManager->createUrl(['guia/view', 'id' => $model->COD_GUIA, 'edit' => 't']),
-                            ['title' => Yii::t('yii', 'Edit'),]
-                        );
-                    }
+                    'contrato' => function ($url, $model) {
+                        return Html::a('<span class="fa fa-cogs"></span>', $url, ['title' => Yii::t('app', 'Generar Contrato'), 'target' => '_blank', 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
+                    },
+
+                    'archivo' => function ($url, $model) {
+//                        return Html::a('<i class="fa fa-cloud-upload"></i>', ['archivo', 'id' => $model['Codigo_venta']], ['title' => Yii::t('app', 'Subir Archivo'), 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
+                        return Html::a('<i class="fa fa-cloud-upload"></i>', $url, ['title' => Yii::t('app', 'Subir Archivo'), 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
+                    },
+
                 ],
             ],
         ],
         'responsive' => true,
         'hover' => true,
         'condensed' => true,
-        'floatHeader' => true,
 
         'panel' => [
-            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
-            'type' => 'info',
-            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
-            'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> ' . Html::encode($this->title) . ' </h3>',
+//            'type' => 'info',
+            'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Refrescar Lista', ['index'], ['class' => 'btn btn-primary']),
             'showFooter' => false
         ],
-    ]); Pjax::end(); ?>
+    ]);
+    Pjax::end(); ?>
 
 </div>

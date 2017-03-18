@@ -92,6 +92,18 @@ class GuiaController extends Controller
         }
     }
 
+    public function actionFormulario()
+    {
+        $model = new Guia();
+        if ($model->load(Yii::$app->request->post())) {
+
+            return $this->redirect(['reporte']);
+        } else {
+            return $this->render('formulario', ['model' => $model,]);
+        }
+
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
