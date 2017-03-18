@@ -35,7 +35,7 @@ use kartik\tabs\TabsX;
                     <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 1]) ?>
+                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 3]) ?>
                 </div>
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [

@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
 use kartik\widgets\DatePicker;
 
 /* @var $this yii\web\View */
@@ -20,20 +19,21 @@ use kartik\widgets\DatePicker;
         <p class="note"></p>
     </div>
 
-    <?php Pjax::begin(); ?>
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="fieldset">
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <?= $form->field($model, 'NUM_OBRA')->textInput() ?>
                 </div>
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => true]) ?>
+                <div class="col-sm-2">
+                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
                 </div>
-
+                <div class="col-sm-2">
+                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 3]) ?>
+                </div>
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [
                         'options' => ['placeholder' => ''],
@@ -64,11 +64,6 @@ use kartik\widgets\DatePicker;
                     ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -80,5 +75,4 @@ use kartik\widgets\DatePicker;
         </div>
     </div>
     <?php ActiveForm::end(); ?>
-    <?php Pjax::end(); ?>
 </div>
