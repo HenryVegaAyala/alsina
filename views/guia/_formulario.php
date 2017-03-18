@@ -64,11 +64,6 @@ use kartik\widgets\DatePicker;
                     ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
         </div>
     </div>
 

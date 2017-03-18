@@ -37,12 +37,24 @@ class Guia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NUM_OBRA', 'NUM_GUIA','DI_GRACIA','FECH_LLEGA', 'FECH_CORTE'], 'required'],
+            [['FECH_LLEGA', 'FECH_CORTE'], 'required'],
             [['FECH_LLEGA', 'FECH_CORTE', 'FECH_DIGI', 'FECH_MODI', 'FECH_ELIM'], 'safe'],
-            [['DI_GRACIA'], 'number'],
             [['NUM_OBRA', 'NUM_GUIA'], 'string', 'max' => 12],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
             [['COD_ESTA'], 'string', 'max' => 1],
+
+            [['NUM_OBRA'], 'required', 'message' => 'N° de Obra es necesario.'],
+            [['NUM_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
+            [['DI_GRACIA'], 'required', 'message' => 'N° de Días es necesario.'],
+
+            [['NUM_GUIA'], 'integer', 'message' => 'Debe de ser númerico.'],
+            [['NUM_GUIA'], 'match', 'pattern' => "/^.{6,6}$/", 'message' => 'Debe de tener 6 digitos.'],
+            [['NUM_GUIA'], 'string', 'max' => 6],
+
+            [['DI_GRACIA'], 'number', 'message' => 'Debe de ser númerico.'],
+            [['DI_GRACIA'], 'match', 'pattern' => "/^.{1}$/", 'message' => 'Debe de ser 1 digito.'],
+            [['DI_GRACIA'], 'string', 'max' => 1],
+
         ];
     }
 

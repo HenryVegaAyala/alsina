@@ -28,13 +28,15 @@ use kartik\tabs\TabsX;
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <?= $form->field($model, 'NUM_OBRA')->textInput() ?>
                 </div>
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => true]) ?>
+                <div class="col-sm-2">
+                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
                 </div>
-
+                <div class="col-sm-2">
+                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 1]) ?>
+                </div>
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [
                         'options' => ['placeholder' => ''],
@@ -65,11 +67,6 @@ use kartik\tabs\TabsX;
                     ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-sm-12">
@@ -77,7 +74,62 @@ use kartik\tabs\TabsX;
                 </div>
             </div>
 
+            <?php
 
+            $items = [
+
+                [
+                    'label' => 'ALISPLY MUROS',
+                    'content' => 'Anim pariatur cliche...',
+                    'active' => true
+                ],
+                [
+                    'label' => 'ALISPLY MANUAL',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+                [
+                    'label' => 'ALISPILAR',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+                [
+                    'label' => 'MECANOFLEX',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+                [
+                    'label' => 'ALULOSAS',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+                [
+                    'label' => 'ANDAMIO DE FERRALLAR',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+                [
+                    'label' => 'VCM',
+                    'content' => 'Anim pariatur cliche...',
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => 'myveryownID'],
+                ],
+            ];
+
+            echo TabsX::widget([
+                'position' => TabsX::POS_LEFT,
+                'align' => TabsX::ALIGN_LEFT,
+                'items' => $items,
+                'height' => TabsX::SIZE_SMALL,
+                'bordered' => true,
+                'encodeLabels' => false
+            ]);
+            ?>
 
 
         </div>
