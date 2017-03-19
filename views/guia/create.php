@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
  * @var app\models\Guia $model
  */
 
-$this->title = 'Registrar Nueva Guía ';
+$this->title = 'Registrar Guía Nueva';
 $this->params['breadcrumbs'][] = ['label' => 'Guias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
