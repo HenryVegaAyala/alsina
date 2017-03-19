@@ -9,7 +9,7 @@ $this->title = 'Reporte Guía ';
 $this->params['breadcrumbs'][] = ['label' => 'Guias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="guia-create">
+<div class="formulario-create">
 
     <?= $this->render('_formulario', ['model' => $model,]) ?>
 

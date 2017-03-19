@@ -104,6 +104,11 @@ class GuiaController extends Controller
 
     }
 
+    public function actionElementos()
+    {
+        return $this->render('elementos');
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
