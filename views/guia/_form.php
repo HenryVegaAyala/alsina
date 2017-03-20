@@ -76,52 +76,66 @@ use yii\helpers\Url;
             </div>
 
             <?php
+//
+//            $items = [];
+//            foreach ($categoria as $item => $value) {
+//
+////                        $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'active' => true, 'options' => ['id' => 'alsina_' . $i . ''],];
+//                $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'options' => ['id' => 'alsina'],];
+////                        echo $val;
+//                var_dump($var);
+//
+//            }
+//            $items = [$var];
 
-            $items = [
+            ?>
 
-                [
-                    'label' => 'ALISPLY MUROS',
-                    'content' => $this->render('/guia/elementos'),
-                    'active' => true,
-                    'options' => ['id' => 'alsina_1'],
-                ],
-                [
-                    'label' => 'ALISPLY MANUAL',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-                [
-                    'label' => 'ALISPILAR',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-                [
-                    'label' => 'MECANOFLEX',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-                [
-                    'label' => 'ALULOSAS',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-                [
-                    'label' => 'ANDAMIO DE FERRALLAR',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-                [
-                    'label' => 'VCM',
-                    'content' => 'Anim pariatur cliche...',
-                    'headerOptions' => ['style' => 'font-weight:bold'],
-                    'options' => ['id' => 'myveryownID'],
-                ],
-            ];
+            <?php
+                        $items = [
+
+                            [
+                                'label' => 'ALISPLY MUROS',
+                                'content' => $this->render('/guia/elementos'),
+                                'active' => true,
+                                'options' => ['id' => '1'],
+                            ],
+                            [
+                                'label' => 'ALISPLY MANUAL',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '2'],
+                            ],
+                            [
+                                'label' => 'ALISPILAR',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '3'],
+                            ],
+                            [
+                                'label' => 'MECANOFLEX',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '4'],
+                            ],
+                            [
+                                'label' => 'ALULOSAS',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '5'],
+                            ],
+                            [
+                                'label' => 'ANDAMIO DE FERRALLAR',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '6'],
+                            ],
+                            [
+                                'label' => 'VCM',
+                                'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
+                                'options' => ['id' => '7'],
+                            ],
+                        ];
 
             echo TabsX::widget([
                 'position' => TabsX::POS_ABOVE,

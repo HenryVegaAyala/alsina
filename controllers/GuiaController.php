@@ -51,6 +51,7 @@ class GuiaController extends Controller
         $model = new Guia();
         $obra = new Obra();
         $obraGuia = new DetalObraGuia();
+        $categoria = $model->categoriaQuery();
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -88,6 +89,7 @@ class GuiaController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categoria' => $categoria,
             ]);
         }
     }

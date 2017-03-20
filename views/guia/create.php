@@ -15,6 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="guia-create">
     <?php Pjax::begin(); ?>
-    <?= $this->render('_form', ['model' => $model,]) ?>
+    <?= $this->render('_form', ['model' => $model, 'categoria' => $categoria,]) ?>
     <?php Pjax::end() ?>
 </div>

@@ -55,7 +55,7 @@ class Guia extends \yii\db\ActiveRecord
             [['DI_GRACIA'], 'string', 'max' => 3],
             [['DI_GRACIA'], 'match', 'pattern' => "/^.{1,3}$/", 'message' => 'Mínimo 1 digito.'],
 
-            ['FECH_CORTE', 'compare', 'compareAttribute' => 'FECH_LLEGA','operator'=>'>=', 'message' => 'Debe ser igual mayor a Fecha de Llegada.'],
+            ['FECH_CORTE', 'compare', 'compareAttribute' => 'FECH_LLEGA', 'operator' => '>=', 'message' => 'Debe ser igual mayor a Fecha de Llegada.'],
 
         ];
     }
@@ -97,5 +97,15 @@ class Guia extends \yii\db\ActiveRecord
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;
+    }
+
+    public function categoriaQuery()
+    {
+        $query = new Query();
+        $select = new Expression('COD_MAE_CATG,DESC_CORTA');
+        $query->select($select)->from('mae_categ')->where(['COD_ESTA' => 1])->orderBy(['DESC_CORTA' => SORT_ASC]);
+        $comando = $query->createCommand();
+        $resultado = $comando->queryAll();
+        return $resultado;
     }
 }
