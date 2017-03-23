@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\DetalObraGuia;
+use app\models\FacGuiaDetal;
 use app\models\Obra;
 use app\models\ObraGuia;
 use Yii;
@@ -108,7 +109,14 @@ class GuiaController extends Controller
 
     public function actionElementos()
     {
-        return $this->render('elementos');
+        $model = new FacGuiaDetal();
+        if ($model->load(Yii::$app->request->post())) {
+
+            var_dump($model->NUM_PROD);exit();
+            return $this->redirect(['elementos']);
+        } else {
+            return $this->render('elementos');
+        }
     }
 
     public function actionUpdate($id)

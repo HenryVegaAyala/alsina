@@ -96,6 +96,7 @@ use yii\helpers\Url;
                             [
                                 'label' => 'ALISPLY MUROS',
                                 'content' => $this->render('/guia/elementos'),
+                                'headerOptions' => ['style' => 'font-weight:bold'],
                                 'active' => true,
                                 'options' => ['id' => '1'],
                             ],
