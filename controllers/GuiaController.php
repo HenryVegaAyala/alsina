@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\models\DetalObraGuia;
-use app\models\FacGuiaDetal;
 use app\models\Obra;
 use app\models\ObraGuia;
 use Yii;
@@ -83,6 +82,7 @@ class GuiaController extends Controller
             $obraGuia->USU_DIGI = Yii::$app->user->identity->email;
             $obraGuia->COD_ESTADO = '1';
 
+            
             $model->save();
             $obra->save();
             $obraGuia->save();
@@ -109,13 +109,12 @@ class GuiaController extends Controller
 
     public function actionElementos()
     {
-        $model = new FacGuiaDetal();
+        $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
 
-            var_dump($model->NUM_PROD);exit();
             return $this->redirect(['elementos']);
         } else {
-            return $this->render('elementos');
+            return $this->render('elementos',['id' => '']);
         }
     }
 

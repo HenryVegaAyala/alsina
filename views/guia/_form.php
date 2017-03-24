@@ -30,7 +30,7 @@ use yii\helpers\Url;
 
             <div class="row">
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'NUM_OBRA')->textInput() ?>
+                    <?= $form->field($model, 'NUM_OBRA')->textInput(['maxlength' => 6]) ?>
                 </div>
                 <div class="col-sm-2">
                     <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
@@ -76,67 +76,67 @@ use yii\helpers\Url;
             </div>
 
             <?php
-//
-//            $items = [];
-//            foreach ($categoria as $item => $value) {
-//
-////                        $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'active' => true, 'options' => ['id' => 'alsina_' . $i . ''],];
-//                $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'options' => ['id' => 'alsina'],];
-////                        echo $val;
-//                var_dump($var);
-//
-//            }
-//            $items = [$var];
+            //
+            //            $items = [];
+            //            foreach ($categoria as $item => $value) {
+            //
+            ////                        $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'active' => true, 'options' => ['id' => 'alsina_' . $i . ''],];
+            //                $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'options' => ['id' => 'alsina'],];
+            ////                        echo $val;
+            //                var_dump($var);
+            //
+            //            }
+            //            $items = [$var];
 
             ?>
 
             <?php
-                        $items = [
+            $items = [
 
-                            [
-                                'label' => 'ALISPLY MUROS',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'active' => true,
-                                'options' => ['id' => '1'],
-                            ],
-                            [
-                                'label' => 'ALISPLY MANUAL',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '2'],
-                            ],
-                            [
-                                'label' => 'ALISPILAR',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '3'],
-                            ],
-                            [
-                                'label' => 'MECANOFLEX',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '4'],
-                            ],
-                            [
-                                'label' => 'ALULOSAS',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '5'],
-                            ],
-                            [
-                                'label' => 'ANDAMIO DE FERRALLAR',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '6'],
-                            ],
-                            [
-                                'label' => 'VCM',
-                                'content' => $this->render('/guia/elementos'),
-                                'headerOptions' => ['style' => 'font-weight:bold'],
-                                'options' => ['id' => '7'],
-                            ],
-                        ];
+                [
+                    'label' => 'ALISPLY MUROS',
+                    'content' => $this->render('/guia/elementos', ['id' => 1]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '1'],
+                    'active' => true,
+                ],
+                [
+                    'label' => 'ALISPLY MANUAL',
+                    'content' => $this->render('/guia/elementos', ['id' => 2]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '2'],
+                ],
+                [
+                    'label' => 'ALISPILAR',
+                    'content' => $this->render('/guia/elementos', ['id' => 3]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '3'],
+                ],
+                [
+                    'label' => 'MECANOFLEX',
+                    'content' => $this->render('/guia/elementos', ['id' => 4]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '4'],
+                ],
+                [
+                    'label' => 'ALULOSAS',
+                    'content' => $this->render('/guia/elementos', ['id' => 5]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '5'],
+                ],
+                [
+                    'label' => 'ANDAMIO DE FERRALLAR',
+                    'content' => $this->render('/guia/elementos', ['id' => 6]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '6'],
+                ],
+                [
+                    'label' => 'VCM',
+                    'content' => $this->render('/guia/elementos', ['id' => 7]),
+                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'options' => ['id' => '7'],
+                ],
+            ];
 
             echo TabsX::widget([
                 'position' => TabsX::POS_ABOVE,
