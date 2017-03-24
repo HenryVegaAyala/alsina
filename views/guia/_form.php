@@ -95,7 +95,7 @@ use yii\helpers\Url;
 
                 [
                     'label' => 'ALISPLY MUROS',
-                    'content' => $this->render('/fac-guia-detal/create', ['modelo' =>'', 'id' => 1,]),
+                    'content' => $this->render('/guia/elementos', ['id' => 1]),
                     'headerOptions' => ['style' => 'font-weight:bold'],
                     'options' => ['id' => '1'],
                     'active' => true,

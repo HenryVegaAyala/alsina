@@ -10,14 +10,6 @@ function stopRKey(evt) {
         return false;
     }
 }
+
 document.onkeypress = stopRKey;
 
-function jsAgregar(evt) {
-    var evt = (evt) ? evt : ((event) ? event : null);
-    if (evt.keyCode == 13) {
-        //alert ('Has pulsado enter');
-        var AddButton = $("#agregarCampo");
-        //alert ('Has pulsado enter '+AddButton);
-        AddButton.click();
-    }
-}

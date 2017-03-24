@@ -30,7 +30,7 @@
         while ($row = $resultado->read()):
         ?>
             <tr>
-                <td><?= $i ?></td>
+                    <td><?= $i ?></td>
                     <td><input type='text' value='<?= $row['NUM_PROD'];?>' id='facguiadetal-num_prod_<?= $i ?>' name='FacGuiaDetal[NUM_PROD][]' size='7'  class='form-control input' readonly/></td>
                     <td><input type='text' value='<?= $row['DESC_CORTAR'];?>' id='facguiadetal-desc_cortar_<?= $i ?>' name='FacGuiaDetal[DESC_CORTAR][]' size='58'  class='form-control input' readonly/></td>
                     <td><input type='text' value='<?= $row['PREC_X_DIA'];?>' id='facguiadetal-prec_x_dia_<?= $i ?>' name='FacGuiaDetal[PREC_X_DIA][]' size='2'  class='form-control input' /></td>
