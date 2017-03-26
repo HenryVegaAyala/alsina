@@ -96,44 +96,44 @@ use yii\helpers\Url;
                 [
                     'label' => 'ALISPLY MUROS',
                     'content' => $this->render('/guia/elementos', ['id' => 1]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento1', 'value' => '1'],
                     'options' => ['id' => '1'],
-                    'active' => true,
+//                    'active' => true,
                 ],
                 [
                     'label' => 'ALISPLY MANUAL',
                     'content' => $this->render('/guia/elementos', ['id' => 2]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento2', 'value' => '2'],
                     'options' => ['id' => '2'],
                 ],
                 [
                     'label' => 'ALISPILAR',
                     'content' => $this->render('/guia/elementos', ['id' => 3]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento3', 'value' => '3'],
                     'options' => ['id' => '3'],
                 ],
                 [
                     'label' => 'MECANOFLEX',
                     'content' => $this->render('/guia/elementos', ['id' => 4]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento4', 'value' => '4'],
                     'options' => ['id' => '4'],
                 ],
                 [
                     'label' => 'ALULOSAS',
                     'content' => $this->render('/guia/elementos', ['id' => 5]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento5', 'value' => '5'],
                     'options' => ['id' => '5'],
                 ],
                 [
                     'label' => 'ANDAMIO DE FERRALLAR',
                     'content' => $this->render('/guia/elementos', ['id' => 6]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento6', 'value' => '6'],
                     'options' => ['id' => '6'],
                 ],
                 [
                     'label' => 'VCM',
                     'content' => $this->render('/guia/elementos', ['id' => 7]),
-                    'headerOptions' => ['style' => 'font-weight:bold'],
+                    'headerOptions' => ['style' => 'font-weight:bold', 'id' => 'elemento7', 'value' => '7'],
                     'options' => ['id' => '7'],
                 ],
             ];
@@ -152,7 +152,8 @@ use yii\helpers\Url;
 
     <div class="panel-footer container-fluid foo">
         <div class="col-sm-12">
-            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Guardar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
+            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Guardar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ', 'onclick' => "cargar()"]) ?>
+            <!-- $('#facguiadetal-cod_mae_categ').val() -->
             <?= Html::resetButton($model->isNewRecord ? "<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
         </div>
     </div>

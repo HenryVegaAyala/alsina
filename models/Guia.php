@@ -56,7 +56,6 @@ class Guia extends \yii\db\ActiveRecord
             [['DI_GRACIA'], 'match', 'pattern' => "/^.{1,3}$/", 'message' => 'Mínimo 1 digito.'],
 
             ['FECH_CORTE', 'compare', 'compareAttribute' => 'FECH_LLEGA', 'operator' => '>=', 'message' => 'Debe ser igual mayor a Fecha de Llegada.'],
-            ['FECH_LLEGA', 'compare', 'compareAttribute' => 'FECH_CORTE', 'operator' => '>=', 'message' => 'Debe ser igual mayor a Fecha de Corte.'],
 
         ];
     }

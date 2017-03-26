@@ -18,9 +18,9 @@
         <?php
         $connection = \Yii::$app->db;
         $sqlStatement = '
-        SELECT NUM_PROD, DESC_CORTAR, PREC_X_DIA, PESO_REAL, PESO_VOL, UD, PESO_REAL_TOTAL, CANT_DIAS, COST_TOTAL, PESO_V_TOTAL
+        SELECT COD_MAE_CATG,NUM_PROD, DESC_CORTAR, PREC_X_DIA, PESO_REAL, PESO_VOL, UD, PESO_REAL_TOTAL, CANT_DIAS, COST_TOTAL, PESO_V_TOTAL
         FROM mae_produ
-        WHERE COD_ESTA = 1 AND COD_MAE_CATG = "'.$id.'" ORDER BY DESC_CORTAR ASC ;';
+        WHERE COD_ESTA = 1 AND COD_MAE_CATG = "' . $id . '" ORDER BY DESC_CORTAR ASC ;';
         $comando = $connection->createCommand($sqlStatement);
         $resultado = $comando->query();
         ?>
@@ -28,25 +28,61 @@
         <?php
         $i = 1;
         while ($row = $resultado->read()):
-        ?>
+            ?>
             <tr>
-                    <td><?= $i ?></td>
-                    <td><input type='text' value='<?= $row['NUM_PROD'];?>' id='facguiadetal-num_prod_<?= $i ?>' name='FacGuiaDetal[NUM_PROD][]' size='7'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['DESC_CORTAR'];?>' id='facguiadetal-desc_cortar_<?= $i ?>' name='FacGuiaDetal[DESC_CORTAR][]' size='58'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['PREC_X_DIA'];?>' id='facguiadetal-prec_x_dia_<?= $i ?>' name='FacGuiaDetal[PREC_X_DIA][]' size='2'  class='form-control input' /></td>
-                    <td><input type='text' value='<?= $row['PESO_REAL'];?>' id='facguiadetal-peso_real_<?= $i ?>' name='FacGuiaDetal[PESO_REAL][]' size='2'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['PESO_VOL'];?>' id='facguiadetal-peso_vol_<?= $i ?>' name='FacGuiaDetal[PESO_VOL][]' size='3'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['UD'];?>' id='facguiadetal-ud_<?= $i ?>' name='FacGuiaDetal[UD][]' size='1'  class='form-control input' /></td>
-                    <td><input type='text' value='<?= $row['PESO_REAL_TOTAL'];?>' id='facguiadetal-peso_real_total_<?= $i ?>' name='FacGuiaDetal[PESO_REAL_TOTAL][]' size='3'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['CANT_DIAS'];?>' id='facguiadetal-cant_dias_<?= $i ?>' name='FacGuiaDetal[CANT_DIAS][]' size='3'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['COST_TOTAL'];?>' id='facguiadetal-cost_total_<?= $i ?>' name='FacGuiaDetal[COST_TOTAL][]' size='3'  class='form-control input' readonly/></td>
-                    <td><input type='text' value='<?= $row['PESO_V_TOTAL'];?>' id='facguiadetal-peso_v_total_<?= $i ?>' name='FacGuiaDetal[PESO_V_TOTAL][]' size='3'  class='form-control input' readonly/></td>
+                <td><?= $i ?></td>
+                <td style="display: none">
+                    <input type='text' value='<?= $row['COD_MAE_CATG']; ?>'     id='COD_MAE_CATG<?= $i ?>'      name='COD_MAE_CATG[]' size='2' class='form-control input' readonly/>
+                </td>
+                <td><input type='text' value='<?= $row['NUM_PROD']; ?>'         id='NUM_PROD_<?= $i ?>'         name='NUM_PROD[]' size='7' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['DESC_CORTAR']; ?>'      id='DESC_CORTAR_<?= $i ?>'      name='DESC_CORTAR[]' size='55' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['PREC_X_DIA']; ?>'       id='PREC_X_DIA_<?= $i ?>'       name='PREC_X_DIA[]' onkeyup="CalcularPesoRealTotal()" size='2' class='form-control input'/></td>
+                <td><input type='text' value='<?= $row['PESO_REAL']; ?>'        id='PESO_REAL_<?= $i ?>'        name='PESO_REAL[]' size='2' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['PESO_VOL']; ?>'         id='PESO_VOL_<?= $i ?>'         name='PESO_VOL[]' size='3' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['UD']; ?>'               id='UD_<?= $i ?>'               name='UD[]' size='1' onkeyup="CalcularPesoRealTotal()"  class='form-control input'/></td>
+                <td><input type='text' value='<?= $row['PESO_REAL_TOTAL']; ?>'  id='PESO_REAL_TOTAL_<?= $i ?>'  name='PESO_REAL_TOTAL[]' size='3' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['CANT_DIAS']; ?>'        id='CANT_DIAS_<?= $i ?>'        name='CANT_DIAS[]' size='3' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['COST_TOTAL']; ?>'       id='COST_TOTAL_<?= $i ?>'       name='COST_TOTAL[]' size='3' class='form-control input' readonly/></td>
+                <td><input type='text' value='<?= $row['PESO_V_TOTAL']; ?>'     id='PESO_V_TOTAL_<?= $i ?>'     name='PESO_V_TOTAL[]' size='3' class='form-control input' readonly/></td>
             </tr>
-        <?php
-        $i++;
+            <?php
+            $i++;
         endwhile;
         ?>
         </tbody>
     </table>
 </div>
+<!--validador($('#pago-estado_pago').val(),$('#venta-montototal').val(),$('#pago-monto_ingresado').val());return false;-->
+<script>
+    function cargar() {
+<!---->
+<!---->
+<!--      -->
+<!--        cantdias = redondear2decimales(rescantdias);-->
+<!--        alert(cantdias);-->
+<!---->
+<!---->
+<!--    }-->
+<!---->
+<!--    function redondear2decimales(numero) {-->
+<!--        var original, resultado;-->
+<!--        original = parseFloat(numero);-->
+<!--        resultado = Math.round(original * 100) / 100;-->
+<!--        return resultado;-->
+<!--    }-->
+<!---->
+<!--    function restafechas(f1, f2) {-->
+<!--        var fechallegada = $("#guia-fech_llega-kvdate").find("input").val();-->
+<!--        var fechacorte = $("#guia-fech_corte-kvdate").find("input").val();-->
+<!---->
+    }
+</script>
+
+
+
+
+
+
+
+
 
