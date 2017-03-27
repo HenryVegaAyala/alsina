@@ -29,20 +29,20 @@ use yii\helpers\Url;
 
             <div class="row">
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'NUM_OBRA')->textInput(['maxlength' => 6]) ?>
+                    <?= $form->field($model, 'NUM_OBRA')->textInput(['maxlength' => 6,'readonly' => true]) ?>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
+                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6,'readonly' => true]) ?>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 3]) ?>
+                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 3,'readonly' => true]) ?>
                 </div>
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [
                         'options' => ['placeholder' => ''],
                         'value' => date('d-M-Y'),
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-//                        'readonly' => true,
+                        'disabled' => true,
                         'pluginOptions' => [
                             'autoclose' => true,
                             'format' => 'dd-mm-yyyy',
@@ -57,7 +57,7 @@ use yii\helpers\Url;
                         'options' => ['placeholder' => ''],
                         'value' => date('d-M-Y'),
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-//                        'readonly' => true,
+                        'disabled' => true,
                         'pluginOptions' => [
                             'autoclose' => true,
                             'format' => 'dd-mm-yyyy',

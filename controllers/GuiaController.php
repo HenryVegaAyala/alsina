@@ -145,10 +145,81 @@ class GuiaController extends Controller
     function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $guiaDetal = new FacGuiaDetal();
+        $obra = new Obra();
+        $obraGuia = new DetalObraGuia();
+        $categoria = $model->categoriaQuery();
+        $producto = new MaeProdu();
 
         if ($model->load(Yii::$app->request->post())) {
 
+            /*Fecha Formateada*/
+            $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
+            $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
+
+            /*Guia*/
+            $model->FECH_LLEGA = $FechaLlegada;
+            $model->FECH_CORTE = $FechaCorte;
+            $model->FECH_MODI = $this->ZonaHoraria();
+            $model->USU_MODI = Yii::$app->user->identity->email;
+            $model->COD_ESTA = '1';
+
+            /*Obra*/
+            $obra->FEC_MODI = $this->ZonaHoraria();
+            $obra->USU_MODI = Yii::$app->user->identity->email;
+            $obra->COD_ESTA = '1';
+
+            /*Detalle Obra Guia*/
+            $obraGuia->FECH_MODI = $this->ZonaHoraria();
+            $obraGuia->USU_MODI = Yii::$app->user->identity->email;
+            $obraGuia->COD_ESTADO = '1';
+
             $model->save();
+            $obra->save();
+            $obraGuia->save();
+
+            /*Detalle Guia*/
+            $cantidad = $producto->Cantidad();
+
+            $codigo = $_POST["NUM_PROD"];
+            $categoria = $_POST["COD_MAE_CATG"];
+            $producto = $_POST["COD_MAE_PRODU"];
+            $elementos = $_POST["DESC_CORTAR"];
+            $puxdia = $_POST["PREC_X_DIA"];
+            $pesoreal = $_POST["PESO_REAL"];
+            $pesovol = $_POST["PESO_VOL"];
+            $ud = $_POST["UD"];
+            $pesort = $_POST["PESO_REAL_TOTAL"];
+            $cantidaddias = $_POST["CANT_DIAS"];
+            $costototal = $_POST["COST_TOTAL"];
+            $pesovt = $_POST["PESO_V_TOTAL"];
+
+            for ($i = 0; $i < $cantidad; $i++) {
+                if ($codigo[$i] <> '') {
+                    $transaction = Yii::$app->db;
+                    $transaction->createCommand()
+                        ->update('fac_guia_detal',
+                            [
+                                'COD_CATG' => $categoria[$i],
+                                'COD_MAE_PRODU' => $producto[$i],
+                                'NUM_PROD' => $codigo[$i],
+                                'DESC_CORTAR' => $elementos[$i],
+                                'PREC_X_DIA' => $puxdia[$i],
+                                'PESO_REAL' => $pesoreal[$i],
+                                'PESO_VOL' => $pesovol[$i],
+                                'UD' => $ud[$i],
+                                'PESO_REAL_TOTAL' => $pesort[$i],
+                                'CANT_DIAS' => $cantidaddias[$i],
+                                'COST_TOTAL' => $costototal[$i],
+                                'PESO_V_TOTAL' => $pesovt[$i],
+                                'FECH_DIGI' => $this->ZonaHoraria(),
+                                'USU_DIGI' => Yii::$app->user->identity->email,
+                                'COD_ESTA' => "1",
+                            ],
+                            'FAC_COD_GUIA = ' . $model->COD_GUIA)
+                        ->execute();
+                }
+            }
             return $this->redirect(['view', 'id' => $model->COD_GUIA]);
         } else {
             return $this->render('update', [

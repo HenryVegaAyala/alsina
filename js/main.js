@@ -65,6 +65,58 @@ function CalcularPesoRealTotal() {
 
 }
 
+function CalcularPesoRealTotal2() {
+
+    var pesoreal, ud, pesorealtotal, respesoreal, resud, respesorealtotal, i,
+        fechallegada, fechacorte, diasgracia, cantdias, rescantdias, puxdia,
+        costototal, respuxdia, rescostototal, pesovolumetrico, pesovolumetricototal,
+        respesovolumetrico, respesovolumetricototal;
+
+    /*Peso Real total*/
+    pesoreal = document.getElementsByName("PESO_REAL[]");
+    ud = document.getElementsByName("UD[]");
+    pesorealtotal = document.getElementsByName("PESO_REAL_TOTAL[]");
+
+    /*Cantidad de Dias*/
+    fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
+    fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
+    diasgracia = document.getElementById("guia-di_gracia").value;
+    cantdias = document.getElementsByName("CANT_DIAS[]");
+
+    /*Costo Total*/
+    puxdia = document.getElementsByName("PREC_X_DIA[]");
+    costototal = document.getElementsByName("COST_TOTAL[]");
+
+    /*Peso volumentrico total*/
+    pesovolumetrico = document.getElementsByName("PESO_VOL[]");
+    pesovolumetricototal = document.getElementsByName("PESO_V_TOTAL[]");
+
+    for (i = 0; i < pesoreal.length; i++) {
+        respesoreal = parseFloat(pesoreal[i].value, 2);
+        resud = parseFloat(ud[i].value, 2);
+
+        /*Peso Real total*/
+        respesorealtotal = parseFloat((respesoreal * resud), 2);
+        pesorealtotal[i].value = redondear2decimales(respesorealtotal);
+
+        /*Cantidad de dias*/
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) - 1) * diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
+
+        /*Costo Total*/
+        respuxdia = parseFloat(puxdia[i].value, 2);
+        rescostototal = parseFloat(respuxdia * resud * rescantdias);
+        costototal[i].value = redondear2decimales(rescostototal);
+
+        /*Peso volumentrico total*/
+        respesovolumetrico = parseFloat(pesovolumetrico[i].value, 2);
+        respesovolumetricototal = parseFloat(respesovolumetrico * resud);
+        pesovolumetricototal[i].value = redondear2decimales(respesovolumetricototal);
+
+    }
+
+}
+
 // function CalcularCantidadDias() {
 //     // $(document).ready(function () {
 //     var fechallegada, fechacorte, diasgracia, cantdias, rescantdias, pesoreal, i;
