@@ -7,9 +7,11 @@ use yii\db\Query;
 use yii\db\Expression;
 
 /**
- * This is the model class for table "mae_produ".
+ * This is the model class for table "fac_guia_detal".
  *
- * @property integer $COD_MAE_CATG
+ * @property integer $COD_GUIA_DETAL
+ * @property integer $FAC_COD_GUIA
+ * @property integer $COD_CATG
  * @property integer $COD_MAE_PRODU
  * @property string $NUM_PROD
  * @property string $DESC_CORTAR
@@ -17,7 +19,7 @@ use yii\db\Expression;
  * @property string $PREC_X_DIA
  * @property string $PESO_REAL
  * @property string $PESO_VOL
- * @property integer $UD
+ * @property string $UD
  * @property string $PESO_REAL_TOTAL
  * @property string $CANT_DIAS
  * @property string $COST_TOTAL
@@ -30,17 +32,17 @@ use yii\db\Expression;
  * @property string $USU_ELI
  * @property string $COD_ESTA
  *
- * @property FacGuiaDetal[] $facGuiaDetals
- * @property MaeCateg $cODMAECATG
+ * @property FacGuia $fACCODGUIA
+ * @property MaeProdu $cODMAEPRODU
  */
-class MaeProdu extends \yii\db\ActiveRecord
+class FacGuiaDetal extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'mae_produ';
+        return 'fac_guia_detal';
     }
 
     /**
@@ -49,14 +51,14 @@ class MaeProdu extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['COD_MAE_CATG'], 'required'],
-            [['COD_MAE_CATG', 'UD'], 'integer'],
-            [['PREC_X_DIA', 'PESO_REAL', 'PESO_VOL', 'PESO_REAL_TOTAL', 'CANT_DIAS', 'COST_TOTAL', 'PESO_V_TOTAL'], 'number'],
+            [['FAC_COD_GUIA', 'COD_CATG', 'COD_MAE_PRODU'], 'required'],
+            [['FAC_COD_GUIA', 'COD_CATG', 'COD_MAE_PRODU'], 'integer'],
+            [['PREC_X_DIA', 'PESO_REAL', 'PESO_VOL', 'UD', 'PESO_REAL_TOTAL', 'CANT_DIAS', 'COST_TOTAL', 'PESO_V_TOTAL'], 'number'],
             [['FECH_DIGI', 'FECH_MODI', 'FECH_ELIM'], 'safe'],
             [['NUM_PROD', 'USU_DIGI', 'USU_MODI', 'USU_ELI', 'COD_ESTA'], 'string', 'max' => 45],
-            [['DESC_CORTAR'], 'string', 'max' => 60],
-            [['DESC_LARGA'], 'string', 'max' => 100],
-            [['COD_MAE_CATG'], 'exist', 'skipOnError' => true, 'targetClass' => MaeCateg::className(), 'targetAttribute' => ['COD_MAE_CATG' => 'COD_MAE_CATG']],
+            [['DESC_CORTAR', 'DESC_LARGA'], 'string', 'max' => 100],
+            [['FAC_COD_GUIA'], 'exist', 'skipOnError' => true, 'targetClass' => FacGuia::className(), 'targetAttribute' => ['FAC_COD_GUIA' => 'COD_GUIA']],
+            [['COD_MAE_PRODU'], 'exist', 'skipOnError' => true, 'targetClass' => MaeProdu::className(), 'targetAttribute' => ['COD_MAE_PRODU' => 'COD_MAE_PRODU']],
         ];
     }
 
@@ -66,7 +68,9 @@ class MaeProdu extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'COD_MAE_CATG' => 'Cod  Mae  Catg',
+            'COD_GUIA_DETAL' => 'Cod  Guia  Detal',
+            'FAC_COD_GUIA' => 'Fac  Cod  Guia',
+            'COD_CATG' => 'Cod  Catg',
             'COD_MAE_PRODU' => 'Cod  Mae  Produ',
             'NUM_PROD' => 'Num  Prod',
             'DESC_CORTAR' => 'Desc  Cortar',
@@ -92,24 +96,24 @@ class MaeProdu extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFacGuiaDetals()
+    public function getFACCODGUIA()
     {
-        return $this->hasMany(FacGuiaDetal::className(), ['COD_MAE_PRODU' => 'COD_MAE_PRODU']);
+        return $this->hasOne(FacGuia::className(), ['COD_GUIA' => 'FAC_COD_GUIA']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCODMAECATG()
+    public function getCODMAEPRODU()
     {
-        return $this->hasOne(MaeCateg::className(), ['COD_MAE_CATG' => 'COD_MAE_CATG']);
+        return $this->hasOne(MaeProdu::className(), ['COD_MAE_PRODU' => 'COD_MAE_PRODU']);
     }
 
-    public function Cantidad()
+    public function getCodigoGuiaDetal()
     {
         $query = new Query();
-        $expresion = new Expression('COUNT(NUM_PROD)');
-        $query->select($expresion)->from('mae_produ');
+        $expresion = new Expression('IFNULL(MAX(COD_GUIA_DETAL), 0) + 1');
+        $query->select($expresion)->from('fac_guia_detal');
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var app\models\Guia $model
@@ -17,5 +17,4 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_update', [
         'model' => $model,
     ]) ?>
-
 </div>

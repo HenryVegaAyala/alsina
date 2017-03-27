@@ -23,7 +23,7 @@ use yii\helpers\Url;
     </div>
 
     <?php Pjax::begin(); ?>
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['method' => 'post']); ?>
 
     <div class="fieldset">
         <div class="container-fluid">
@@ -152,8 +152,7 @@ use yii\helpers\Url;
 
     <div class="panel-footer container-fluid foo">
         <div class="col-sm-12">
-            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Guardar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ', 'onclick' => "cargar()"]) ?>
-            <!-- $('#facguiadetal-cod_mae_categ').val() -->
+            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Guardar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
             <?= Html::resetButton($model->isNewRecord ? "<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
         </div>
     </div>
