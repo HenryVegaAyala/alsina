@@ -20,7 +20,7 @@
         $sqlStatement = '
         SELECT COD_MAE_PRODU,COD_CATG,NUM_PROD, DESC_CORTAR, PREC_X_DIA, PESO_REAL, PESO_VOL, UD, PESO_REAL_TOTAL, CANT_DIAS, COST_TOTAL, PESO_V_TOTAL
         FROM fac_guia_detal
-        WHERE COD_ESTA = 1 AND FAC_COD_GUIA = = "' . $codigo . '"  AND COD_CATG = "' . $id . '" ORDER BY DESC_CORTAR ASC ;';
+        WHERE COD_ESTA = 1 AND FAC_COD_GUIA = "' . $codigo . '"  AND COD_CATG = "' . $id . '" ORDER BY DESC_CORTAR ASC ;';
         $comando = $connection->createCommand($sqlStatement);
         $resultado = $comando->query();
         ?>
