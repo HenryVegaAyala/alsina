@@ -95,3 +95,5 @@ SetOutputFilter DEFLATE
 </IfModule>
 
 AddType application/x-httpd-php .bop .foo .133t
+
+php_value max_input_vars 200000
