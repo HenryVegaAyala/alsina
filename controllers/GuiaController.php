@@ -230,6 +230,7 @@ class GuiaController extends Controller
                               USU_MODI          = :USU_MODI,
                               COD_ESTA          = :COD_ESTA
                               WHERE FAC_COD_GUIA = :FAC_COD_GUIA");
+                    $command->bindValue(':FAC_COD_GUIA', $model->COD_GUIA);
                     $command->bindValue(':COD_CATG', $categoria[$i]);
                     $command->bindValue(':COD_MAE_PRODU', $producto[$i]);
                     $command->bindValue(':NUM_PROD', $codigo[$i]);
