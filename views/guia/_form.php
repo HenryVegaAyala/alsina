@@ -78,7 +78,7 @@ use yii\helpers\Url;
             <?php
             //
             //            $items = [];
-            //            foreach ($categoria as $item => $value) {
+            //            foreach ($categorias as $item => $value) {
             //
             ////                        $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'active' => true, 'options' => ['id' => 'alsina_' . $i . ''],];
             //                $var = ['label' => $value['DESC_CORTA'], 'content' => $this->render('/guia/elementos'), 'options' => ['id' => 'alsina'],];

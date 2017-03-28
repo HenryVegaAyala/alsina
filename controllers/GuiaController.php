@@ -54,7 +54,7 @@ class GuiaController extends Controller
         $guiaDetal = new FacGuiaDetal();
         $obra = new Obra();
         $obraGuia = new DetalObraGuia();
-        $categoria = $model->categoriaQuery();
+        $categorias = $model->categoriaQuery();
         $producto = new MaeProdu();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -136,7 +136,7 @@ class GuiaController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'categoria' => $categoria,
+                'categorias' => $categorias,
             ]);
         }
     }
@@ -154,12 +154,12 @@ class GuiaController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             /*Fecha Formateada*/
-            $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
-            $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
+//            $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
+//            $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
             /*Guia*/
-            $model->FECH_LLEGA = $FechaLlegada;
-            $model->FECH_CORTE = $FechaCorte;
+//            $model->FECH_LLEGA = $FechaLlegada;
+//            $model->FECH_CORTE = $FechaCorte;
             $model->FECH_MODI = $this->ZonaHoraria();
             $model->USU_MODI = Yii::$app->user->identity->email;
             $model->COD_ESTA = '1';
