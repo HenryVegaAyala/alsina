@@ -145,21 +145,13 @@ class GuiaController extends Controller
     function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $guiaDetal = new FacGuiaDetal();
         $obra = new Obra();
         $obraGuia = new DetalObraGuia();
-        $categoria = $model->categoriaQuery();
         $producto = new MaeProdu();
 
         if ($model->load(Yii::$app->request->post())) {
 
-            /*Fecha Formateada*/
-//            $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
-//            $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
-
             /*Guia*/
-//            $model->FECH_LLEGA = $FechaLlegada;
-//            $model->FECH_CORTE = $FechaCorte;
             $model->FECH_MODI = $this->ZonaHoraria();
             $model->USU_MODI = Yii::$app->user->identity->email;
             $model->COD_ESTA = '1';
@@ -183,6 +175,7 @@ class GuiaController extends Controller
 
             $codigo = $_POST["NUM_PROD"];
             $categoria = $_POST["COD_MAE_CATG"];
+            var_dump($categoria);exit();
             $producto = $_POST["COD_MAE_PRODU"];
             $elementos = $_POST["DESC_CORTAR"];
             $puxdia = $_POST["PREC_X_DIA"];
