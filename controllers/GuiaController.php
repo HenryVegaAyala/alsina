@@ -145,9 +145,11 @@ class GuiaController extends Controller
     function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $guiaDetal = new FacGuiaDetal();
         $obra = new Obra();
         $obraGuia = new DetalObraGuia();
         $producto = new MaeProdu();
+
 
         if ($model->load(Yii::$app->request->post())) {
 
