@@ -174,8 +174,7 @@ class GuiaController extends Controller
             $cantidad = $producto->Cantidad();
 
             $codigo = $_POST["NUM_PROD"];
-            $categoria = $_POST["COD_MAE_CATG"];
-            var_dump($categoria);exit();
+            $categoria = $_POST["COD_CATG"];
             $producto = $_POST["COD_MAE_PRODU"];
             $elementos = $_POST["DESC_CORTAR"];
             $puxdia = $_POST["PREC_X_DIA"];
@@ -193,18 +192,18 @@ class GuiaController extends Controller
                     $transaction->createCommand()
                         ->update('fac_guia_detal',
                             [
-                                'COD_CATG' => $categoria,
-                                'COD_MAE_PRODU' => $producto,
-                                'NUM_PROD' => $codigo,
-                                'DESC_CORTAR' => $elementos,
-                                'PREC_X_DIA' => $puxdia,
-                                'PESO_REAL' => $pesoreal,
-                                'PESO_VOL' => $pesovol,
-                                'UD' => $ud,
-                                'PESO_REAL_TOTAL' => $pesort,
-                                'CANT_DIAS' => $cantidaddias,
-                                'COST_TOTAL' => $costototal,
-                                'PESO_V_TOTAL' => $pesovt,
+                                'COD_CATG' => $categoria[$i],
+                                'COD_MAE_PRODU' => $producto[$i],
+                                'NUM_PROD' => $codigo[$i],
+                                'DESC_CORTAR' => $elementos[$i],
+                                'PREC_X_DIA' => $puxdia[$i],
+                                'PESO_REAL' => $pesoreal[$i],
+                                'PESO_VOL' => $pesovol[$i],
+                                'UD' => $ud[$i],
+                                'PESO_REAL_TOTAL' => $pesort[$i],
+                                'CANT_DIAS' => $cantidaddias[$i],
+                                'COST_TOTAL' => $costototal[$i],
+                                'PESO_V_TOTAL' => $pesovt[$i],
                                 'FECH_DIGI' => $this->ZonaHoraria(),
                                 'USU_DIGI' => Yii::$app->user->identity->email,
                                 'COD_ESTA' => "1",
