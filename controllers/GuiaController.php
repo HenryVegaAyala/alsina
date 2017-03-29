@@ -109,8 +109,8 @@ class GuiaController extends Controller
             for ($i = 0; $i < $cantidad; $i++) {
                 if ($codigo[$i] <> '') {
                     $command = Yii::$app->db->createCommand(
-                        "INSERT INTO fac_guia_detal (COD_GUIA_DETAL, FAC_COD_GUIA, COD_CATG, COD_MAE_PRODU, NUM_PROD, DESC_CORTAR, PREC_X_DIA, PESO_REAL, PESO_VOL, UD, PESO_REAL_TOTAL, CANT_DIAS, COST_TOTAL, PESO_V_TOTAL, FECH_DIGI, USU_DIGI, COD_ESTA)
-                         VALUES (:COD_GUIA_DETAL, :FAC_COD_GUIA, :COD_CATG, :COD_MAE_PRODU, :NUM_PROD, :DESC_CORTAR, :PREC_X_DIA, :PESO_REAL, :PESO_VOL, :UD, :PESO_REAL_TOTAL, :CANT_DIAS, :COST_TOTAL, :PESO_V_TOTAL, :FECH_DIGI, :USU_DIGI, :COD_ESTA)");
+                        "CALL Guia(:FILA,:COD_GUIA_DETAL, :FAC_COD_GUIA, :COD_CATG, :COD_MAE_PRODU, :NUM_PROD, :DESC_CORTAR, :PREC_X_DIA, :PESO_REAL, :PESO_VOL, :UD, :PESO_REAL_TOTAL, :CANT_DIAS, :COST_TOTAL, :PESO_V_TOTAL, :FECH_DIGI, :USU_DIGI, :COD_ESTA,:ACTION)");
+                    $command->bindValue(':FILA', $i);
                     $command->bindValue(':COD_GUIA_DETAL', $guiaDetal->getCodigoGuiaDetal());
                     $command->bindValue(':FAC_COD_GUIA', $model->COD_GUIA);
                     $command->bindValue(':COD_CATG', $categoria[$i]);
@@ -128,6 +128,7 @@ class GuiaController extends Controller
                     $command->bindValue(':FECH_DIGI', $this->ZonaHoraria());
                     $command->bindValue(':USU_DIGI', Yii::$app->user->identity->email);
                     $command->bindValue(':COD_ESTA', "1");
+                    $command->bindValue(':ACTION', "1");
                     $command->execute();
                 }
             }
@@ -188,48 +189,16 @@ class GuiaController extends Controller
             $costototal = $_POST["COST_TOTAL"];
             $pesovt = $_POST["PESO_V_TOTAL"];
 
+            $command = Yii::$app->db->createCommand("DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :VAR_FAC_COD_GUIA;");
+            $command->bindValue(':VAR_FAC_COD_GUIA', $model->COD_GUIA);
+            $command->execute();
+            
             for ($i = 0; $i < $cantidad; $i++) {
                 if ($codigo[$i] <> '') {
-//                    $transaction = Yii::$app->db;
-//                    $transaction->createCommand()
-//                        ->update('fac_guia_detal',
-//                            [
-//                                'COD_CATG' => $categoria[$i],
-//                                'COD_MAE_PRODU' => $producto[$i],
-//                                'NUM_PROD' => $codigo[$i],
-//                                'DESC_CORTAR' => $elementos[$i],
-//                                'PREC_X_DIA' => $puxdia[$i],
-//                                'PESO_REAL' => $pesoreal[$i],
-//                                'PESO_VOL' => $pesovol[$i],
-//                                'UD' => $ud[$i],
-//                                'PESO_REAL_TOTAL' => $pesort[$i],
-//                                'CANT_DIAS' => $cantidaddias[$i],
-//                                'COST_TOTAL' => $costototal[$i],
-//                                'PESO_V_TOTAL' => $pesovt[$i],
-//                                'FECH_DIGI' => $this->ZonaHoraria(),
-//                                'USU_DIGI' => Yii::$app->user->identity->email,
-//                                'COD_ESTA' => "1",
-//                            ],
-//                            'FAC_COD_GUIA = ' . $model->COD_GUIA)
-//                        ->execute();
                     $command = Yii::$app->db->createCommand(
-                        "UPDATE fac_guia_detal 
-                          SET COD_CATG          = :COD_CATG,
-                              COD_MAE_PRODU     = :COD_MAE_PRODU,
-                              NUM_PROD          = :NUM_PROD,
-                              DESC_CORTAR       = :DESC_CORTAR,
-                              PREC_X_DIA        = :PREC_X_DIA,
-                              PESO_REAL         = :PESO_REAL,
-                              PESO_VOL          = :PESO_VOL,
-                              UD                = :UD,
-                              PESO_REAL_TOTAL   = :PESO_REAL_TOTAL,
-                              CANT_DIAS         = :CANT_DIAS,
-                              COST_TOTAL        = :COST_TOTAL,
-                              PESO_V_TOTAL      = :PESO_V_TOTAL,
-                              FECH_MODI         = :FECH_MODI,
-                              USU_MODI          = :USU_MODI,
-                              COD_ESTA          = :COD_ESTA
-                              WHERE FAC_COD_GUIA = :FAC_COD_GUIA");
+                        "CALL Guia(:FILA,:COD_GUIA_DETAL,:FAC_COD_GUIA,:COD_CATG,:COD_MAE_PRODU,:NUM_PROD,:DESC_CORTAR,:PREC_X_DIA,:PESO_REAL,:PESO_VOL,:UD,:PESO_REAL_TOTAL,:CANT_DIAS,:COST_TOTAL,:PESO_V_TOTAL,:FECH_MODI,:USU_MODI,:COD_ESTA,:ACTION);");
+                    $command->bindValue(':FILA', $i);
+                    $command->bindValue(':COD_GUIA_DETAL', $guiaDetal->getCodigoGuiaDetal());
                     $command->bindValue(':FAC_COD_GUIA', $model->COD_GUIA);
                     $command->bindValue(':COD_CATG', $categoria[$i]);
                     $command->bindValue(':COD_MAE_PRODU', $producto[$i]);
@@ -246,6 +215,7 @@ class GuiaController extends Controller
                     $command->bindValue(':FECH_MODI', $this->ZonaHoraria());
                     $command->bindValue(':USU_MODI', Yii::$app->user->identity->email);
                     $command->bindValue(':COD_ESTA', "1");
+                    $command->bindValue(':ACTION', "2");
                     $command->execute();
                 }
             }

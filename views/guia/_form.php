@@ -36,7 +36,7 @@ use yii\helpers\Url;
                     <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 3]) ?>
+                    <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 1]) ?>
                 </div>
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [

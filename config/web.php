@@ -126,7 +126,7 @@ $config = [
                 ['pattern' => '/actualizar/<id:\d+>', 'route' => '/guia/update'],
 
                 /**Vista Guia**/
-                ['pattern' => '/vista', 'route' => '/guia/view', 'suffix' => '.php'],
+                ['pattern' => '/vista/<id:\d+>', 'route' => '/guia/view'],
 
                 /**Lista Guia**/
                 ['pattern' => '/lista', 'route' => '/guia/index', 'suffix' => '.php'],

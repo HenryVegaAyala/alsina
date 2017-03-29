@@ -22,8 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'NUM_OBRA',
-            'NUM_GUIA',
+            [
+                'attribute' => 'NUM_GUIA',
+                'label' => 'N° de Guía',
+                'value' => 'NUM_GUIA'
+            ],
             [
                 'attribute' => 'FECH_LLEGA',
                 'label' => 'Fecha De Llegada',
@@ -37,7 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'FECH_CORTE'
             ],
             'DI_GRACIA',
-//            'COD_ESTA',
+            [
+                'attribute' => 'COD_ESTA',
+                'label' => 'Monto Total',
+                'value' => function ($data) {
+                    $model = new \app\models\Guia();
+                    $Codigo = $data->COD_GUIA;
+                    $total = $model->MontoGuia($Codigo);
+                    return $total;
+                }
+            ],
+            'NUM_OBRA',
             [
 
                 'class' => 'yii\grid\ActionColumn',
