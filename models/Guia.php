@@ -113,17 +113,17 @@ class Guia extends \yii\db\ActiveRecord
     {
         $query = new Query();
         $expresion = new Expression('sum(COST_TOTAL) AS TOTAL');
-        $query->select($expresion)->from('fac_guia_detal')->where(["FAC_COD_GUIA" => $Codigo ]);
+        $query->select($expresion)->from('fac_guia_detal')->where(["FAC_COD_GUIA" => $Codigo]);
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;
     }
 
-    public function MontoGuiaElemento($Codigo)
+    public function MontoGuiaElemento($Codigo, $Guia)
     {
         $query = new Query();
         $expresion = new Expression('sum(COST_TOTAL) AS TOTAL');
-        $query->select($expresion)->from('fac_guia_detal')->where(["COD_CATG" => $Codigo ]);
+        $query->select($expresion)->from('fac_guia_detal')->where("COD_CATG = '".$Codigo."' and ". "FAC_COD_GUIA = '".$Guia."'");
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;
