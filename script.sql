@@ -313,3 +313,114 @@ SET FOREIGN_KEY_CHECKS = 1;
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE fac_guia_detal;
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+CREATE PROCEDURE `Guia`(
+
+  IN FILA                INT(12),
+  IN VAR_COD_GUIA_DETAL  INT(12),
+  IN VAR_FAC_COD_GUIA    INT(12),
+  IN VAR_COD_CATG        INT(12),
+  IN VAR_COD_MAE_PRODU   INT(12),
+  IN VAR_NUM_PROD        INT(12),
+  IN VAR_DESC_CORTAR     VARCHAR(100),
+  IN VAR_PREC_X_DIA      DECIMAL(10, 2),
+  IN VAR_PESO_REAL       DECIMAL(10, 2),
+  IN VAR_PESO_VOL        DECIMAL(10, 2),
+  IN VAR_UD              DECIMAL(5, 2),
+  IN VAR_PESO_REAL_TOTAL DECIMAL(10, 2),
+  IN VAR_CANT_DIAS       DECIMAL(10, 2),
+  IN VAR_COST_TOTAL      DECIMAL(10, 2),
+  IN VAR_PESO_V_TOTAL    DECIMAL(10, 2),
+  IN VAR_FECH_DIGI       DATETIME,
+  IN VAR_USU_DIGI        VARCHAR(45),
+  IN VAR_COD_ESTA        VARCHAR(1),
+  IN ACTION              VARCHAR(1)
+
+)
+BEGIN
+
+    IF (ACTION = 1)
+    THEN
+
+      INSERT INTO fac_guia_detal (
+        COD_GUIA_DETAL,
+        FAC_COD_GUIA,
+        COD_CATG,
+        COD_MAE_PRODU,
+        NUM_PROD,
+        DESC_CORTAR,
+        PREC_X_DIA,
+        PESO_REAL,
+        PESO_VOL,
+        UD,
+        PESO_REAL_TOTAL,
+        CANT_DIAS,
+        COST_TOTAL,
+        PESO_V_TOTAL,
+        FECH_DIGI,
+        USU_DIGI,
+        COD_ESTA)
+      VALUES (
+        VAR_COD_GUIA_DETAL,
+        VAR_FAC_COD_GUIA,
+        VAR_COD_CATG,
+        VAR_COD_MAE_PRODU,
+        VAR_NUM_PROD,
+        VAR_DESC_CORTAR,
+        VAR_PREC_X_DIA,
+        VAR_PESO_REAL,
+        VAR_PESO_VOL,
+        VAR_UD,
+        VAR_PESO_REAL_TOTAL,
+        VAR_CANT_DIAS,
+        VAR_COST_TOTAL,
+        VAR_PESO_V_TOTAL,
+        VAR_FECH_DIGI,
+        VAR_USU_DIGI,
+        VAR_COD_ESTA
+      );
+
+    ELSE
+
+      INSERT INTO fac_guia_detal (
+        COD_GUIA_DETAL,
+        FAC_COD_GUIA,
+        COD_CATG,
+        COD_MAE_PRODU,
+        NUM_PROD,
+        DESC_CORTAR,
+        PREC_X_DIA,
+        PESO_REAL,
+        PESO_VOL,
+        UD,
+        PESO_REAL_TOTAL,
+        CANT_DIAS,
+        COST_TOTAL,
+        PESO_V_TOTAL,
+        FECH_MODI,
+        USU_MODI,
+        COD_ESTA)
+      VALUES (
+        VAR_COD_GUIA_DETAL,
+        VAR_FAC_COD_GUIA,
+        VAR_COD_CATG,
+        VAR_COD_MAE_PRODU,
+        VAR_NUM_PROD,
+        VAR_DESC_CORTAR,
+        VAR_PREC_X_DIA,
+        VAR_PESO_REAL,
+        VAR_PESO_VOL,
+        VAR_UD,
+        VAR_PESO_REAL_TOTAL,
+        VAR_CANT_DIAS,
+        VAR_COST_TOTAL,
+        VAR_PESO_V_TOTAL,
+        VAR_FECH_DIGI,
+        VAR_USU_DIGI,
+        VAR_COD_ESTA
+      );
+
+    END IF;
+
+  END;
