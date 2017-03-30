@@ -59,81 +59,88 @@ class GuiaController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            /*Fecha Formateada*/
-            $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
-            $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
+            $numeroGuia = $model->GuiaValidador($model->NUM_GUIA);
 
-            /*Guia*/
-            $model->COD_GUIA = $model->getCodigoGuia();
-            $model->FECH_LLEGA = $FechaLlegada;
-            $model->FECH_CORTE = $FechaCorte;
-            $model->FECH_DIGI = $this->ZonaHoraria();
-            $model->USU_DIGI = Yii::$app->user->identity->email;
-            $model->COD_ESTA = '1';
+            if ($numeroGuia !== 1) {
+                /*Fecha Formateada*/
+                $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
+                $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
-            /*Obra*/
-            $obra->COD_OBRA = $obra->getCodigoObra();
-            $obra->NUM_OBRA = $model->NUM_OBRA;
-            $obra->FEC_DIGI = $this->ZonaHoraria();
-            $obra->USU_DIGI = Yii::$app->user->identity->email;
-            $obra->COD_ESTA = '1';
+                /*Guia*/
+                $model->COD_GUIA = $model->getCodigoGuia();
+                $model->FECH_LLEGA = $FechaLlegada;
+                $model->FECH_CORTE = $FechaCorte;
+                $model->FECH_DIGI = $this->ZonaHoraria();
+                $model->USU_DIGI = Yii::$app->user->identity->email;
+                $model->COD_ESTA = '1';
 
-            /*Detalle Obra Guia*/
-            $obraGuia->COD_OBRA_GUIA = $obraGuia->getCodigoObraGuia();
-            $obraGuia->OBRA_COD_OBRA = $obra->COD_OBRA;
-            $obraGuia->GUIA_COD_GUIA = $model->COD_GUIA;
-            $obraGuia->FECH_DIGI = $this->ZonaHoraria();
-            $obraGuia->USU_DIGI = Yii::$app->user->identity->email;
-            $obraGuia->COD_ESTADO = '1';
+                /*Obra*/
+                $obra->COD_OBRA = $obra->getCodigoObra();
+                $obra->NUM_OBRA = $model->NUM_OBRA;
+                $obra->FEC_DIGI = $this->ZonaHoraria();
+                $obra->USU_DIGI = Yii::$app->user->identity->email;
+                $obra->COD_ESTA = '1';
 
-            $model->save();
-            $obra->save();
-            $obraGuia->save();
+                /*Detalle Obra Guia*/
+                $obraGuia->COD_OBRA_GUIA = $obraGuia->getCodigoObraGuia();
+                $obraGuia->OBRA_COD_OBRA = $obra->COD_OBRA;
+                $obraGuia->GUIA_COD_GUIA = $model->COD_GUIA;
+                $obraGuia->FECH_DIGI = $this->ZonaHoraria();
+                $obraGuia->USU_DIGI = Yii::$app->user->identity->email;
+                $obraGuia->COD_ESTADO = '1';
 
-            /*Detalle Guia*/
-            $cantidad = $producto->Cantidad();
+                $model->save();
+                $obra->save();
+                $obraGuia->save();
 
-            $codigo = $_POST["NUM_PROD"];
-            $categoria = $_POST["COD_MAE_CATG"];
-            $producto = $_POST["COD_MAE_PRODU"];
-            $elementos = $_POST["DESC_CORTAR"];
-            $puxdia = $_POST["PREC_X_DIA"];
-            $pesoreal = $_POST["PESO_REAL"];
-            $pesovol = $_POST["PESO_VOL"];
-            $ud = $_POST["UD"];
-            $pesort = $_POST["PESO_REAL_TOTAL"];
-            $cantidaddias = $_POST["CANT_DIAS"];
-            $costototal = $_POST["COST_TOTAL"];
-            $pesovt = $_POST["PESO_V_TOTAL"];
+                /*Detalle Guia*/
+                $cantidad = $producto->Cantidad();
 
-            for ($i = 0; $i < $cantidad; $i++) {
-                if ($codigo[$i] <> '') {
-                    $command = Yii::$app->db->createCommand(
-                        "CALL Guia(:FILA,:COD_GUIA_DETAL, :FAC_COD_GUIA, :COD_CATG, :COD_MAE_PRODU, :NUM_PROD, :DESC_CORTAR, :PREC_X_DIA, :PESO_REAL, :PESO_VOL, :UD, :PESO_REAL_TOTAL, :CANT_DIAS, :COST_TOTAL, :PESO_V_TOTAL, :FECH_DIGI, :USU_DIGI, :COD_ESTA,:ACTION)");
-                    $command->bindValue(':FILA', $i);
-                    $command->bindValue(':COD_GUIA_DETAL', $guiaDetal->getCodigoGuiaDetal());
-                    $command->bindValue(':FAC_COD_GUIA', $model->COD_GUIA);
-                    $command->bindValue(':COD_CATG', $categoria[$i]);
-                    $command->bindValue(':COD_MAE_PRODU', $producto[$i]);
-                    $command->bindValue(':NUM_PROD', $codigo[$i]);
-                    $command->bindValue(':DESC_CORTAR', $elementos[$i]);
-                    $command->bindValue(':PREC_X_DIA', $puxdia[$i]);
-                    $command->bindValue(':PESO_REAL', $pesoreal[$i]);
-                    $command->bindValue(':PESO_VOL', $pesovol[$i]);
-                    $command->bindValue(':UD', $ud[$i]);
-                    $command->bindValue(':PESO_REAL_TOTAL', $pesort[$i]);
-                    $command->bindValue(':CANT_DIAS', $cantidaddias[$i]);
-                    $command->bindValue(':COST_TOTAL', $costototal[$i]);
-                    $command->bindValue(':PESO_V_TOTAL', $pesovt[$i]);
-                    $command->bindValue(':FECH_DIGI', $this->ZonaHoraria());
-                    $command->bindValue(':USU_DIGI', Yii::$app->user->identity->email);
-                    $command->bindValue(':COD_ESTA', "1");
-                    $command->bindValue(':ACTION', "1");
-                    $command->execute();
+                $codigo = $_POST["NUM_PROD"];
+                $categoria = $_POST["COD_MAE_CATG"];
+                $producto = $_POST["COD_MAE_PRODU"];
+                $elementos = $_POST["DESC_CORTAR"];
+                $puxdia = $_POST["PREC_X_DIA"];
+                $pesoreal = $_POST["PESO_REAL"];
+                $pesovol = $_POST["PESO_VOL"];
+                $ud = $_POST["UD"];
+                $pesort = $_POST["PESO_REAL_TOTAL"];
+                $cantidaddias = $_POST["CANT_DIAS"];
+                $costototal = $_POST["COST_TOTAL"];
+                $pesovt = $_POST["PESO_V_TOTAL"];
+
+                for ($i = 0; $i < $cantidad; $i++) {
+                    if ($codigo[$i] <> '') {
+                        $command = Yii::$app->db->createCommand(
+                            "CALL Guia(:FILA,:COD_GUIA_DETAL, :FAC_COD_GUIA, :COD_CATG, :COD_MAE_PRODU, :NUM_PROD, :DESC_CORTAR, :PREC_X_DIA, :PESO_REAL, :PESO_VOL, :UD, :PESO_REAL_TOTAL, :CANT_DIAS, :COST_TOTAL, :PESO_V_TOTAL, :FECH_DIGI, :USU_DIGI, :COD_ESTA,:ACTION)");
+                        $command->bindValue(':FILA', $i);
+                        $command->bindValue(':COD_GUIA_DETAL', $guiaDetal->getCodigoGuiaDetal());
+                        $command->bindValue(':FAC_COD_GUIA', $model->COD_GUIA);
+                        $command->bindValue(':COD_CATG', $categoria[$i]);
+                        $command->bindValue(':COD_MAE_PRODU', $producto[$i]);
+                        $command->bindValue(':NUM_PROD', $codigo[$i]);
+                        $command->bindValue(':DESC_CORTAR', $elementos[$i]);
+                        $command->bindValue(':PREC_X_DIA', $puxdia[$i]);
+                        $command->bindValue(':PESO_REAL', $pesoreal[$i]);
+                        $command->bindValue(':PESO_VOL', $pesovol[$i]);
+                        $command->bindValue(':UD', $ud[$i]);
+                        $command->bindValue(':PESO_REAL_TOTAL', $pesort[$i]);
+                        $command->bindValue(':CANT_DIAS', $cantidaddias[$i]);
+                        $command->bindValue(':COST_TOTAL', $costototal[$i]);
+                        $command->bindValue(':PESO_V_TOTAL', $pesovt[$i]);
+                        $command->bindValue(':FECH_DIGI', $this->ZonaHoraria());
+                        $command->bindValue(':USU_DIGI', Yii::$app->user->identity->email);
+                        $command->bindValue(':COD_ESTA', "1");
+                        $command->bindValue(':ACTION', "1");
+                        $command->execute();
+                    }
                 }
+                return $this->redirect(['view', 'id' => $model->COD_GUIA]);
+            } else {
+                Yii::$app->session->setFlash('error', 'Este N° de Guía: ' . $model->NUM_GUIA . '; ya fue registrado antes.');
+                return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
             }
 
-            return $this->redirect(['view', 'id' => $model->COD_GUIA]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -192,7 +199,7 @@ class GuiaController extends Controller
             $command = Yii::$app->db->createCommand("DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :VAR_FAC_COD_GUIA;");
             $command->bindValue(':VAR_FAC_COD_GUIA', $model->COD_GUIA);
             $command->execute();
-            
+
             for ($i = 0; $i < $cantidad; $i++) {
                 if ($codigo[$i] <> '') {
                     $command = Yii::$app->db->createCommand(
@@ -229,8 +236,13 @@ class GuiaController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = new Guia();
+        $usuario = Yii::$app->user->identity->email;
+        $fecha = $this->ZonaHoraria();
+        $Numero = $model->NumeroGuia($id);
+        $model->EliminarGuiaDetalle($id);
+        $model->EliminarGuia($id, $usuario, $fecha);
+        Yii::$app->session->setFlash('success', 'Se Elimino correctamente el N° de Guía ' . $Numero);
         return $this->redirect(['index']);
     }
 
@@ -255,7 +267,7 @@ class GuiaController extends Controller
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
 
-            return $this->redirect(['reporte']);
+            return $this->render('reportepdf', ['model' => $model,]);
         } else {
             return $this->render('formulario', ['model' => $model,]);
         }
@@ -269,6 +281,6 @@ class GuiaController extends Controller
 
     public function actionElementos2()
     {
-        return $this->render('elementos2', ['id' => '']);
+        return $this->render('elementos2', ['id' => '', 'codigo' => '']);
     }
 }

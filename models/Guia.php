@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GuiaController;
 use Yii;
 use yii\db\Query;
 use yii\db\Expression;
@@ -123,7 +124,52 @@ class Guia extends \yii\db\ActiveRecord
     {
         $query = new Query();
         $expresion = new Expression('sum(COST_TOTAL) AS TOTAL');
-        $query->select($expresion)->from('fac_guia_detal')->where("COD_CATG = '".$Codigo."' and ". "FAC_COD_GUIA = '".$Guia."'");
+        $query->select($expresion)->from('fac_guia_detal')->where("COD_CATG = '" . $Codigo . "' and " . "FAC_COD_GUIA = '" . $Guia . "'");
+        $comando = $query->createCommand();
+        $data = $comando->queryScalar();
+        return $data;
+    }
+
+    public function GuiaValidador($numero)
+    {
+        $query = new Query();
+        $select = new Expression('NUM_GUIA');
+        $where = new Expression("trim(NUM_GUIA) = " . "'$numero'");
+        $query->select($select)->from('fac_guia')->where($where);
+        $comando = $query->createCommand();
+        $data = $comando->queryScalar();
+        if ($data == true) {
+            return 1;
+        } else
+            return 0;
+    }
+
+    public function EliminarGuiaDetalle($Codigo)
+    {
+        $connection = \Yii::$app->db;
+        $eliminar = $connection->createCommand('DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :FAC_COD_GUIA ');
+        $eliminar->bindValue(':FAC_COD_GUIA', $Codigo);
+        $resultado = $eliminar->query();
+        return $resultado;
+    }
+
+    public function EliminarGuia($Codigo, $Usuario, $Fecha)
+    {
+        $connection = \Yii::$app->db;
+        $eliminar = $connection->createCommand('UPDATE fac_guia SET USU_ELIM = :USU_ELIM , FECH_ELIM = :FECH_ELIM , COD_ESTA = :COD_ESTA WHERE COD_GUIA = :COD_GUIA');
+        $eliminar->bindValue(':COD_GUIA', $Codigo);
+        $eliminar->bindValue(':USU_ELIM', $Usuario);
+        $eliminar->bindValue(':FECH_ELIM', $Fecha);
+        $eliminar->bindValue(':COD_ESTA', 0);
+        $resultado = $eliminar->query();
+        return $resultado;
+    }
+
+    public function NumeroGuia($Codigo)
+    {
+        $query = new Query();
+        $select = new Expression('NUM_GUIA');
+        $query->select($select)->from('fac_guia')->where(['COD_GUIA' => $Codigo ]);
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;

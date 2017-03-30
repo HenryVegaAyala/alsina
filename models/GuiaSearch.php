@@ -42,7 +42,7 @@ class GuiaSearch extends Guia
      */
     public function search($params)
     {
-        $query = Guia::find();
+        $query = Guia::find()->where(['COD_ESTA' => 1])->orderBy(['FECH_DIGI' => SORT_DESC]);
 
         // add conditions that should always apply here
 

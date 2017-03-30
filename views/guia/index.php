@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\widgets\DatePicker;
 
 /**
  * @var yii\web\View $this
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin();
     echo GridView::widget([
         'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -27,17 +28,51 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'N° de Guía',
                 'value' => 'NUM_GUIA'
             ],
+//            [
+//                'attribute' => 'FECH_LLEGA',
+//                'label' => 'Fecha De Llegada',
+//                'format' => ['date', 'php:d-m-Y'],
+//                'value' => 'FECH_LLEGA'
+//            ],
             [
                 'attribute' => 'FECH_LLEGA',
-                'label' => 'Fecha De Llegada',
-                'format' => ['date', 'php:d-m-Y'],
-                'value' => 'FECH_LLEGA'
+                'value' => 'FECH_LLEGA',
+                'format' => 'raw',
+                'options' => ['style' => 'width: 20%;'],
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'FECH_LLEGA',
+                    'options' => ['placeholder' => ''],
+                    'pluginOptions' => [
+                        'id' => 'FECH_LLEGA',
+                        'autoclose'=>true,
+                        'format' => 'yyyy-mm-dd',
+                        'startView' => 'days',
+                    ]
+                ])
             ],
+//            [
+//                'attribute' => 'FECH_CORTE',
+//                'label' => 'Fecha De Corte',
+//                'format' => ['date', 'php:d-m-Y'],
+//                'value' => 'FECH_CORTE'
+//            ],
             [
                 'attribute' => 'FECH_CORTE',
-                'label' => 'Fecha De Corte',
-                'format' => ['date', 'php:d-m-Y'],
-                'value' => 'FECH_CORTE'
+                'value' => 'FECH_CORTE',
+                'format' => 'raw',
+                'options' => ['style' => 'width: 20%;'],
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'FECH_CORTE',
+                    'options' => ['placeholder' => ''],
+                    'pluginOptions' => [
+                        'id' => 'FECH_CORTE',
+                        'autoclose'=>true,
+                        'format' => 'yyyy-mm-dd',
+                        'startView' => 'days',
+                    ]
+                ])
             ],
             'DI_GRACIA',
             [

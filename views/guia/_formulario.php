@@ -21,7 +21,7 @@ use kartik\widgets\DatePicker;
     </div>
 
     <?php Pjax::begin(); ?>
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['target' => '_blank']]); ?>
 
     <div class="fieldset">
         <div class="container-fluid">

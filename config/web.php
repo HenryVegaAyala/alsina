@@ -135,7 +135,7 @@ $config = [
                 ['pattern' => '/reporte', 'route' => '/guia/formulario', 'suffix' => '.php'],
 
                 /**Generar Guia**/
-                ['pattern' => '/guia', 'route' => '/guia/reporte', 'suffix' => '.pdf'],
+                ['pattern' => '/reporteformato', 'route' => '/guia/reportepdf', 'suffix' => '.pdf'],
 
                 /** Usuario **/
                 ['pattern' => '/datos/<id:\d+>', 'route' => '/usuario/update'],
