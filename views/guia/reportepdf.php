@@ -48,8 +48,8 @@ class PDF extends FPDF
 
         $this->SetY(10); /* Inicio */
         $this->SetFont('Arial','B',12);
-        $this->Cell(10,2,'Columna1',1,0,'C');
-        $this->MultiCell(10,2,'palabras y mas palabras',1,'C');
+        $this->Cell(5,2,'Columna1',1,0,'C');
+        $this->MultiCell(5,2,'palabras y mas palabras',1,'C');
         $this->SetY(20); /* Set 20 Eje Y */
         $this->Cell(10,2,'Columna3',1,0,'C');
 
