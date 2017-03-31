@@ -46,11 +46,11 @@ class PDF extends FPDF
         $this->Cell(1.4, 0.45, utf8_decode("P. V. Total"), 1, '', 'C');
         $this->Ln();
 
-        $this->SetY(10); /* Inicio */
+        $this->SetY(5); /* Inicio */
         $this->SetFont('Arial','B',12);
         $this->Cell(5,2,'Columna1',1,0,'C');
         $this->MultiCell(5,2,'palabras y mas palabras',1,'C');
-        $this->SetY(20); /* Set 20 Eje Y */
+        $this->SetY(10); /* Set 20 Eje Y */
         $this->Cell(10,2,'Columna3',1,0,'C');
 
 //        $connection = \Yii::$app->db;
