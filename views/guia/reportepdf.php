@@ -36,14 +36,14 @@ class PDF extends FPDF
         $this->Cell(0.6, 0.45, utf8_decode("#"), 1, '', 'C');
         $this->Cell(1.5, 0.45, utf8_decode("Código"), 1, '', 'C');
         $this->Cell(6.7, 0.45, utf8_decode("Elementos"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("P.U x dia"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso Real"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso Volumétrico"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P. x dia"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P. Real"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P. Volum."), 1, '', 'C');
         $this->Cell(1.5, 0.45, utf8_decode("Ud."), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso R. Total"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P. R. Total"), 1, '', 'C');
         $this->Cell(1.5, 0.45, utf8_decode("Cant. Dias"), 1, '', 'C');
         $this->Cell(1.5, 0.45, utf8_decode("Costo total"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso V. Total"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P. V. Total"), 1, '', 'C');
         $this->Ln();
 
         $connection = \Yii::$app->db;
