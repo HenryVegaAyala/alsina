@@ -45,13 +45,13 @@ class PDF extends FPDF
         $this->Cell(1.4, 0.45, utf8_decode("Costo total"), 1, '', 'C');
         $this->Cell(1.4, 0.45, utf8_decode("P. V. Total"), 1, '', 'C');
         $this->Ln();
-        
+
         $this->SetY(10); /* Inicio */
         $this->SetFont('Arial','B',12);
-        $this->Cell(40,10,'Columna1',1,0,'C');
-        $this->MultiCell(40,10,'palabras y mas palabras',1,'C');
+        $this->Cell(10,10,'Columna1',1,0,'C');
+        $this->MultiCell(10,10,'palabras y mas palabras',1,'C');
         $this->SetY(20); /* Set 20 Eje Y */
-        $this->Cell(40,10,'Columna3',1,0,'C');
+        $this->Cell(10,10,'Columna3',1,0,'C');
 
 //        $connection = \Yii::$app->db;
 //        $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
