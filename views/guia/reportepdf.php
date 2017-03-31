@@ -70,6 +70,13 @@ class PDF extends FPDF
             $i++;
             $this->Ln();
         }
+
+        $this->SetY(10); /* Inicio */
+        $this->SetFont('Arial','B',12);
+        $this->Cell(40,10,'Columna1',1,0,'C');
+        $this->MultiCell(40,10,'palabras y mas palabras',1,'C');
+        $this->SetY(20); /* Set 20 Eje Y */
+        $this->Cell(40,10,'Columna3',1,0,'C');
     }
 }
 
