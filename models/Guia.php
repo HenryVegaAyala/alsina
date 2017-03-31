@@ -175,4 +175,14 @@ class Guia extends \yii\db\ActiveRecord
         return $data;
     }
 
+    public function informacion($numeroGuia)
+    {
+        $query = new Query();
+        $select = new Expression('*');
+        $query->select($select)->from('fac_guia')->where(['COD_ESTA' => 1])->where(['NUM_GUIA' => $numeroGuia]);
+        $comando = $query->createCommand();
+        $resultado = $comando->queryAll();
+        return $resultado;
+    }
+
 }

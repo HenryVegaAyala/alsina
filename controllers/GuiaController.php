@@ -266,8 +266,9 @@ class GuiaController extends Controller
     {
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
-
-            return $this->render('reportepdf', ['model' => $model,]);
+            $numero = $model->NUM_GUIA;
+            $informacion = $model->informacion($numero);
+            return $this->render('reportepdf', ['informacion' => $informacion,]);
         } else {
             return $this->render('formulario', ['model' => $model,]);
         }

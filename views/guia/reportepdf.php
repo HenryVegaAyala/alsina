@@ -4,13 +4,13 @@ header('Content-type: application/pdf');
 class PDF extends FPDF
 {
 
-    function Impresion($model)
+    function Impresion($informacion)
     {
-                                                                 // $this->Cell(Ancho , Alto , cadena , bordes , posición , alinear , fondo, URL )
-        $this->SetFont('Arial', 'B', 15);
-                                                                 // $this->Image('ruta de imagen', horizontal, vertical, ancho, alto);
-        $this->Image(Yii::getAlias('@alsinaLogo'), 1, 1, 2.8, 1.5);
-        $this->Cell(19.2, 1, utf8_decode('Lista de Contabilidad'), 0, 'C', 'C');
+        foreach ($informacion as $value):
+        endforeach;
+        $this->SetFont('Arial', 'B', 16);                        // $this->Cell(Ancho , Alto , cadena , bordes , posición , alinear , fondo, URL )
+        $this->Image(Yii::getAlias('@alsinaLogo'), 1, 1, 3, 1.5);// $this->Image('ruta de imagen', horizontal, vertical, ancho, alto);
+        $this->Cell(19.2, 1.5, utf8_decode('Guía de Productos'), 0, 'C', 'C');
         $this->Ln(2);
 
         $this->SetFont('Arial', 'B', 11);
@@ -22,53 +22,60 @@ class PDF extends FPDF
         $this->Cell(0.2, 0.2, utf8_decode(''), 0, 0, 'C', True);
         $this->Ln(0.6);
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('Arial', 'B', 8);
         $this->SetTextColor(0, 0, 0);
-
-        $this->Cell(19.2, 0.5, utf8_decode(strtoupper('Datos Personales')), 1, '', 'C');
+        $this->Cell(19.2, 0.5, utf8_decode(strtoupper('N° de GuÍa: ' . $value['NUM_GUIA'])), 1, '', 'L');
         $this->Ln();
-        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('Datos Personales')), 1, '', 'C');
-        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('DNI')), 1, '', 'C');
-        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('Edad')), 1, '', 'C');
-        $this->Ln(0.5);
+        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE LLEGADA A OBRA: ' . Yii::$app->formatter->asDate($value['FECH_LLEGA'], "php:d-m-Y"))), 1, '', 'L');
+        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE CORTE: ' . Yii::$app->formatter->asDate($value['FECH_CORTE'], "php:d-m-Y"))), 1, '', 'L');
+        $this->Cell(6.4, 0.5, utf8_decode(strtoupper('DIAS DE GRACIA: ' . number_format($value['DI_GRACIA'], 2))), 1, '', 'L');
+        $this->Ln(1);
 
-//        $connection = \Yii::$app->db;
-//        $sqlStatement = "";
-//        $comando = $connection->createCommand($sqlStatement);
-//        $resultado = $comando->query();
-//
-//        while ($row = $resultado->read()) {
-        $this->SetFont('Arial', '', 7.5);
-//            $this->Cell(6.5, 0.45, utf8_decode(strtoupper($row['Dato'])), 1, '', 'L');
-//            $this->Cell(2.5, 0.45, utf8_decode(strtoupper($row['dni'])), 1, '', 'C');
-//            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['Edad'])), 1, '', 'C');
-//            $this->Cell(4.5, 0.45, utf8_decode(strtoupper($row['Estado_Civil'])), 1, '', 'L');
-//            $this->Cell(3, 0.45, utf8_decode(strtoupper($row['Telefono_Celular'])), 1, '', 'C');
-//            $this->Cell(5.5, 0.45, utf8_decode(strtoupper($row['Email'])), 1, '', 'L');
-//            $this->Cell(4, 0.45, utf8_decode(strtoupper($row['Tarjeta_De_Credito'])), 1, '', 'L');
+        $this->Cell(19.2, 0.5, utf8_decode(strtoupper('Lista de Productos:')), 0, '', 'L');
         $this->Ln();
-//        }
+        $this->Cell(0.6, 0.45, utf8_decode("#"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Código"), 1, '', 'C');
+        $this->Cell(6.7, 0.45, utf8_decode("Elementos"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("P.U x dia"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Peso Real"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Peso Volumétrico"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Ud."), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Peso R. Total"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Cant. Dias"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Costo total"), 1, '', 'C');
+        $this->Cell(1.5, 0.45, utf8_decode("Peso V. Total"), 1, '', 'C');
+        $this->Ln();
 
-//        $this->SetXY(1.93, 17.58);
+        $connection = \Yii::$app->db;
+        $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
+                        FROM fac_guia_detal WHERE FAC_COD_GUIA = " . $value['COD_GUIA'];
+        $comando = $connection->createCommand($sqlStatement);
+        $resultado = $comando->query();
 
-//        $connection = \Yii::$app->db;
-//        $sqlStatement = "";
-//        $comando = $connection->createCommand($sqlStatement);
-//        $resultado = $comando->query();
-//
-//        while ($row = $resultado->read()) {
-//            $this->SetFont('Arial', 'B', 9);
-//            $this->Ln();
-//            $this->Cell(27.5, 0.7, utf8_decode(strtoupper('Total del clientes durante el periodo: ' . $row['cantidad'])), 0, '', 'L');
-//            $this->Ln();
-//        }
+        $i = 1;
+        while ($row = $resultado->read()) {
+            $this->SetFont('Arial', '', 7);
+            $this->Cell(0.6, 0.45, $i, 1, '', 'C');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
+            $this->Cell(6.7, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'L');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'L');
+            $i++;
+            $this->Ln();
+        }
     }
 }
 
 $pdf = new PDF('P', 'cm', 'A4');
 $Reporte = "Guia.pdf";
 $pdf->AddPage();
-$pdf->Impresion($model);
+$pdf->Impresion($informacion);
 $pdf->SetTitle("Reporte de Guia");
 $pdf->SetAuthor("Encofrado Alsina");
 $pdf->Output($Reporte, 'I');
