@@ -33,7 +33,7 @@ use yii\helpers\Url;
                     <?= $form->field($model, 'NUM_OBRA')->textInput(['maxlength' => 6]) ?>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 6]) ?>
+                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => 12]) ?>
                 </div>
                 <div class="col-sm-2">
                     <?= $form->field($model, 'DI_GRACIA')->textInput(['maxlength' => 1]) ?>
