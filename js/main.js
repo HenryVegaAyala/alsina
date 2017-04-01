@@ -86,10 +86,10 @@ function CalcularPesoRealTotalActualizar() {
     cantdias = document.getElementsByName("CANT_DIAS[]");
 
     procesollegada = fechallegada.split('-');
-    nuevafechallegada = procesollegada[2]+'-'+procesollegada[1]+'-'+procesollegada[0];
+    nuevafechallegada = procesollegada[2] + '-' + procesollegada[1] + '-' + procesollegada[0];
 
     procesocorte = fechacorte.split('-');
-    nuevafechacorte = procesocorte[2]+'-'+procesocorte[1]+'-'+procesocorte[0];
+    nuevafechacorte = procesocorte[2] + '-' + procesocorte[1] + '-' + procesocorte[0];
 
     /*Costo Total*/
     puxdia = document.getElementsByName("PREC_X_DIA[]");
@@ -141,3 +141,31 @@ function restafechas(f1, f2) {
     var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
     return dias;
 }
+
+$(document).on("blur", "#guia-di_gracia", function () {
+
+    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud;
+
+    fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
+    fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
+    diasgracia = document.getElementById("guia-di_gracia").value;
+    puxdia = document.getElementsByName("PREC_X_DIA[]");
+    ud = document.getElementsByName("UD[]");
+    
+    costototal = document.getElementsByName("COST_TOTAL[]");
+    cantdias = document.getElementsByName("CANT_DIAS[]");
+
+    /*Re-Operacion*/
+    pesoreal = document.getElementsByName("PESO_REAL[]");
+    for (i = 0; i < pesoreal.length; i++) {
+        resud = parseFloat(ud[i].value, 2);
+
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
+
+        respuxdia = parseFloat(puxdia[i].value, 2);
+        rescostototal = parseFloat(respuxdia * resud * rescantdias);
+        costototal[i].value = redondear2decimales(rescostototal);
+    }
+
+});
