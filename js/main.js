@@ -108,9 +108,7 @@ function CalcularPesoRealTotalActualizar() {
         pesorealtotal[i].value = redondear2decimales(respesorealtotal);
 
         /*Cantidad de dias*/
-        rescantdias = parseFloat(((restafechas(nuevafechacorte,nuevafechallegada) + 1) - diasgracia));
-        // rescantdias = parseFloat(((restafechas(nuevafechacorte,nuevafechallegada))));
-        console.log(rescantdias);
+        rescantdias = parseFloat(((restafechas(nuevafechallegada, nuevafechacorte) - 1) * diasgracia));
         cantdias[i].value = redondear2decimales(rescantdias);
 
         /*Costo Total*/
