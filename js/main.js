@@ -151,7 +151,7 @@ $(document).on("blur", "#guia-di_gracia", function () {
     diasgracia = document.getElementById("guia-di_gracia").value;
     puxdia = document.getElementsByName("PREC_X_DIA[]");
     ud = document.getElementsByName("UD[]");
-    
+
     costototal = document.getElementsByName("COST_TOTAL[]");
     cantdias = document.getElementsByName("CANT_DIAS[]");
 
@@ -166,6 +166,69 @@ $(document).on("blur", "#guia-di_gracia", function () {
         respuxdia = parseFloat(puxdia[i].value, 2);
         rescostototal = parseFloat(respuxdia * resud * rescantdias);
         costototal[i].value = redondear2decimales(rescostototal);
+    }
+
+});
+
+$(document).on("change", "#guia-fech_llega-kvdate", function () {
+
+    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud, cantdias;
+
+    fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
+    fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
+    diasgracia = document.getElementById("guia-di_gracia").value;
+    cantdias = document.getElementsByName("CANT_DIAS[]");
+    puxdia = document.getElementsByName("PREC_X_DIA[]");
+    ud = document.getElementsByName("UD[]");
+    
+    costototal = document.getElementsByName("COST_TOTAL[]");
+
+    /*Re-Operacion*/
+    pesoreal = document.getElementsByName("PESO_REAL[]");
+    for (i = 0; i < pesoreal.length; i++) {
+        resud = parseFloat(ud[i].value, 2);
+
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
+
+        respuxdia = parseFloat(puxdia[i].value, 2);
+        rescostototal = parseFloat(respuxdia * resud * rescantdias);
+        costototal[i].value = redondear2decimales(rescostototal);
+
+        /*Cantidad de dias*/
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
+    }
+
+});
+
+$(document).on("change", "#guia-fech_corte-kvdate", function () {
+
+    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud, cantdias;
+
+    fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
+    fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
+    diasgracia = document.getElementById("guia-di_gracia").value;
+    cantdias = document.getElementsByName("CANT_DIAS[]");
+    puxdia = document.getElementsByName("PREC_X_DIA[]");
+    ud = document.getElementsByName("UD[]");
+    costototal = document.getElementsByName("COST_TOTAL[]");
+
+    /*Re-Operacion*/
+    pesoreal = document.getElementsByName("PESO_REAL[]");
+    for (i = 0; i < pesoreal.length; i++) {
+        resud = parseFloat(ud[i].value, 2);
+
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
+
+        respuxdia = parseFloat(puxdia[i].value, 2);
+        rescostototal = parseFloat(respuxdia * resud * rescantdias);
+        costototal[i].value = redondear2decimales(rescostototal);
+
+        /*Cantidad de dias*/
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
+        cantdias[i].value = redondear2decimales(rescantdias);
     }
 
 });
