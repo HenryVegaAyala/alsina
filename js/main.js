@@ -48,7 +48,7 @@ function CalcularPesoRealTotal() {
         pesorealtotal[i].value = redondear2decimales(respesorealtotal);
 
         /*Cantidad de dias*/
-        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) - 1) * diasgracia));
+        rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) + 1) - diasgracia));
         cantdias[i].value = redondear2decimales(rescantdias);
 
         /*Costo Total*/
@@ -108,7 +108,7 @@ function CalcularPesoRealTotalActualizar() {
         pesorealtotal[i].value = redondear2decimales(respesorealtotal);
 
         /*Cantidad de dias*/
-        rescantdias = parseFloat(((restafechas(nuevafechallegada, nuevafechacorte) - 1) * diasgracia));
+        rescantdias = parseFloat(((restafechas(nuevafechallegada, nuevafechacorte) + 1) - diasgracia));
         cantdias[i].value = redondear2decimales(rescantdias);
 
         /*Costo Total*/
