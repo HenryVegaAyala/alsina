@@ -36,14 +36,14 @@ class PDF extends FPDF
         $this->Cell(0.6, 0.45, utf8_decode("#"), 1, '', 'C');
         $this->Cell(1.5, 0.45, utf8_decode("Código"), 1, '', 'C');
         $this->Cell(6.7, 0.45, utf8_decode("Elementos"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("P.U x dia"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso Real"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso Volumétrico"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Ud."), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso R. Total"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Cant. Dias"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Costo total"), 1, '', 'C');
-        $this->Cell(1.5, 0.45, utf8_decode("Peso V. Total"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("P. x dia"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("P. Real"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("P. Volum."), 1, '', 'C');
+        $this->Cell(1, 0.45, utf8_decode("Ud."), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("P. R. Total"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("Cant. Dias"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("Costo total"), 1, '', 'C');
+        $this->Cell(1.4, 0.45, utf8_decode("P. V. Total"), 1, '', 'C');
         $this->Ln();
 
         $connection = \Yii::$app->db;
@@ -58,14 +58,15 @@ class PDF extends FPDF
             $this->Cell(0.6, 0.45, $i, 1, '', 'C');
             $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
             $this->Cell(6.7, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'L');
-            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'L');
+//            $this->MultiCell(6, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, 'L');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
+            $this->Cell(1, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
             $i++;
             $this->Ln();
         }
