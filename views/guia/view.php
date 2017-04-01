@@ -62,7 +62,7 @@ $attributes = [
 
     [
         'group' => true,
-        'label' => 'Monto por Elementos',
+        'label' => 'Costo por Elementos (P.U x dia * Ud. * Cantidad de Días)',
         'rowOptions' => ['class' => 'info']
     ],
     [
