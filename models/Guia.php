@@ -48,7 +48,7 @@ class Guia extends \yii\db\ActiveRecord
             [['NUM_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
             [['DI_GRACIA'], 'required', 'message' => 'N° de Días es necesario.'],
 
-            [['NUM_GUIA'], 'integer', 'message' => 'Debe de ser númerico.'],
+//            [['NUM_GUIA'], 'integer', 'message' => 'Debe de ser númerico.'],
             [['NUM_GUIA'], 'match', 'pattern' => "/^.{1,12}$/", 'message' => 'Debe de minimo 1 digito.'],
             [['NUM_GUIA'], 'string', 'max' => 12],
 
