@@ -108,7 +108,7 @@ function CalcularPesoRealTotalActualizar() {
         pesorealtotal[i].value = redondear2decimales(respesorealtotal);
 
         /*Cantidad de dias*/
-        rescantdias = parseFloat(((restafechas(nuevafechallegada, nuevafechacorte) - 1) * diasgracia));
+        rescantdias = parseFloat(((restafechas(nuevafechallegada, nuevafechacorte) + 1) - diasgracia));
         cantdias[i].value = redondear2decimales(rescantdias);
 
         /*Costo Total*/
@@ -124,27 +124,6 @@ function CalcularPesoRealTotalActualizar() {
     }
 
 }
-
-// function CalcularCantidadDias() {
-//     // $(document).ready(function () {
-//     var fechallegada, fechacorte, diasgracia, cantdias, rescantdias, pesoreal, i;
-//     /*Cantidad de Dias*/
-//     pesoreal = document.getElementsByName("PESO_REAL[]");
-//     fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
-//     fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
-//     diasgracia = document.getElementById("guia-di_gracia").value;
-//     cantdias = document.getElementsByName("CANT_DIAS[]");
-//
-//     // $("input[id=guia-fech_corte]").click(function () {
-//     //     console.log(fechallegada, fechacorte, diasgracia);
-//     for (i = 0; i < pesoreal.length; i++) {
-//         rescantdias = parseFloat(((restafechas(fechallegada, fechacorte) - 1) * diasgracia));
-//         cantdias[i].value = redondear2decimales(rescantdias);
-//     }
-//     //     });
-//     // });
-// }
-
 
 function redondear2decimales(numero) {
     var original, resultado;
