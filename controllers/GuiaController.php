@@ -363,9 +363,10 @@ class GuiaController extends Controller
         }
 //        $lista = $guia->ListaGuia($codigo);
         $lista = \yii\helpers\ArrayHelper::map(Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all(), 'NUM_GUIA', 'NUM_GUIA');
-        var_dump($lista);exit();
+
         echo "<option value=\"\">Seleccionar una Guía</option>";
         foreach ($lista as $data):
+            var_dump($data);exit();
             echo "<option value=\"{$data->NUM_GUIA}\">{$data->NUM_GUIA}</option>";
         endforeach;
 
