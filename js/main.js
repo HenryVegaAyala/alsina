@@ -232,3 +232,12 @@ $(document).on("change", "#guia-fech_corte-kvdate", function () {
     }
 
 });
+
+$(document).on("blur", "#guia-num_obra", function () {
+
+    var numeroobra
+    numeroobra = document.getElementById("guia-num_obra").value;
+
+    alert(numeroobra);
+
+});

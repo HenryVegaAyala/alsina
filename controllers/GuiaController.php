@@ -352,4 +352,10 @@ class GuiaController extends Controller
         }
     }
 
+    public function numeroguia()
+    {
+        
+    }
+
+
 }
