@@ -180,7 +180,7 @@ $(document).on("change", "#guia-fech_llega-kvdate", function () {
     cantdias = document.getElementsByName("CANT_DIAS[]");
     puxdia = document.getElementsByName("PREC_X_DIA[]");
     ud = document.getElementsByName("UD[]");
-    
+
     costototal = document.getElementsByName("COST_TOTAL[]");
 
     /*Re-Operacion*/
@@ -239,21 +239,19 @@ $(document).on("blur", "#guia-num_obra", function () {
     numeroobra = document.getElementById("guia-num_obra").value;
 
     var parametros = {
-        "numeroobra": numeroobra,
+        "numeroobra": numeroobra
     };
 
     $.ajax({
         data: parametros,
         url: 'guia/numeroguia',
         type: 'post',
-        beforeSend: function () {
-        },
-
-        success: function (response) {
-
-            $( "select#guia-num_guia" ).html(response);
-
-        }
+        update: '#guia-num_guia'
+        // beforeSend: function () {
+        // },
+        //
+        // success: function (response) {
+        // }
     });
 
 });

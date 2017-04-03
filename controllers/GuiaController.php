@@ -361,9 +361,13 @@ class GuiaController extends Controller
         } else {
             $codigo = $_POST['numeroobra'];
         }
-        
+
         $lista = $guia->ListaGuia($codigo);
-        return $lista;
+        echo "<option value=\"\">Seleccionar una Guía</option>";
+        foreach ($lista as $data):
+            echo "<option value=\"{$data->NUM_GUIA}\">{$data->NUM_GUIA}</option>";
+        endforeach;
+
     }
 
 
