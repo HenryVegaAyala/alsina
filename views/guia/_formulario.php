@@ -43,6 +43,15 @@ use yii\jui\AutoComplete;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'NUM_GUIA')->dropDownList($model->ListGuia(), ['prompt' => 'Seleccionar una Guía', 'class' => 'form-control loginmodal-container-combo']) ?>
                 </div>
+
+                <?php
+                $guia = new \app\models\Guia();
+                $lista = $guia->ListaGuia(2);
+                echo "<option value=\"\">Seleccionar una Guía</option>";
+                foreach ($lista as $data):
+                    echo "<option value=\"{$data->NUM_GUIA}\">{$data->NUM_GUIA}</option>";
+                endforeach;
+                ?>
             </div>
         </div>
     </div>
