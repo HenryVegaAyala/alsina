@@ -258,7 +258,8 @@ $(document).on("blur", "#guia-num_obra", function () {
             numeroguia.find('option').remove();
 
             $(response).each(function (i, v) {
-                numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
+                console.log(i, v);
+                // numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
             })
 
             cursos.prop('disabled', false);
