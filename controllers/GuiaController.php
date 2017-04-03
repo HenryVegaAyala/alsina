@@ -366,7 +366,6 @@ class GuiaController extends Controller
 
         echo "<option value=\"\">Seleccionar una Guía</option>";
         foreach ($lista as $data):
-            var_dump($data);exit();
             echo "<option value=\"{$data->NUM_GUIA}\">{$data->NUM_GUIA}</option>";
         endforeach;
 
