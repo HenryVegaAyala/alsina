@@ -354,7 +354,13 @@ class GuiaController extends Controller
 
     public function numeroguia()
     {
-        
+        if (Empty($_POST['numeroobra'])) {
+//            exit();
+            return 0;
+        } else {
+            $codigo = $_POST['numeroobra'];
+            return 1 ;
+        }
     }
 
 

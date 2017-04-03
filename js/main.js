@@ -235,9 +235,23 @@ $(document).on("change", "#guia-fech_corte-kvdate", function () {
 
 $(document).on("blur", "#guia-num_obra", function () {
 
-    var numeroobra
+    var numeroobra;
     numeroobra = document.getElementById("guia-num_obra").value;
 
-    alert(numeroobra);
+    var parametros = {
+        "numeroobra": numeroobra,
+    };
+
+    $.ajax({
+        data: parametros,
+        url: 'numeroguia',
+        type: 'post',
+        beforeSend: function () {
+        },
+
+        success: function (response) {
+            document.getElementById('valor').value = response;
+        }
+    });
 
 });

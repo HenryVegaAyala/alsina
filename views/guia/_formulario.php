@@ -43,6 +43,9 @@ use yii\jui\AutoComplete;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'NUM_GUIA')->dropDownList($model->ListGuia(), ['prompt' => 'Seleccionar una Guía', 'class' => 'form-control loginmodal-container-combo']) ?>
                 </div>
+                <div>
+                    <p id="valor"></p>
+                </div>
             </div>
         </div>
     </div>
