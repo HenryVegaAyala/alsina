@@ -264,7 +264,7 @@ function listanumeroobra(numero) {
 
     $.ajax({
         data: parametros,
-        url: 'numeroguia',
+        url: 'guia/numeroguia',
         type: 'post',
 
         success: function (response) {
