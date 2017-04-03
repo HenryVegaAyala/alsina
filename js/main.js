@@ -255,20 +255,3 @@ $(document).on("blur", "#guia-num_obra", function () {
     });
 
 });
-
-// function listanumeroobra(numero) {
-//
-//     var parametros = {
-//         "numero": numero,
-//     };
-//
-//     $.ajax({
-//         data: parametros,
-//         url: 'guia/numeroguia',
-//         type: 'post',
-//
-//         success: function (response) {
-//             document.getElementById('valor').value = response;
-//         }
-//     });
-// }
