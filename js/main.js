@@ -255,7 +255,7 @@ $(document).on("blur", "#guia-num_obra", function () {
             numeroguia.find('option').remove();
 
             $(response).each(function(i, v){
-                numeroguia.append('<option value="' + v.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
+                numeroguia.append('<option value="' + i.NUM_GUIA + '">' + i.NUM_GUIA + '</option>');
             })
         },
         error: function () {
