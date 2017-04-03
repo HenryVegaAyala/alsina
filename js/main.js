@@ -259,10 +259,10 @@ $(document).on("blur", "#guia-num_obra", function () {
 
             $(response).each(function (i, v) {
                 console.log(i, v);
-                // numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
+                numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
             })
 
-            cursos.prop('disabled', false);
+            numeroguia.prop('disabled', false);
         },
         error: function () {
             numeroguia.prop('disabled', true);
