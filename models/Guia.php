@@ -229,9 +229,16 @@ class Guia extends \yii\db\ActiveRecord
 
     public function ListaGuia($codigo)
     {
-        $select[] = new Expression('NUM_GUIA AS value, NUM_GUIA AS label');
-        $lista = Guia::find()->select($select)->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all();
-        $resultado = ArrayHelper::map($lista, 'NUM_GUIA', 'NUM_GUIA');
+//        $select[] = new Expression('NUM_GUIA AS value, NUM_GUIA AS label');
+//        $lista = Guia::find()->select($select)->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all();
+//        $resultado = ArrayHelper::map($lista, 'NUM_GUIA', 'NUM_GUIA');
+//        return $resultado;
+
+        $resultado = ArrayHelper::map(
+            Guia::find()
+                ->where(['COD_ESTA' => 1,'NUM_OBRA' => "'$codigo'" ])
+                ->asArray()
+                ->all(), 'NUM_GUIA', 'NUM_GUIA');
         return $resultado;
     }
 
