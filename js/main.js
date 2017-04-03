@@ -235,8 +235,9 @@ $(document).on("change", "#guia-fech_corte-kvdate", function () {
 
 $(document).on("blur", "#guia-num_obra", function () {
 
-    var numeroobra;
+    var numeroobra, numeroguia;
     numeroobra = document.getElementById("guia-num_obra").value;
+    numeroguia = $("#guia-num_guia");
 
     var parametros = {
         "numeroobra": numeroobra
@@ -246,7 +247,19 @@ $(document).on("blur", "#guia-num_obra", function () {
         data: parametros,
         url: 'guia/numeroguia',
         type: 'post',
-        update: '#guia-num_guia'
-    });
+        update: '#guia-num_guia',
+        beforeSend: function () {
 
+        },
+        success: function (response) {
+            numeroguia.find('option').remove();
+
+            $(response).each(function(i, v){
+                numeroguia.append('<option value="' + v.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
+            })
+        },
+        error: function () {
+
+        }
+    });
 });
