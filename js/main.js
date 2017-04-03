@@ -250,7 +250,6 @@ $(document).on("blur", "#guia-num_obra", function () {
         },
 
         success: function (response) {
-            document.getElementById('valor').value = response;
         }
     });
 
