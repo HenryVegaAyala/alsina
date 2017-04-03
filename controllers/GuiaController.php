@@ -356,10 +356,10 @@ class GuiaController extends Controller
     {
         if (Empty($_POST['numeroobra'])) {
 //            exit();
-            echo 0;
+            return 0;
         } else {
 //            $codigo = $_POST['numeroobra'];
-            echo 1 ;
+            return 1 ;
         }
     }
 
