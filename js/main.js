@@ -250,19 +250,21 @@ $(document).on("blur", "#guia-num_obra", function () {
         type: 'post',
         update: '#guia-num_guia',
         beforeSend: function () {
-            numeroguia.prop('disabled', false);
+            numeroguia.prop('disabled', true);
         },
         success: function (response) {
 
-            numeroguia.prop('disabled', true);
+            numeroguia.prop('disabled', false);
             numeroguia.find('option').remove();
 
             $(response).each(function (i, v) {
                 numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
             })
+
+            cursos.prop('disabled', false);
         },
         error: function () {
-            numeroguia.prop('disabled', false);
+            numeroguia.prop('disabled', true);
         }
     });
 });
