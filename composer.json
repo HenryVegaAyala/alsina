@@ -25,9 +25,7 @@
         "fxp/composer-asset-plugin": "^1.2",
         "sintret/yii2-gii-adminlte": "*",
         "warrence/yii2-kartikgii": "dev-master",
-        "synatree/yii2-dynamic-relations": "dev-master",
-        "nepstor/yii2-datetime-compare-validator": "*",
-        "yii2mod/yii2-sweet-alert": "*"
+        "synatree/yii2-dynamic-relations": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

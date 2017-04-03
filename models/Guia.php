@@ -6,6 +6,7 @@ use app\controllers\GuiaController;
 use Yii;
 use yii\db\Query;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "fac_guia".
@@ -206,6 +207,27 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($select)->from('fac_guia')->where(['COD_ESTA' => 1])->where(['NUM_GUIA' => $numeroGuia]);
         $comando = $query->createCommand();
         $resultado = $comando->queryAll();
+        return $resultado;
+    }
+
+    public function ListObra()
+    {
+        $select[] = new Expression('DISTINCT NUM_OBRA AS value, NUM_OBRA AS label');
+        $data = Guia::find()
+            ->select($select)
+            ->where(['COD_ESTA' => 1])
+            ->asArray()
+            ->all();
+        return $data;
+    }
+
+    public function ListGuia()
+    {
+        $resultado = ArrayHelper::map(
+            Guia::find()
+                ->where(['COD_ESTA' => 1])
+                ->asArray()
+                ->all(), 'NUM_GUIA', 'NUM_GUIA');
         return $resultado;
     }
 

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use kartik\widgets\DatePicker;
+use yii\jui\AutoComplete;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Guia */
@@ -28,10 +29,19 @@ use kartik\widgets\DatePicker;
 
             <div class="row">
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'NUM_OBRA')->textInput() ?>
+                    <?= $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
+                        'options' => [
+                            'class' => 'form-control',
+
+                        ],
+                        'clientOptions' => [
+                            'source' => $model->ListObra(),
+                        ],
+                    ])
+                    ?>
                 </div>
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'NUM_GUIA')->dropDownList($model->ListGuia(), ['prompt' => 'Seleccionar una Guía', 'class' => 'form-control loginmodal-container-combo']) ?>
                 </div>
             </div>
         </div>
