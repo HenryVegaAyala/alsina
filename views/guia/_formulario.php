@@ -47,6 +47,7 @@ use yii\jui\AutoComplete;
                 <?php
                 $guia = new \app\models\Guia();
                 $lista = $guia->ListaGuia(2);
+                var_dump($lista);exit();
                 echo "<option value=\"\">Seleccionar una Guía</option>";
                 foreach ($lista as $data):
                     echo "<option value=\"{$data->NUM_GUIA}\">{$data->NUM_GUIA}</option>";
