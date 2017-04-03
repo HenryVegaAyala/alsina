@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3c885e33c932224b3115460e3db8e90",
-    "content-hash": "2139e3b61fc3a19b20298be8b5ab7233",
+    "hash": "d89b54f013e2d786a2387488c08afbc0",
+    "content-hash": "e77dc53421c5c445501514c147481c41",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -259,6 +259,48 @@
             ]
         },
         {
+            "name": "bower-asset/moment",
+            "version": "2.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moment/moment.git",
+                "reference": "b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moment/moment/zipball/b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378",
+                "reference": "b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "moment.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "benchmarks",
+                    "bower_components",
+                    "meteor",
+                    "node_modules",
+                    "scripts",
+                    "tasks",
+                    "test",
+                    "component.json",
+                    "composer.json",
+                    "CONTRIBUTING.md",
+                    "ender.js",
+                    "Gruntfile.js",
+                    "Moment.js.nuspec",
+                    "package.js",
+                    "package.json",
+                    "ISSUE_TEMPLATE.md",
+                    "typing-tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "bower-asset/punycode",
             "version": "v1.3.2",
             "source": {
@@ -285,6 +327,40 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/sweetalert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/t4t5/sweetalert.git",
+                "reference": "32bd141c24cbc56dd4838ac77c15fa7f96da002d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/t4t5/sweetalert/zipball/32bd141c24cbc56dd4838ac77c15fa7f96da002d",
+                "reference": "32bd141c24cbc56dd4838ac77c15fa7f96da002d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "bower-asset/jquery": "~2.1.4",
+                "bower-asset/qunit": "~1.18.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/sweetalert.min.js",
+                    "dist/sweetalert.css"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A beautiful replacement for JavaScript's alert.",
+            "keywords": [
+                "alert",
+                "modal"
+            ]
         },
         {
             "name": "bower-asset/typeahead.js",
@@ -3059,6 +3135,53 @@
             "time": "2016-05-10 07:10:19"
         },
         {
+            "name": "nepstor/yii2-datetime-compare-validator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nepstor/yii2-datetime-compare-validator.git",
+                "reference": "8c136302e390e0a017ad0ffcce6cb9c910394f98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nepstor/yii2-datetime-compare-validator/zipball/8c136302e390e0a017ad0ffcce6cb9c910394f98",
+                "reference": "8c136302e390e0a017ad0ffcce6cb9c910394f98",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/moment": "^2.14",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "nepstor\\validators\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Krytskiy"
+                }
+            ],
+            "description": "Yii2 validator for compare datetime.",
+            "homepage": "https://github.com/nepstor/yii2-datetime-compare-validator",
+            "keywords": [
+                "datetime",
+                "datetime compare",
+                "extension",
+                "validator",
+                "yii2"
+            ],
+            "time": "2016-09-14 08:55:32"
+        },
+        {
             "name": "phpoffice/phpexcel",
             "version": "dev-master",
             "source": {
@@ -3443,6 +3566,55 @@
             ],
             "description": "Gii Generator base on Kartik-V extension https://github.com/kartik-v",
             "time": "2016-11-19 10:09:37"
+        },
+        {
+            "name": "yii2mod/yii2-sweet-alert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-sweet-alert.git",
+                "reference": "5c95100e0c0f27a9bca69c7a8960a90c6d49afa7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-sweet-alert/zipball/5c95100e0c0f27a9bca69c7a8960a90c6d49afa7",
+                "reference": "5c95100e0c0f27a9bca69c7a8960a90c6d49afa7",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/sweetalert": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\alert\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Alert widget based on SweetAlert extension {@link http://tristanedwards.me/sweetalert)",
+            "keywords": [
+                "yii2",
+                "yii2 alert",
+                "yii2 sweet alert",
+                "yii2 sweetalert"
+            ],
+            "time": "2016-07-27 09:50:34"
         },
         {
             "name": "yiisoft/yii2",

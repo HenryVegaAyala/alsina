@@ -47,7 +47,7 @@ $config = [
 
         ],
         /*Administrador de usuario*/
-        
+
 //        'admin' => [
 //            'class' => 'mdm\admin\Module',
 //            'layout' => 'left-menu',
@@ -78,6 +78,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'defaultTimeZone' => 'UTC',
+            'timeZone' => 'America/Lima',
+        ],
 
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -100,6 +104,12 @@ $config = [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
                     'skin' => 'skin-red-light',
+                ],
+                'yii2mod\alert\AlertAsset' => [
+                    'css' => [
+                        'dist/sweetalert.css',
+                        'themes/twitter/twitter.css',
+                    ]
                 ],
             ],
         ],
