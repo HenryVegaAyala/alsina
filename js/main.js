@@ -258,7 +258,7 @@ $(document).on("blur", "#guia-num_obra", function () {
             numeroguia.find('option').remove();
 
             $(response).each(function (i, v) {
-                console.log(i, v);
+                // console.log(i, v);
                 numeroguia.append('<option value="' + i.COD_GUIA + '">' + v.NUM_GUIA + '</option>');
                 console.log(i.COD_GUIA, v.NUM_GUIA);
             })
