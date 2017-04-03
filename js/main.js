@@ -244,7 +244,7 @@ $(document).on("blur", "#guia-num_obra", function () {
 
     $.ajax({
         data: parametros,
-        url: '/guia/numeroguia',
+        url: 'guia/numeroguia',
         type: 'post',
         beforeSend: function () {
         },
