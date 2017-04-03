@@ -233,25 +233,42 @@ $(document).on("change", "#guia-fech_corte-kvdate", function () {
 
 });
 
-$(document).on("blur", "#guia-num_obra", function () {
+// $(document).on("blur", "#guia-num_obra", function () {
+//
+//     var numeroobra;
+//     numeroobra = document.getElementById("guia-num_obra").value;
+//
+//     var parametros = {
+//         "numeroobra": numeroobra,
+//     };
+//
+//     $.ajax({
+//         data: parametros,
+//         url: 'numeroguia',
+//         type: 'post',
+//         beforeSend: function () {
+//         },
+//
+//         success: function (response) {
+//             document.getElementById('valor').value = response;
+//         }
+//     });
+//
+// });
 
-    var numeroobra;
-    numeroobra = document.getElementById("guia-num_obra").value;
+function listanumeroobra(numero) {
 
     var parametros = {
-        "numeroobra": numeroobra,
+        "numero": numero,
     };
 
     $.ajax({
         data: parametros,
         url: 'numeroguia',
         type: 'post',
-        beforeSend: function () {
-        },
 
         success: function (response) {
             document.getElementById('valor').value = response;
         }
     });
-
-});
+}
