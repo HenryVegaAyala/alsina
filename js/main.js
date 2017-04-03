@@ -244,29 +244,38 @@ $(document).on("blur", "#guia-num_obra", function () {
         "numeroobra": numeroobra
     };
 
-    $.ajax({
-        data: parametros,
-        url: 'guia/numeroguia',
-        type: 'post',
-        // update: '#guia-num_guia',
-        beforeSend: function () {
-            numeroguia.append('<option value="'+'">' + 'Seleccione un Guia' + '</option>');
-            numeroguia.prop('disabled', true);
-        },
-        success: function (response) {
+    $("#guia-num_obra").blur(function () {
 
-            numeroguia.prop('disabled', false);
+        if ($(this).val() != '') {
+            $.ajax({
+                data: parametros,
+                url: 'guia/numeroguia',
+                type: 'post',
+                // update: '#guia-num_guia',
+                beforeSend: function () {
+                    numeroguia.append('<option value="' + '">' + 'Seleccione un Guia' + '</option>');
+                    numeroguia.prop('disabled', true);
+                },
+                success: function (response) {
+
+                    numeroguia.prop('disabled', false);
+                    numeroguia.find('option').remove();
+
+                    $(response).each(function (i, v) {
+                        numeroguia.append(i, v);
+                    })
+
+                    numeroguia.prop('disabled', false);
+                },
+                error: function () {
+                    numeroguia.append('<option value="' + '">' + 'Seleccione un Guia' + '</option>');
+                    numeroguia.prop('disabled', true);
+                }
+            });
+        } else {
+            numeroguia.append('<option value="' + '">' + 'Seleccione un Guia' + '</option>');
             numeroguia.find('option').remove();
-
-            $(response).each(function (i, v) {
-                numeroguia.append(i, v);
-            })
-
-            numeroguia.prop('disabled', false);
-        },
-        error: function () {
-            numeroguia.append('<option value="'+'">' + 'Seleccione un Guia' + '</option>');
             numeroguia.prop('disabled', true);
         }
-    });
+    })
 });
