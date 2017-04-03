@@ -33,36 +33,6 @@ use kartik\widgets\DatePicker;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'NUM_GUIA')->textInput(['maxlength' => true]) ?>
                 </div>
-
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [
-                        'options' => ['placeholder' => ''],
-                        'value' => date('d-M-Y'),
-                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-//                        'readonly' => true,
-                        'pluginOptions' => [
-                            'autoclose' => true,
-                            'format' => 'dd-mm-yyyy',
-                            'todayHighlight' => TRUE,
-                        ]
-                    ]);
-                    ?>
-                </div>
-
-                <div class="col-sm-3">
-                    <?= $form->field($model, 'FECH_CORTE')->widget(DatePicker::classname(), [
-                        'options' => ['placeholder' => ''],
-                        'value' => date('d-M-Y'),
-                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-//                        'readonly' => true,
-                        'pluginOptions' => [
-                            'autoclose' => true,
-                            'format' => 'dd-mm-yyyy',
-                            'todayHighlight' => TRUE,
-                        ]
-                    ]);
-                    ?>
-                </div>
             </div>
         </div>
     </div>

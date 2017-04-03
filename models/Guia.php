@@ -165,11 +165,35 @@ class Guia extends \yii\db\ActiveRecord
         return $resultado;
     }
 
+    public function EliminarObra($Codigo, $Usuario, $Fecha)
+    {
+        $connection = \Yii::$app->db;
+        $eliminar = $connection->createCommand('UPDATE obra SET USU_ELIM = :USU_ELIM , FEC_ELIM = :FEC_ELIM , COD_ESTA = :COD_ESTA WHERE NUM_OBRA = :NUM_OBRA');
+        $eliminar->bindValue(':NUM_OBRA', $Codigo);
+        $eliminar->bindValue(':USU_ELIM', $Usuario);
+        $eliminar->bindValue(':FEC_ELIM', $Fecha);
+        $eliminar->bindValue(':COD_ESTA', 0);
+        $resultado = $eliminar->query();
+        return $resultado;
+    }
+
+    public function EliminarObraGuia($Codigo, $Usuario, $Fecha)
+    {
+        $connection = \Yii::$app->db;
+        $eliminar = $connection->createCommand('UPDATE detal_obra_guia SET USU_ELIM = :USU_ELIM , FECH_ELIM = :FECH_ELIM , COD_ESTADO = :COD_ESTADO WHERE NUM_GUIA = :NUM_GUIA');
+        $eliminar->bindValue(':NUM_GUIA', $Codigo);
+        $eliminar->bindValue(':USU_ELIM', $Usuario);
+        $eliminar->bindValue(':FECH_ELIM', $Fecha);
+        $eliminar->bindValue(':COD_ESTADO', 0);
+        $resultado = $eliminar->query();
+        return $resultado;
+    }
+
     public function NumeroGuia($Codigo)
     {
         $query = new Query();
         $select = new Expression('NUM_GUIA');
-        $query->select($select)->from('fac_guia')->where(['COD_GUIA' => $Codigo ]);
+        $query->select($select)->from('fac_guia')->where(['COD_GUIA' => $Codigo]);
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
         return $data;

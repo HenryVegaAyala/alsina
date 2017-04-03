@@ -70,6 +70,7 @@ class GuiaController extends Controller
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
                     /*Guia*/
+
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
@@ -88,6 +89,8 @@ class GuiaController extends Controller
                     $obraGuia->COD_OBRA_GUIA = $obraGuia->getCodigoObraGuia();
                     $obraGuia->OBRA_COD_OBRA = $obra->COD_OBRA;
                     $obraGuia->GUIA_COD_GUIA = $model->COD_GUIA;
+                    $obraGuia->NUM_GUIA = $model->NUM_GUIA;
+                    $obraGuia->NUM_OBRA = $model->NUM_OBRA;
                     $obraGuia->FECH_DIGI = $this->ZonaHoraria();
                     $obraGuia->USU_DIGI = Yii::$app->user->identity->email;
                     $obraGuia->COD_ESTADO = '1';
@@ -161,10 +164,7 @@ class GuiaController extends Controller
     {
         $model = $this->findModel($id);
         $guiaDetal = new FacGuiaDetal();
-        $obra = new Obra();
-        $obraGuia = new DetalObraGuia();
         $producto = new MaeProdu();
-
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -174,18 +174,28 @@ class GuiaController extends Controller
             $model->COD_ESTA = '1';
 
             /*Obra*/
-            $obra->FEC_MODI = $this->ZonaHoraria();
-            $obra->USU_MODI = Yii::$app->user->identity->email;
-            $obra->COD_ESTA = '1';
+            $transaction = Yii::$app->db;
+            $transaction->createCommand()
+                ->update('obra',
+                    ['FEC_MODI' => $this->ZonaHoraria(),
+                        'USU_MODI' => Yii::$app->user->identity->email,
+                        'COD_ESTA' => '1',
+                    ],
+                    'NUM_OBRA = "' . $model->NUM_OBRA . '" ')
+                ->execute();
 
-            /*Detalle Obra Guia*/
-            $obraGuia->FECH_MODI = $this->ZonaHoraria();
-            $obraGuia->USU_MODI = Yii::$app->user->identity->email;
-            $obraGuia->COD_ESTADO = '1';
+            /*ObraGuia*/
+            $transaction = Yii::$app->db;
+            $transaction->createCommand()
+                ->update('detal_obra_guia',
+                    ['FECH_MODI' => $this->ZonaHoraria(),
+                        'USU_MODI' => Yii::$app->user->identity->email,
+                        'COD_ESTADO' => '1',
+                    ],
+                    'NUM_GUIA = "' . $model->NUM_GUIA . '" ')
+                ->execute();
 
             $model->save();
-            $obra->save();
-            $obraGuia->save();
 
             /*Detalle Guia*/
             $cantidad = $producto->Cantidad();
@@ -243,14 +253,18 @@ class GuiaController extends Controller
 
     public function actionDelete($id)
     {
+        $guia = $this->findModel($id);
         $model = new Guia();
         $usuario = Yii::$app->user->identity->email;
         $fecha = $this->ZonaHoraria();
         $Numero = $model->NumeroGuia($id);
+        $model->EliminarObra($guia->NUM_OBRA, $usuario, $fecha);
+        $model->EliminarObraGuia($guia->NUM_GUIA, $usuario, $fecha);
         $model->EliminarGuiaDetalle($id);
         $model->EliminarGuia($id, $usuario, $fecha);
         Yii::$app->session->setFlash('success', 'Se Elimino correctamente el N° de Guía ' . $Numero);
         return $this->redirect(['index']);
+
     }
 
     protected function findModel($id)

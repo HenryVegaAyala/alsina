@@ -10,8 +10,10 @@ use yii\db\Expression;
  * This is the model class for table "detal_obra_guia".
  *
  * @property integer $COD_OBRA_GUIA
- * @property integer $OBRA_COD_OBRA
+ * @property string $NUM_GUIA
+ * @property string $NUM_OBRA
  * @property integer $GUIA_COD_GUIA
+ * @property integer $OBRA_COD_OBRA
  * @property string $FECH_DIGI
  * @property string $FECH_MODI
  * @property string $FECH_ELIM
@@ -39,9 +41,10 @@ class DetalObraGuia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['COD_OBRA_GUIA', 'OBRA_COD_OBRA', 'GUIA_COD_GUIA'], 'required'],
-            [['COD_OBRA_GUIA', 'OBRA_COD_OBRA', 'GUIA_COD_GUIA'], 'integer'],
+            [['COD_OBRA_GUIA', 'GUIA_COD_GUIA', 'OBRA_COD_OBRA'], 'required'],
+            [['COD_OBRA_GUIA', 'GUIA_COD_GUIA', 'OBRA_COD_OBRA'], 'integer'],
             [['FECH_DIGI', 'FECH_MODI', 'FECH_ELIM'], 'safe'],
+            [['NUM_GUIA', 'NUM_OBRA'], 'string', 'max' => 15],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
             [['COD_ESTADO'], 'string', 'max' => 1],
             [['GUIA_COD_GUIA'], 'exist', 'skipOnError' => true, 'targetClass' => Guia::className(), 'targetAttribute' => ['GUIA_COD_GUIA' => 'COD_GUIA']],
@@ -56,8 +59,10 @@ class DetalObraGuia extends \yii\db\ActiveRecord
     {
         return [
             'COD_OBRA_GUIA' => 'Cod  Obra  Guia',
-            'OBRA_COD_OBRA' => 'Obra  Cod  Obra',
+            'NUM_GUIA' => 'Num  Guia',
+            'NUM_OBRA' => 'Num  Obra',
             'GUIA_COD_GUIA' => 'Guia  Cod  Guia',
+            'OBRA_COD_OBRA' => 'Obra  Cod  Obra',
             'FECH_DIGI' => 'Fech  Digi',
             'FECH_MODI' => 'Fech  Modi',
             'FECH_ELIM' => 'Fech  Elim',
