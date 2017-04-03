@@ -250,10 +250,11 @@ $(document).on("blur", "#guia-num_obra", function () {
         type: 'post',
         update: '#guia-num_guia',
         beforeSend: function () {
-            numeroguia.prop('disabled', true);
+            numeroguia.prop('disabled', false);
         },
         success: function (response) {
 
+            numeroguia.prop('disabled', true);
             numeroguia.find('option').remove();
 
             $(response).each(function (i, v) {
@@ -261,7 +262,7 @@ $(document).on("blur", "#guia-num_obra", function () {
             })
         },
         error: function () {
-            numeroguia.prop('disabled', true);
+            numeroguia.prop('disabled', false);
         }
     });
 });
