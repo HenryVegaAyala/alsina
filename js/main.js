@@ -259,7 +259,7 @@ $(document).on("blur", "#guia-num_obra", function () {
 
             $(response).each(function (i, v) {
                 console.log(i, v);
-                numeroguia.append('<option value="' + i.NUM_GUIA + '">' + v.NUM_GUIA + '</option>');
+                numeroguia.append('<option value="' + i + '">' + v + '</option>');
             })
 
             numeroguia.prop('disabled', false);
