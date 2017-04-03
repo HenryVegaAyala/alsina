@@ -250,8 +250,8 @@ $(document).on("blur", "#guia-num_obra", function () {
         },
 
         success: function (response) {
-            
-            console.log(response);
+
+            $( "select#guia-num_guia" ).html(response);
 
         }
     });
