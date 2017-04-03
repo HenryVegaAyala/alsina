@@ -32,7 +32,6 @@ use yii\jui\AutoComplete;
                     <?= $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
                         'options' => [
                             'class' => 'form-control',
-                            'onblur' => "listanumeroobra(this.value);"
 
                         ],
                         'clientOptions' => [
