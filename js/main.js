@@ -247,11 +247,6 @@ $(document).on("blur", "#guia-num_obra", function () {
         url: 'guia/numeroguia',
         type: 'post',
         update: '#guia-num_guia'
-        // beforeSend: function () {
-        // },
-        //
-        // success: function (response) {
-        // }
     });
 
 });
