@@ -354,12 +354,16 @@ class GuiaController extends Controller
 
     public function actionNumeroguia()
     {
+        $guia = new Guia();
+
         if (Empty($_POST['numeroobra'])) {
             exit();
         } else {
-//            $codigo = $_POST['numeroobra'];
-            return 1 ;
+            $codigo = $_POST['numeroobra'];
         }
+        
+        $lista = $guia->ListaGuia($codigo);
+        return $lista;
     }
 
 
