@@ -248,7 +248,7 @@ $(document).on("blur", "#guia-num_obra", function () {
         data: parametros,
         url: 'guia/numeroguia',
         type: 'post',
-        update: '#guia-num_guia',
+        // update: '#guia-num_guia',
         beforeSend: function () {
             numeroguia.prop('disabled', true);
         },
