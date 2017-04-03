@@ -253,7 +253,6 @@ $(document).on("blur", "#guia-num_obra", function () {
                 type: 'post',
                 // update: '#guia-num_guia',
                 beforeSend: function () {
-                    numeroguia.val(prompt("Seleccionar un Guia"));
                     numeroguia.prop('disabled', true);
                 },
                 success: function (response) {
@@ -263,17 +262,15 @@ $(document).on("blur", "#guia-num_obra", function () {
 
                     $(response).each(function (i, v) {
                         numeroguia.append(i, v);
-                    })
+                    });
 
                     numeroguia.prop('disabled', false);
                 },
                 error: function () {
-                    numeroguia.val(prompt("Seleccionar un Guia"));
                     numeroguia.prop('disabled', true);
                 }
             });
         } else {
-            numeroguia.val(prompt("Seleccionar un Guia"));
             numeroguia.find('option').remove();
             numeroguia.prop('disabled', true);
         }
