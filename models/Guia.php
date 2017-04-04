@@ -234,12 +234,14 @@ class Guia extends \yii\db\ActiveRecord
 //        $resultado = ArrayHelper::map($lista, 'NUM_GUIA', 'NUM_GUIA');
 //        return $resultado;
 
-        $resultado = ArrayHelper::map(
-            Guia::find()
-                ->where(['COD_ESTA' => 1,'NUM_OBRA' => "'$codigo'" ])
-                ->asArray()
-                ->all(), 'NUM_GUIA', 'NUM_GUIA');
-        return $resultado;
+//        $resultado = ArrayHelper::map(
+//            Guia::find()
+//                ->where(['COD_ESTA' => 1,'NUM_OBRA' => "'$codigo'" ])
+//                ->asArray()
+//                ->all(), 'NUM_GUIA', 'NUM_GUIA');
+//        return $resultado;
+        $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all();
+        return $lista;
     }
 
 }
