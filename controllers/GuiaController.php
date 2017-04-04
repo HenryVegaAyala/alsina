@@ -70,7 +70,6 @@ class GuiaController extends Controller
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
                     /*Guia*/
-
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
