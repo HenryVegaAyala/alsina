@@ -40,9 +40,7 @@ use yii\jui\AutoComplete;
                     ])
                     ?>
                 </div>
-                <div class="col-sm-3">
-                    <?php $form->field($model, 'NUMERO_GUIA')->dropDownList($model->ListGuia(), ['disabled' => 'true', 'prompt' => 'Seleccionar una Guía', 'class' => 'form-control loginmodal-container-combo']) ?>
-                </div>
+
 
                 <div class="col-sm-9">
                     <?php
