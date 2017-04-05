@@ -40,7 +40,7 @@ use kartik\tabs\TabsX;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_LLEGA')->widget(DatePicker::classname(), [
                         'options' => ['placeholder' => ''],
-//                        'value' => date('d-m-Y'),
+                        'value' => date('d-m-Y'),
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
 //                        'readonly' => true,
                         'pluginOptions' => [
@@ -55,7 +55,7 @@ use kartik\tabs\TabsX;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'FECH_CORTE')->widget(DatePicker::classname(), [
                         'options' => ['placeholder' => ''],
-//                        'value' => date('d-m-Y'),
+                        'value' => date('d-m-Y'),
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
 //                        'readonly' => true,
                         'pluginOptions' => [
