@@ -238,7 +238,7 @@ $(document).on("blur", "#guia-num_obra", function () {
     var numeroobra, numeroguia;
 
     numeroobra = document.getElementById("guia-num_obra").value;
-    numeroguia = $("#guia-num_guia");
+    numeroguia = $("#guia-numero_guia");
 
     var parametros = {
         "numeroobra": numeroobra
