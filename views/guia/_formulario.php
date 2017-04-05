@@ -62,7 +62,7 @@ use yii\jui\AutoComplete;
                     $lista = $guia->ListaGuia(2);
 
                     echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
-                        'data' => $lista['NUM_GUIA'],
+                        'data' => $lista,
                         'options' => ['placeholder' => 'Seleccionar Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
                         'pluginOptions' => [
                             'tags' => true,
