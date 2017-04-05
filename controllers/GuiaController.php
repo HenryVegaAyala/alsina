@@ -286,7 +286,7 @@ class GuiaController extends Controller
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
 
-            var_dump($model->NUMERO_GUIA);exit();
+            var_dump($model->NUMERO_GUIA,$model->NUM_OBRA);exit();
 
             $numero = $model->NUMERO_GUIA;
             $informacion = $model->informacion($numero);
