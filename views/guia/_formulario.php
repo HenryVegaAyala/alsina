@@ -29,7 +29,7 @@ use yii\jui\AutoComplete;
 
             <div class="row">
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
+                    <?php $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
                         'options' => [
                             'class' => 'form-control',
 
