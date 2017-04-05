@@ -41,7 +41,6 @@ use yii\jui\AutoComplete;
                     ?>
                 </div>
 
-
                 <div class="col-sm-9">
                     <?php
                     $data = ["" => ""];
@@ -57,8 +56,6 @@ use yii\jui\AutoComplete;
                     ?>
 
                 </div>
-
-
             </div>
         </div>
     </div>
