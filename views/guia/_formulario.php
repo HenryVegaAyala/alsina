@@ -57,8 +57,17 @@ use yii\jui\AutoComplete;
                         "cyan" => "cyan",
                         "teal" => "teal"
                     ];
+
+                    $guia = new \app\models\Guia();
+                    $lista = $guia->ListaGuia(2);
+                    if ($lista !== 0 || $lista !== null || $lista !== ''):
+                        foreach ($lista as $data):
+                            $var = $data["NUM_GUIA"];
+                        endforeach;
+                    endif;
+
                     echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
-                        'data' => $data,
+                        'data' => $var,
                         'options' => ['placeholder' => 'Seleccionar Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
                         'pluginOptions' => [
                             'tags' => true,
