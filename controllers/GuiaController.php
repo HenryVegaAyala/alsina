@@ -69,8 +69,6 @@ class GuiaController extends Controller
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
                     /*Guia*/
-                    var_dump($model->FECH_LLEGA,$model->FECH_CORTE);exit();
-
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
@@ -98,7 +96,7 @@ class GuiaController extends Controller
                     $model->save();
                     $obra->save();
                     $obraGuia->save();
-
+exit();
                     /*Detalle Guia*/
                     $cantidad = $producto->Cantidad();
 
