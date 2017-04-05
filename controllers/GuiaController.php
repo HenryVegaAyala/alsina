@@ -334,8 +334,8 @@ class GuiaController extends Controller
                         if ($LlegadaMes === $CorteMes or $LlegadaMes < $CorteMes) {
                             $resultadoMes = 1;
                             if ($resultadoMes === 1) {
-                                var_dump($LlegadaDia, $CorteDia);exit();
                                 if ($LlegadaDia === $CorteDia or $LlegadaDia < $CorteDia or $LlegadaDia > $CorteDia) {
+                                    var_dump("Paso");exit();
                                     return 1;
                                 } else {
                                     return 0;
