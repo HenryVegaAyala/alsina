@@ -46,12 +46,12 @@ use yii\jui\AutoComplete;
 
                 <div class="col-sm-9">
                     <?php
-
+                    $data = ["" => ""];
                     $guia = new \app\models\Guia();
                     $lista = $guia->ListObra();
 
                     echo $form->field($model, 'NUM_GUIA')->widget(Select2::classname(), [
-                        'data' => $lista,
+                        'data' => $data,
                         'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
                         'pluginOptions' => [
                             'tags' => true,
