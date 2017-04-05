@@ -6,7 +6,6 @@ use app\models\DetalObraGuia;
 use app\models\FacGuiaDetal;
 use app\models\MaeProdu;
 use app\models\Obra;
-use app\models\ObraGuia;
 use Yii;
 use app\models\Guia;
 use app\models\GuiaSearch;
@@ -70,6 +69,8 @@ class GuiaController extends Controller
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
                     /*Guia*/
+                    var_dump($model->FECH_LLEGA,$model->FECH_CORTE);exit();
+
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
