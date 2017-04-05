@@ -60,12 +60,9 @@ use yii\jui\AutoComplete;
 
                     $guia = new \app\models\Guia();
                     $lista = $guia->ListaGuia(2);
-                        foreach ($lista as $data):
-                            $var = $data["NUM_GUIA"];
-
 
                     echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
-                        'data' => $var,
+                        'data' => $lista['NUM_GUIA'],
                         'options' => ['placeholder' => 'Seleccionar Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
                         'pluginOptions' => [
                             'tags' => true,
@@ -73,7 +70,6 @@ use yii\jui\AutoComplete;
                             'maximumInputLength' => 10
                         ],
                     ])->label('Número Guía');
-                        endforeach;
                     ?>
 
                 </div>
