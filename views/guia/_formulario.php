@@ -43,7 +43,17 @@ use yii\jui\AutoComplete;
 
                 <div class="col-sm-9">
                     <?php
-                    $data = ["s" => "s"];
+                    $data = [
+                        "red" => "red",
+                        "green" => "green",
+                        "blue" => "blue",
+                        "orange" => "orange",
+                        "white" => "white",
+                        "black" => "black",
+                        "purple" => "purple",
+                        "cyan" => "cyan",
+                        "teal" => "teal"
+                    ];
                     echo $form->field($model, 'NUMERO_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
                         'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'], // , 'disabled' => 'true'
