@@ -45,7 +45,7 @@ class Guia extends \yii\db\ActiveRecord
             [['FECH_LLEGA', 'FECH_CORTE', 'FECH_DIGI', 'FECH_MODI', 'FECH_ELIM'], 'safe'],
             [['NUM_OBRA', 'NUM_GUIA'], 'string', 'max' => 12],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
-            [['COD_ESTA','NUMERO_GUIA'], 'string', 'max' => 1],
+            [['COD_ESTA'], 'string', 'max' => 1],
 
             [['NUM_OBRA'], 'required', 'message' => 'N° de Obra es necesario.'],
             [['NUM_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
