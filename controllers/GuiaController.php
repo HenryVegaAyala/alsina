@@ -61,8 +61,9 @@ class GuiaController extends Controller
 
             $FechaValidado = $this->validadorFechas($model->FECH_LLEGA, $model->FECH_CORTE);
             $numeroGuia = $model->GuiaValidador($model->NUM_GUIA);
-var_dump($model->NUM_GUIA);exit();
+
             if ($numeroGuia !== 1) {
+                var_dump($model->NUM_GUIA);exit();
                 if ($FechaValidado == 1) {
                     /*Fecha Formateada*/
                     $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
