@@ -320,9 +320,9 @@ class GuiaController extends Controller
         $CorteMes = $valorCorte[0];
         $LlegadaCorte = $valorCorte[1];
 
-        if ($llegada < $corte) {
-            $resultado = 1;
-            if ($resultado == 1) {
+//        if ($llegada < $corte) {
+//            $resultado = 1;
+//            if ($resultado == 1) {
                 if ($LlegadaAno < $CorteAno or $LlegadaAno == $CorteAno) {
                     $resultadoAno = 1;
                     if ($resultadoAno == 1) {
@@ -346,12 +346,12 @@ class GuiaController extends Controller
                 } else {
                     return 0;
                 }
-            } else {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
+//            } else {
+//                return 0;
+//            }
+//        } else {
+//            return 0;
+//        }
     }
 
     public function actionNumeroguia()
