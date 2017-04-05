@@ -238,13 +238,13 @@ $(document).on("blur", "#guia-num_obra", function () {
     var numeroobra, numeroguia;
 
     numeroobra = document.getElementById("guia-num_obra").value;
-    numeroguia = $("#guia-numero_guia");
+    numeroguia = $("#guia-num_guia");
 
     var parametros = {
         "numeroobra": numeroobra
     };
 
-    $("#guia-numero_guia").blur(function () {
+    $("#guia-num_obra").blur(function () {
 
         if (numeroobra !== '' || numeroobra !== null || numeroobra !== 0) {
             $.ajax({
