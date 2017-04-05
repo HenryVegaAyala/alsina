@@ -322,16 +322,16 @@ class GuiaController extends Controller
         $CorteMes = intval($valorCorte[1]);
         $LlegadaCorte = intval($valorCorte[0]);
 
-        var_dump($LlegadaAno,$LlegadaMes,$LlegadaDia);exit();
         if ($llegada < $corte) {
             $resultado = 1;
-            if ($resultado == 1) {
-                if ($LlegadaAno == $CorteAno or $LlegadaAno < $CorteAno) {
+            var_dump($llegada,$corte);exit();
+            if ($resultado === 1) {
+                if ($LlegadaAno === $CorteAno or $LlegadaAno < $CorteAno) {
                     $resultadoAno = 1;
-                    if ($resultadoAno == 1) {
+                    if ($resultadoAno === 1) {
                         if ($LlegadaMes === $CorteMes or $LlegadaMes < $CorteMes) {
                             $resultadoMes = 1;
-                            if ($resultadoMes == 1) {
+                            if ($resultadoMes === 1) {
                                 if ($LlegadaDia === $LlegadaCorte or $LlegadaDia < $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
                                     return 1;
                                 } else {
