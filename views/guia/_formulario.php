@@ -52,11 +52,11 @@ use yii\jui\AutoComplete;
 
                     echo $form->field($model, 'NUM_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
-                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
+                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo', 'disabled' => 'true'],
                         'pluginOptions' => [
                             'tags' => true,
                             'tokenSeparators' => [',', ' '],
-                            'maximumInputLength' => 10
+                            'maximumInputLength' => 15
                         ],
                     ])->label('Número Guía');
                     ?>
