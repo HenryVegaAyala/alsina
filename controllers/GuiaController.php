@@ -328,10 +328,10 @@ class GuiaController extends Controller
         if ($LlegadaCompleto < $CorteCompleto) {
             $resultado = 1;
             if ($resultado === 1) {
-                var_dump($LlegadaAno, $CorteAno);exit();
                 if ($LlegadaAno === $CorteAno or $LlegadaAno < $CorteAno) {
                     $resultadoAno = 1;
                     if ($resultadoAno === 1) {
+                        var_dump($LlegadaMes, $CorteMes);exit();
                         if ($LlegadaMes === $CorteMes or $LlegadaMes < $CorteMes) {
                             $resultadoMes = 1;
                             if ($resultadoMes === 1) {
