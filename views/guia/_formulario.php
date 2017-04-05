@@ -54,7 +54,7 @@ use yii\jui\AutoComplete;
                         "cyan" => "cyan",
                         "teal" => "teal"
                     ];
-                    echo $form->field($model, 'FECH_LLEGA')->widget(Select2::classname(), [
+                    echo $form->field($model, 'NUMERO_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
                         'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'], // , 'disabled' => 'true'
                         'pluginOptions' => [
