@@ -61,9 +61,9 @@ use yii\jui\AutoComplete;
                     $guia = new \app\models\Guia();
                     $lista = $guia->ListObra();
 
-                    echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
+                    echo $form->field($model, 'NUM_GUIA')->widget(Select2::classname(), [
                         'data' => $lista,
-                        'options' => ['placeholder' => 'Seleccionar Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
+                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
                         'pluginOptions' => [
                             'tags' => true,
                             'tokenSeparators' => [',', ' '],
