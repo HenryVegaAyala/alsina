@@ -96,7 +96,7 @@ class GuiaController extends Controller
                     $model->save();
                     $obra->save();
                     $obraGuia->save();
-exit();
+                    
                     /*Detalle Guia*/
                     $cantidad = $producto->Cantidad();
 
