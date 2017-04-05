@@ -41,7 +41,7 @@ class Guia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['FECH_LLEGA', 'FECH_CORTE'], 'required'],
+            [['FECH_LLEGA', 'FECH_CORTE','NUMERO_GUIA'], 'required'],
             [['FECH_LLEGA', 'FECH_CORTE', 'FECH_DIGI', 'FECH_MODI', 'FECH_ELIM', 'NUMERO_GUIA'], 'safe'],
             [['NUM_OBRA', 'NUM_GUIA'], 'string', 'max' => 12],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
