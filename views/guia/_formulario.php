@@ -46,7 +46,7 @@ use yii\jui\AutoComplete;
                     $data = ["s" => "s"];
                     echo $form->field($model, 'NUMERO_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
-                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo', 'disabled' => 'true'],
+                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'], // , 'disabled' => 'true'
                         'pluginOptions' => [
                             'tags' => true,
                             'tokenSeparators' => [',', ' '],
