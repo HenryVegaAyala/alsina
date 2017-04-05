@@ -30,7 +30,7 @@ use yii\helpers\ArrayHelper;
  */
 class Guia extends \yii\db\ActiveRecord
 {
-
+    
     public static function tableName()
     {
         return 'fac_guia';
@@ -229,7 +229,7 @@ class Guia extends \yii\db\ActiveRecord
 
     public function ListaGuia($codigo)
     {
-        $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->orderBy(['NUM_GUIA' => SORT_ASC ])->all();
+        $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->orderBy(['NUM_GUIA' => SORT_ASC])->all();
         return $lista;
     }
 
