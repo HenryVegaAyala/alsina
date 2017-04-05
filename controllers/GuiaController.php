@@ -326,10 +326,10 @@ class GuiaController extends Controller
                 if ($LlegadaAno < $CorteAno or $LlegadaAno == $CorteAno) {
                     $resultadoAno = 1;
                     if ($resultadoAno == 1) {
-                        if ($LlegadaMes <= $CorteMes) {
+                        if ($LlegadaMes === $CorteMes || $LlegadaMes < $CorteMes) {
                             $resultadoMes = 1;
                             if ($resultadoMes == 1) {
-                                if ($LlegadaDia < $LlegadaCorte or $LlegadaDia === $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
+                                if ($LlegadaDia === $LlegadaCorte or $LlegadaDia < $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
                                     return 1;
                                 } else {
                                     return 0;
