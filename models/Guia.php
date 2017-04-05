@@ -229,7 +229,7 @@ class Guia extends \yii\db\ActiveRecord
 
     public function ListaGuia($codigo)
     {
-        $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all();
+        $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->orderBy(['NUM_GUIA' => SORT_ASC ])->all();
         return $lista;
     }
 

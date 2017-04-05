@@ -30,8 +30,7 @@ class UsuarioController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-
-
+            
             if ($model->password_hash == $model->password_repeat) {
                 $Codigo = $model->id;
                 $PassDes = $model->pwdDes = $model->password_hash;

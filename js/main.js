@@ -246,17 +246,15 @@ $(document).on("blur", "#guia-num_obra", function () {
 
     $("#guia-num_obra").blur(function () {
 
-        if ($(this).val() != '') {
+        if (numeroobra !== '' || numeroobra !== null || numeroobra !== 0) {
             $.ajax({
                 data: parametros,
                 url: 'guia/numeroguia',
                 type: 'post',
-                // update: '#guia-num_guia',
                 beforeSend: function () {
                     numeroguia.prop('disabled', true);
                 },
                 success: function (response) {
-
                     numeroguia.prop('disabled', false);
                     numeroguia.find('option').remove();
 
@@ -268,11 +266,11 @@ $(document).on("blur", "#guia-num_obra", function () {
                 },
                 error: function () {
                     numeroguia.prop('disabled', true);
-                }
+                },
             });
         } else {
-            numeroguia.find('option').remove();
             numeroguia.prop('disabled', true);
+            numeroguia.find('option').remove();
         }
     })
 });

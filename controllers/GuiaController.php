@@ -286,6 +286,9 @@ class GuiaController extends Controller
     {
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
+
+            var_dump($model->FECH_CORTE);exit();
+
             $numero = $model->NUM_GUIA;
             $informacion = $model->informacion($numero);
             return $this->render('reportepdf', ['informacion' => $informacion,]);
@@ -356,21 +359,18 @@ class GuiaController extends Controller
         $guia = new Guia();
 
         if (Empty($_POST['numeroobra'])) {
+            echo "<option value=\"\">Seleccionar una Guía</option>";
             exit();
         } else {
             $codigo = $_POST['numeroobra'];
 
             $lista = $guia->ListaGuia($codigo);
-//            $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->all();
-            if ($lista !== 0 || $lista !== null):
+            if ($lista !== 0 || $lista !== null || $lista !== ''):
                 echo "<option value=\"\">Seleccionar una Guía</option>";
                 foreach ($lista as $data):
                     echo '<option value="' . $data["NUM_GUIA"] . '">' . $data["NUM_GUIA"] . '</option>';
                 endforeach;
-            else:
-                echo "<option value=\"\">Seleccionar una Guía</option>";
             endif;
-
         }
     }
 

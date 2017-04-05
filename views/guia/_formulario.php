@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
-use kartik\widgets\DatePicker;
+use kartik\widgets\Select2;
 use yii\jui\AutoComplete;
 
 /* @var $this yii\web\View */
@@ -43,6 +43,33 @@ use yii\jui\AutoComplete;
                 <div class="col-sm-3">
                     <?= $form->field($model, 'NUM_GUIA')->dropDownList($model->ListGuia(), ['disabled' => 'true', 'prompt' => 'Seleccionar una Guía', 'class' => 'form-control loginmodal-container-combo']) ?>
                 </div>
+
+                <div class="col-sm-9">
+                    <?php
+                    $data = [
+                        "red" => "red",
+                        "green" => "green",
+                        "blue" => "blue",
+                        "orange" => "orange",
+                        "white" => "white",
+                        "black" => "black",
+                        "purple" => "purple",
+                        "cyan" => "cyan",
+                        "teal" => "teal"
+                    ];
+                    echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
+                        'data' => $data,
+                        'options' => ['placeholder' => 'Seleccionar Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'],
+                        'pluginOptions' => [
+                            'tags' => true,
+                            'tokenSeparators' => [',', ' '],
+                            'maximumInputLength' => 10
+                        ],
+                    ])->label('Número Guía');
+                    ?>
+                </div>
+
+
             </div>
         </div>
     </div>
