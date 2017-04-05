@@ -29,7 +29,7 @@ use yii\jui\AutoComplete;
 
             <div class="row">
                 <div class="col-sm-3">
-                    <?php $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
+                    <?= $form->field($model, 'NUM_OBRA')->widget(AutoComplete::classname(), [
                         'options' => [
                             'class' => 'form-control',
 
@@ -43,20 +43,10 @@ use yii\jui\AutoComplete;
 
                 <div class="col-sm-9">
                     <?php
-                    $data = [
-                        "red" => "red",
-                        "green" => "green",
-                        "blue" => "blue",
-                        "orange" => "orange",
-                        "white" => "white",
-                        "black" => "black",
-                        "purple" => "purple",
-                        "cyan" => "cyan",
-                        "teal" => "teal"
-                    ];
+                    $data = ["" => ""];
                     echo $form->field($model, 'NUMERO_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
-                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo'], // , 'disabled' => 'true'
+                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo', 'disabled' => 'true'],
                         'pluginOptions' => [
                             'tags' => true,
                             'tokenSeparators' => [',', ' '],
