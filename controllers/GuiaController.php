@@ -64,13 +64,12 @@ class GuiaController extends Controller
 
             if ($numeroGuia !== 1) {
                 if ($FechaValidado == 1) {
+
                     /*Fecha Formateada*/
                     $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
                     /*Guia*/
-
-                    var_dump($model->getCodigoGuia());exit();
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
