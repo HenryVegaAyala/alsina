@@ -49,7 +49,7 @@ class Guia extends \yii\db\ActiveRecord
 
             [['NUM_OBRA'], 'required', 'message' => 'N° de Obra es necesario.'],
             [['NUM_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
-            [['NUMERO_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
+//            [['NUMERO_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
             [['DI_GRACIA'], 'required', 'message' => 'N° de Días es necesario.'],
 
 //            [['NUM_GUIA'], 'integer', 'message' => 'Debe de ser númerico.'],
