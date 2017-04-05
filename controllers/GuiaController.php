@@ -321,19 +321,30 @@ class GuiaController extends Controller
         $CorteMes = intval($valorCorte[0]);
         $LlegadaCorte = intval($valorCorte[1]);
 
-//        if ($llegada < $corte) {
-//            $resultado = 1;
-//            if ($resultado == 1) {
-        if ($LlegadaAno < $CorteAno or $LlegadaAno == $CorteAno) {
-            $resultadoAno = 1;
-            if ($resultadoAno == 1) {
-                if ($LlegadaMes === $CorteMes || $LlegadaMes < $CorteMes) {
-                    $resultadoMes = 1;
-                    if ($resultadoMes == 1) {
-                        if ($LlegadaDia === $LlegadaCorte or $LlegadaDia < $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
+        if ($llegada < $corte) {
+            $resultado = 1;
+            if ($resultado == 1) {
+                if ($LlegadaAno < $CorteAno or $LlegadaAno == $CorteAno) {
+                    $resultadoAno = 1;
+                    if ($resultadoAno == 1) {
+                        if ($LlegadaMes === $CorteMes || $LlegadaMes < $CorteMes) {
                             return 1;
+//                            $resultadoMes = 1;
+//                            if ($resultadoMes == 1) {
+//                            } else {
+//                                return 0;
+//                            }
                         } else {
-                            return 0;
+                            $resultadoMes = 1;
+                            if ($resultadoMes == 1) {
+                                if ($LlegadaDia === $LlegadaCorte or $LlegadaDia < $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            } else {
+                                return 0;
+                            }
                         }
                     } else {
                         return 0;
@@ -347,12 +358,6 @@ class GuiaController extends Controller
         } else {
             return 0;
         }
-//            } else {
-//                return 0;
-//            }
-//        } else {
-//            return 0;
-//        }
     }
 
     public function actionNumeroguia()
