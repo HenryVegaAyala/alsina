@@ -328,13 +328,6 @@ class GuiaController extends Controller
                     $resultadoAno = 1;
                     if ($resultadoAno == 1) {
                         if ($LlegadaMes === $CorteMes || $LlegadaMes < $CorteMes) {
-                            return 1;
-//                            $resultadoMes = 1;
-//                            if ($resultadoMes == 1) {
-//                            } else {
-//                                return 0;
-//                            }
-                        } else {
                             $resultadoMes = 1;
                             if ($resultadoMes == 1) {
                                 if ($LlegadaDia === $LlegadaCorte or $LlegadaDia < $LlegadaCorte or $LlegadaDia > $LlegadaCorte) {
@@ -345,6 +338,8 @@ class GuiaController extends Controller
                             } else {
                                 return 0;
                             }
+                        } else {
+                            return 0;
                         }
                     } else {
                         return 0;
