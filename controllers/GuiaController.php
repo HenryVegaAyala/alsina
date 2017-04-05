@@ -64,7 +64,7 @@ class GuiaController extends Controller
             $numeroGuia = $model->GuiaValidador($model->NUM_GUIA);
 
             if ($numeroGuia !== 1) {
-                if ($FechaValidado == 1) {
+//                if ($FechaValidado == 1) {
                     /*Fecha Formateada*/
                     $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
@@ -141,12 +141,12 @@ class GuiaController extends Controller
                         }
                     }
                     return $this->redirect(['view', 'id' => $model->COD_GUIA]);
-                } else {
-                    $FechaLlegada = substr($model->FECH_LLEGA, 0, 2) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 6, 4);
-                    $FechaCorte = substr($model->FECH_CORTE, 0, 2) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 6, 4);
-                    Yii::$app->session->setFlash('error', 'La Fecha de Corte ' . $FechaCorte . ' debe ser mayor a la Fecha de Llegada ' . $FechaLlegada);
-                    return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
-                }
+//                } else {
+//                    $FechaLlegada = substr($model->FECH_LLEGA, 0, 2) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 6, 4);
+//                    $FechaCorte = substr($model->FECH_CORTE, 0, 2) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 6, 4);
+//                    Yii::$app->session->setFlash('error', 'La Fecha de Corte ' . $FechaCorte . ' debe ser mayor a la Fecha de Llegada ' . $FechaLlegada);
+//                    return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
+//                }
             } else {
                 Yii::$app->session->setFlash('error', 'Este N° de Guía: ' . $model->NUM_GUIA . '; ya fue Registrado antes.');
                 return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
