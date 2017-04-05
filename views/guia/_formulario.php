@@ -59,7 +59,7 @@ use yii\jui\AutoComplete;
                     ];
 
                     $guia = new \app\models\Guia();
-                    $lista = $guia->ListaGuia(2);
+                    $lista = $guia->ListObra();
 
                     echo $form->field($model, 'FECH_CORTE')->widget(Select2::classname(), [
                         'data' => $lista,
