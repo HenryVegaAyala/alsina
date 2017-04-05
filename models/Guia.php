@@ -24,14 +24,14 @@ use yii\helpers\ArrayHelper;
  * @property string $USU_MODI
  * @property string $USU_ELIM
  * @property string $COD_ESTA
- * @property string $NUMEROGUIA
+ * @property string $NUMERO_GUIA
  *
  * @property DetalObraGuia[] $detalObraGuias
  * @property FacGuiaDetal[] $facGuiaDetals
  */
 class Guia extends \yii\db\ActiveRecord
 {
-    public $NUMEROGUIA;
+    public $NUMERO_GUIA;
 
     public static function tableName()
     {
@@ -49,7 +49,7 @@ class Guia extends \yii\db\ActiveRecord
 
             [['NUM_OBRA'], 'required', 'message' => 'N° de Obra es necesario.'],
             [['NUM_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
-            [['NUMEROGUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
+            [['NUMERO_GUIA'], 'required', 'message' => 'N° de Guía es necesario.'],
             [['DI_GRACIA'], 'required', 'message' => 'N° de Días es necesario.'],
 
 //            [['NUM_GUIA'], 'integer', 'message' => 'Debe de ser númerico.'],
@@ -71,7 +71,7 @@ class Guia extends \yii\db\ActiveRecord
             'COD_GUIA' => 'Código de Guía',
             'NUM_OBRA' => 'Número  Obra',
             'NUM_GUIA' => 'Número  Guía',
-            'NUMEROGUIA' => 'Número  Guía',
+            'NUMERO_GUIA' => 'Número  Guía',
             'FECH_LLEGA' => 'Fecha De Llegada',
             'FECH_CORTE' => 'Fecha De Corte',
             'DI_GRACIA' => 'Días De Gracia',
