@@ -63,9 +63,9 @@ class GuiaController extends Controller
             $numeroGuia = $model->GuiaValidador($model->NUM_GUIA);
 
             if ($numeroGuia !== 1) {
-                var_dump($model->NUM_GUIA);exit();
                 if ($FechaValidado == 1) {
                     /*Fecha Formateada*/
+                    var_dump($model->NUM_GUIA);exit();
                     $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
                     $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
 
