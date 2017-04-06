@@ -286,11 +286,22 @@ class GuiaController extends Controller
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
 
-            var_dump($model->NUMERO_GUIA,$model->NUM_OBRA);exit();
+            $NumeroGuia = $model->NUMERO_GUIA;
+            $NumeroObra = $model->NUM_OBRA;
 
-            $numero = $model->NUMERO_GUIA;
-            $informacion = $model->informacion($numero);
-            return $this->render('reportepdf', ['informacion' => $informacion,]);
+            if ($NumeroObra !== '' and $NumeroGuia !== '') {
+                $informacion = $model->informacion($NumeroGuia);
+                return $this->render('reportepdf', ['informacion' => $informacion,]);
+            } else {
+                if ($NumeroObra === '') {
+                    Yii::$app->session->setFlash('error', 'El número de Obra esta vacío.');
+                    return $this->render('formulario', ['model' => $model,]);
+                } else if ($NumeroGuia === '') {
+                    Yii::$app->session->setFlash('error', 'El número de Guía esta vacío.');
+                    return $this->render('formulario', ['model' => $model,]);
+                }
+            }
+
         } else {
             return $this->render('formulario', ['model' => $model,]);
         }

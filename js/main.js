@@ -233,7 +233,7 @@ $(document).on("change", "#guia-fech_corte-kvdate", function () {
 
 });
 
-$(document).on("blur", "#guia-num_obra", function () {
+$(document).on("keyup", "#guia-num_obra", function () {
 
     var numeroobra, numeroguia;
 
