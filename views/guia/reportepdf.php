@@ -76,8 +76,8 @@ class PDF extends FPDF
                 $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['NUM_PROD'])), 1, 'C', false);
                 $y = $this->GetY();
                 $x = $this->GetX();
-                $width = 5;
-                $this->Multicell(5, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
+                $width = 5.5;
+                $this->Multicell(5.5, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
                 $this->SetXY($x + $width, $y);
                 $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
                 $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
