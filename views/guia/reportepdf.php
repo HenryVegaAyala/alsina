@@ -73,7 +73,7 @@ class PDF extends FPDF
             else:
                 $this->SetFont('Arial', '', 7);
                 $this->Cell(0.6, 0.90, $i, 1, '', 'C');
-                $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['NUM_PROD'])), 1, 'L', false);
+                $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['NUM_PROD'])), 1, 'C', false);
                 $y = $this->GetY();
                 $x = $this->GetX();
                 $width = 6.7;
