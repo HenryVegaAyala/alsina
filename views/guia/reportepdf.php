@@ -55,7 +55,7 @@ class PDF extends FPDF
         $i = 1;
         while ($row = $resultado->read()) {
             $this->SetFont('Arial', '', 7);
-            if (strlen($row['DESC_CORTAR']) > 12):
+            if (strlen($row['DESC_CORTAR']) > 35):
                 $this->MultiCell(6, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, 'L');
             else:
                 $this->Cell(0.6, 0.45, $i, 1, '', 'C');
