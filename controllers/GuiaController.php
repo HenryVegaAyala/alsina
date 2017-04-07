@@ -290,8 +290,7 @@ class GuiaController extends Controller
             $NumeroObra = $model->NUM_OBRA;
 
             if ($NumeroObra !== '' and $NumeroGuia !== '') {
-                $informacion = $model->informacion($NumeroGuia);
-                return $this->render('reportepdf', ['informacion' => $informacion,]);
+                return $this->render('reportepdf', ['NumeroGuia' => $NumeroGuia]);
             } else {
                 if ($NumeroObra === '') {
                     Yii::$app->session->setFlash('error', 'El número de Obra esta vacío.');
