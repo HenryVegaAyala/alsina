@@ -55,7 +55,7 @@ class PDF extends FPDF
         $i = 1;
         while ($row = $resultado->read()) {
 
-            if (strlen($row['DESC_CORTAR']) < 25):
+            if (strlen($row['DESC_CORTAR']) < 28):
                 $this->SetFont('Arial', '', 7);
                 $this->Cell(0.6, 0.45, $i, 1, '', 'C');
                 $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
