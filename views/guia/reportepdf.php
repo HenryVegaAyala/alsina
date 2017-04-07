@@ -48,7 +48,7 @@ class PDF extends FPDF
 
         $connection = \Yii::$app->db;
         $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
-                        FROM fac_guia_detal WHERE FAC_COD_GUIA = " . $value['COD_GUIA'];
+                        FROM fac_guia_detal WHERE FAC_COD_GUIA = " . $value['COD_GUIA'] ." Limit 10" ;
         $comando = $connection->createCommand($sqlStatement);
         $resultado = $comando->query();
 
