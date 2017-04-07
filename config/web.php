@@ -68,6 +68,10 @@ $config = [
 //        ]
     ],
     'components' => [
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            'sessionTable' => 'session',
+        ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,

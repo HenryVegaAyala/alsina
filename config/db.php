@@ -6,6 +6,9 @@
 //    'username' => 'root',
 //    'password' => 'root2016',
 //    'charset' => 'utf8',
+//    'enableSchemaCache' => true,
+//    'schemaCacheDuration' => 3600,
+//    'schemaCache' => 'cache',
 //];
 
 return [
