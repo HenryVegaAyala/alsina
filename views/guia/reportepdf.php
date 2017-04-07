@@ -72,6 +72,25 @@ class PDF extends FPDF
             $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
             $i++;
             $this->Ln();
+
+
+            $this->SetFont('Arial', '', 7);
+            $this->Cell(0.6, 0.45, $i, 1, '', 'C');
+            $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
+//            $y = $this->GetY();
+//            $x = $this->GetX();
+//            $width = 6.7;
+            $this->Cell(6.7, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
+//            $this->SetXY($x + $width, $y);
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
+            $this->Cell(1, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
+            $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
+
         }
     }
 }
