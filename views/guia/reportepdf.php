@@ -90,7 +90,8 @@ class PDF extends FPDF
             $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
             $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
             $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
-
+            $i++;
+            $this->Ln();
         }
     }
 }
