@@ -103,14 +103,15 @@ class PDF extends FPDF
                 endif;
             }
 
-            $connection = \Yii::$app->db;
-            $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
-            $comando = $connection->createCommand($sqlStatement);
-            $resultado = $comando->query();
-            while ($row = $resultado->read()) {
-                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
-                $this->Ln(1);
-            }
+//            $connection = \Yii::$app->db;
+//            $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
+//            $comando = $connection->createCommand($sqlStatement);
+//            $resultado = $comando->query();
+//            while ($row = $resultado->read()) {
+//                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
+//                $this->Ln(1);
+//            }
+            $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
         }
     }
 
