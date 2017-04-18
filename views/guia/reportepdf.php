@@ -35,7 +35,7 @@ class PDF extends FPDF
 
             $this->SetFont('Arial', 'B', 8);
             $this->SetTextColor(0, 0, 0);
-            $this->Cell(19.2, 0.5, utf8_decode(strtoupper('N° de GuÍa: ' . $row['COD_GUIA'])), 1, '', 'L');
+            $this->Cell(19.2, 0.5, utf8_decode(strtoupper('N° de GuÍa: ' . $row['NUM_GUIA'])), 1, '', 'L');
             $this->Ln();
             $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE LLEGADA A OBRA: ' . Yii::$app->formatter->asDate($row['FECH_LLEGA'], "php:d-m-Y"))), 1, '', 'L');
             $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE CORTE: ' . Yii::$app->formatter->asDate($row['FECH_CORTE'], "php:d-m-Y"))), 1, '', 'L');
@@ -108,7 +108,7 @@ class PDF extends FPDF
             $comando = $connection->createCommand($sqlStatement);
             $resultado = $comando->query();
             while ($row = $resultado->read()) {
-                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['TOTAL'])), 1, '', 'L');
+                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
                 $this->Ln(1);
             }
         }
