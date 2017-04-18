@@ -107,16 +107,11 @@ class PDF extends FPDF
 //            $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
 //            $comando = $connection->createCommand($sqlStatement);
 //            $resultado = $comando->query();
-
-            $connection = \Yii::$app->db;
-            $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
-                        FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
-            $comando = $connection->createCommand($sqlStatement);
-            $resultado = $comando->query();
-            while ($row = $resultado->read()) {
-                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['NUM_PROD'])), 1, '', 'L');
-            }
-
+//            while ($row = $resultado->read()) {
+//                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
+//                $this->Ln(1);
+//            }
+            $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
         }
     }
 
