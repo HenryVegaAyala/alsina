@@ -111,7 +111,7 @@ class PDF extends FPDF
 //                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
 //                $this->Ln(1);
 //            }
-            $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
+            $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['NUM_GUIA'] . $row['COD_GUIA'])), 1, '', 'L');
         }
     }
 
