@@ -102,7 +102,7 @@ class PDF extends FPDF
                     $this->Ln();
                 endif;
             }
-            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('xxxxxxxxxxxx', 2)), 1, '', 'L');
+//            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('xxxxxxxxxxxx', 2)), 1, '', 'L');
             $this->Ln(1);
         }
     }
