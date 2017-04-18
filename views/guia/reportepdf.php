@@ -103,15 +103,11 @@ class PDF extends FPDF
                 endif;
             }
             $connection = \Yii::$app->db;
-            $sqlStatement = "
-                            SELECT sum(B.COST_TOTAL) AS TOTAL
-                            FROM fac_guia A
-                            INNER JOIN fac_guia_detal B on A.COD_GUIA = B.FAC_COD_GUIA
-                            WHERE A.NUM_GUIA = '" . $row['NUM_GUIA'] . "' AND COD_ESTA = 1";
+            $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
             $comando = $connection->createCommand($sqlStatement);
             $resultado = $comando->query();
             while ($row = $resultado->read()) {
-//                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['TOTAL'])), 1, '', 'L');
+                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['TOTAL'])), 1, '', 'L');
                 $this->Ln(1);
             }
         }
