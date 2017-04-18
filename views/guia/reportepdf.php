@@ -57,58 +57,58 @@ class PDF extends FPDF
             $this->Cell(1.5, 0.45, utf8_decode("P. V. Total"), 1, '', 'C');
             $this->Ln();
 
-//            $connection = \Yii::$app->db;
-//            $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
-//                        FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
-//            $comando = $connection->createCommand($sqlStatement);
-//            $resultado = $comando->query();
-//
-//            $i = 1;
-//            while ($row = $resultado->read()) {
-//
-//                if (strlen($row['DESC_CORTAR']) < 33):
-//                    $this->SetFont('Arial', '', 7);
-//                    $this->Cell(0.6, 0.45, $i, 1, '', 'C');
-//                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
-//                    $this->Cell(5.9, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
-//                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
-//                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
-//                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
-//                    $this->Cell(1, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
-//                    $i++;
-//                    $this->Ln();
-//                else:
-//                    $this->SetFont('Arial', '', 7);
-//                    $this->Cell(0.6, 0.90, $i, 1, '', 'C');
-//                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
-//                    $y = $this->GetY();
-//                    $x = $this->GetX();
-//                    $width = 5.9;
-//                    $this->Multicell(5.9, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, 'L', false);
-//                    $this->SetXY($x + $width, $y);
-//                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
-//                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
-//                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
-//                    $this->Cell(1, 0.90, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
-//                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
-//                    $i++;
-//                    $this->Ln();
-//                endif;
-//            }
+            $connection = \Yii::$app->db;
+            $sqlStatement = "SELECT NUM_PROD,DESC_CORTAR,PREC_X_DIA,PESO_REAL,PESO_VOL,UD,PESO_REAL_TOTAL,CANT_DIAS,COST_TOTAL,PESO_V_TOTAL
+                        FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
+            $comando = $connection->createCommand($sqlStatement);
+            $resultado = $comando->query();
+
+            $i = 1;
+            while ($row = $resultado->read()) {
+
+                if (strlen($row['DESC_CORTAR']) < 33):
+                    $this->SetFont('Arial', '', 7);
+                    $this->Cell(0.6, 0.45, $i, 1, '', 'C');
+                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
+                    $this->Cell(5.9, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, '', 'L');
+                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
+                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
+                    $this->Cell(1.4, 0.45, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
+                    $this->Cell(1, 0.45, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.45, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
+                    $i++;
+                    $this->Ln();
+                else:
+                    $this->SetFont('Arial', '', 7);
+                    $this->Cell(0.6, 0.90, $i, 1, '', 'C');
+                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['NUM_PROD'])), 1, '', 'L');
+                    $y = $this->GetY();
+                    $x = $this->GetX();
+                    $width = 5.9;
+                    $this->Multicell(5.9, 0.45, utf8_decode(strtoupper($row['DESC_CORTAR'])), 1, 'L', false);
+                    $this->SetXY($x + $width, $y);
+                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PREC_X_DIA'])), 1, '', 'C');
+                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PESO_REAL'])), 1, '', 'C');
+                    $this->Cell(1.4, 0.90, utf8_decode(strtoupper($row['PESO_VOL'])), 1, '', 'C');
+                    $this->Cell(1, 0.90, utf8_decode(strtoupper($row['UD'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['PESO_REAL_TOTAL'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['CANT_DIAS'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['COST_TOTAL'])), 1, '', 'C');
+                    $this->Cell(1.5, 0.90, utf8_decode(strtoupper($row['PESO_V_TOTAL'])), 1, '', 'C');
+                    $i++;
+                    $this->Ln();
+                endif;
+            }
 
             $connection = \Yii::$app->db;
             $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
             $comando = $connection->createCommand($sqlStatement);
             $resultado = $comando->query();
             while ($row = $resultado->read()) {
-                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['TOTAL'])), 1, '', 'L');
+                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
                 $this->Ln(1);
             }
             $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['COD_GUIA'])), 1, '', 'L');
