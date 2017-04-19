@@ -103,20 +103,42 @@ class PDF extends FPDF
                 endif;
             }
 
+        }
+    }
+
+    function Total($NumGuia)
+    {
+        $connection = \Yii::$app->db;
+        $sqlStatement = "SELECT NUM_GUIA,FECH_LLEGA,FECH_CORTE,DI_GRACIA,COD_GUIA FROM fac_guia WHERE NUM_GUIA = '" . $NumGuia . "' AND COD_ESTA = 1";
+        $comando = $connection->createCommand($sqlStatement);
+        $resultado = $comando->query();
+
+        while ($row = $resultado->read()) {
+            $row['NUM_GUIA'];
+            $row['FECH_LLEGA'];
+            $row['FECH_CORTE'];
+            $row['DI_GRACIA'];
+            $row['COD_GUIA'];
+
             $connection = \Yii::$app->db;
             $sqlStatement = "SELECT sum(COST_TOTAL) AS TOTAL FROM fac_guia_detal WHERE FAC_COD_GUIA = '" . $row['COD_GUIA'] . "' AND COD_ESTA = 1";
             $comando = $connection->createCommand($sqlStatement);
             $resultado = $comando->query();
             while ($row = $resultado->read()) {
-                $this->Cell(19.2, 0.5, utf8_decode('Costo Total: ' . strtoupper($row['TOTAL'])), 1, '', 'L');
+                $this->SetFont('Arial', 'B', 12);
+                $this->Cell(19.2, 0.6, utf8_decode('Costo Total: S/.' . strtoupper($row['TOTAL'])), 1, '', 'L');
                 $this->Ln(1);
+
             }
+
         }
     }
+
 
     function parametros($NumGuia)
     {
         $this->Impresion($NumGuia);
+        $this->Total($NumGuia);
     }
 }
 

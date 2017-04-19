@@ -149,6 +149,31 @@ $attributes = [
         ],
     ],
 
+    [
+        'group' => true,
+        'label' => 'Costo Total de La Guía',
+        'rowOptions' => ['class' => 'info']
+    ],
+    [
+        'columns' => [
+            [
+                'attribute' => 'COD_ESTA',
+                'label' => 'COSTO TOTAL',
+                'format' => 'raw',
+                'value' => $model->MontoGuiaTotal($model->COD_GUIA),
+                'type' => DetailView::INPUT_COLOR,
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+            [
+                'attribute' => 'COD_ESTA',
+                'label' => '',
+                'format' => 'raw',
+                'value' => '',
+                'type' => DetailView::INPUT_COLOR,
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+        ],
+    ],
 ];
 ?>
 

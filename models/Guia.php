@@ -135,6 +135,16 @@ class Guia extends \yii\db\ActiveRecord
         return $data;
     }
 
+    public function MontoGuiaTotal($Guia)
+    {
+        $query = new Query();
+        $expresion = new Expression('sum(COST_TOTAL) AS TOTAL');
+        $query->select($expresion)->from('fac_guia_detal')->where("" . "FAC_COD_GUIA = '" . $Guia . "'");
+        $comando = $query->createCommand();
+        $data = $comando->queryScalar();
+        return $data;
+    }
+
     public function GuiaValidador($numero)
     {
         $query = new Query();
