@@ -129,7 +129,21 @@ function redondear2decimales(numero) {
     var original, resultado;
     original = parseFloat(numero);
     resultado = Math.round(original * 100) / 100;
-    return resultado;
+    return validateNan(resultado);
+}
+
+function validateNan(valor) {
+    if (isNaN(valor)) {
+        return '0.00';
+    } else if (valor === '') {
+        return '0.00';
+    } else if (valor === null) {
+        return '0.00';
+    } else if (valor === '0') {
+        return '0.00';
+    } else {
+        return valor;
+    }
 }
 
 function restafechas(f1, f2) {
