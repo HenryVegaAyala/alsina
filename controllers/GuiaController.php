@@ -29,6 +29,9 @@ class GuiaController extends Controller
         ];
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         $searchModel = new GuiaSearch();
@@ -40,6 +43,10 @@ class GuiaController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -47,6 +54,9 @@ class GuiaController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionCreate()
     {
         $model = new Guia();
@@ -57,31 +67,30 @@ class GuiaController extends Controller
         $producto = new MaeProdu();
 
         if ($model->load(Yii::$app->request->post())) {
-
             $FechaValidado = $this->validadorFechas($model->FECH_LLEGA, $model->FECH_CORTE);
             $numeroGuia = $model->GuiaValidador($model->NUM_GUIA);
 
+            $FechaLlegada = Yii::$app->formatter->asDate(strtotime($model->FECH_LLEGA), 'Y-MM-dd');
+            $FechaCorte = Yii::$app->formatter->asDate(strtotime($model->FECH_CORTE), 'Y-MM-dd');
+
             if ($numeroGuia !== 1) {
                 if ($FechaValidado == 1) {
-
-                    /*Fecha Formateada*/
-                    $FechaLlegada = substr($model->FECH_LLEGA, 6, 4) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 0, 2);
-                    $FechaCorte = substr($model->FECH_CORTE, 6, 4) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 0, 2);
-
                     /*Guia*/
                     $model->COD_GUIA = $model->getCodigoGuia();
                     $model->FECH_LLEGA = $FechaLlegada;
                     $model->FECH_CORTE = $FechaCorte;
-                    $model->FECH_DIGI = $this->ZonaHoraria();
+                    $model->FECH_DIGI = $this->zonaHoraria();
                     $model->USU_DIGI = Yii::$app->user->identity->email;
                     $model->COD_ESTA = '1';
+                    $model->save();
 
                     /*Obra*/
                     $obra->COD_OBRA = $obra->getCodigoObra();
                     $obra->NUM_OBRA = $model->NUM_OBRA;
-                    $obra->FEC_DIGI = $this->ZonaHoraria();
+                    $obra->FEC_DIGI = $this->zonaHoraria();
                     $obra->USU_DIGI = Yii::$app->user->identity->email;
                     $obra->COD_ESTA = '1';
+                    $obra->save();
 
                     /*Detalle Obra Guia*/
                     $obraGuia->COD_OBRA_GUIA = $obraGuia->getCodigoObraGuia();
@@ -89,12 +98,9 @@ class GuiaController extends Controller
                     $obraGuia->GUIA_COD_GUIA = $model->COD_GUIA;
                     $obraGuia->NUM_GUIA = $model->NUM_GUIA;
                     $obraGuia->NUM_OBRA = $model->NUM_OBRA;
-                    $obraGuia->FECH_DIGI = $this->ZonaHoraria();
+                    $obraGuia->FECH_DIGI = $this->zonaHoraria();
                     $obraGuia->USU_DIGI = Yii::$app->user->identity->email;
                     $obraGuia->COD_ESTADO = '1';
-
-                    $model->save();
-                    $obra->save();
                     $obraGuia->save();
 
                     /*Detalle Guia*/
@@ -132,22 +138,25 @@ class GuiaController extends Controller
                             $command->bindValue(':CANT_DIAS', $cantidaddias[$i]);
                             $command->bindValue(':COST_TOTAL', $costototal[$i]);
                             $command->bindValue(':PESO_V_TOTAL', $pesovt[$i]);
-                            $command->bindValue(':FECH_DIGI', $this->ZonaHoraria());
+                            $command->bindValue(':FECH_DIGI', $this->zonaHoraria());
                             $command->bindValue(':USU_DIGI', Yii::$app->user->identity->email);
                             $command->bindValue(':COD_ESTA', "1");
                             $command->bindValue(':ACTION', "1");
                             $command->execute();
                         }
                     }
+
                     return $this->redirect(['view', 'id' => $model->COD_GUIA]);
                 } else {
-                    $FechaLlegada = substr($model->FECH_LLEGA, 0, 2) . '-' . substr($model->FECH_LLEGA, 3, 2) . '-' . substr($model->FECH_LLEGA, 6, 4);
-                    $FechaCorte = substr($model->FECH_CORTE, 0, 2) . '-' . substr($model->FECH_CORTE, 3, 2) . '-' . substr($model->FECH_CORTE, 6, 4);
-                    Yii::$app->session->setFlash('error', 'La Fecha de Corte ' . $FechaCorte . ' debe ser mayor a la Fecha de Llegada ' . $FechaLlegada);
+                    Yii::$app->session->setFlash('error',
+                        'La Fecha de Corte ' . $FechaCorte . ' debe ser mayor a la Fecha de Llegada ' . $FechaLlegada);
+
                     return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
                 }
             } else {
-                Yii::$app->session->setFlash('error', 'Este N° de Guía: ' . $model->NUM_GUIA . '; ya fue Registrado antes.');
+                Yii::$app->session->setFlash('error',
+                    'Este N° de Guía: ' . $model->NUM_GUIA . '; ya fue Registrado antes.');
+
                 return $this->render('create', ['model' => $model, 'categorias' => $categorias,]);
             }
         } else {
@@ -158,6 +167,10 @@ class GuiaController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -165,9 +178,8 @@ class GuiaController extends Controller
         $producto = new MaeProdu();
 
         if ($model->load(Yii::$app->request->post())) {
-
             /*Guia*/
-            $model->FECH_MODI = $this->ZonaHoraria();
+            $model->FECH_MODI = $this->zonaHoraria();
             $model->USU_MODI = Yii::$app->user->identity->email;
             $model->COD_ESTA = '1';
 
@@ -175,7 +187,8 @@ class GuiaController extends Controller
             $transaction = Yii::$app->db;
             $transaction->createCommand()
                 ->update('obra',
-                    ['FEC_MODI' => $this->ZonaHoraria(),
+                    [
+                        'FEC_MODI' => $this->zonaHoraria(),
                         'USU_MODI' => Yii::$app->user->identity->email,
                         'COD_ESTA' => '1',
                     ],
@@ -186,7 +199,8 @@ class GuiaController extends Controller
             $transaction = Yii::$app->db;
             $transaction->createCommand()
                 ->update('detal_obra_guia',
-                    ['FECH_MODI' => $this->ZonaHoraria(),
+                    [
+                        'FECH_MODI' => $this->zonaHoraria(),
                         'USU_MODI' => Yii::$app->user->identity->email,
                         'COD_ESTADO' => '1',
                     ],
@@ -211,7 +225,7 @@ class GuiaController extends Controller
             $costototal = $_POST["COST_TOTAL"];
             $pesovt = $_POST["PESO_V_TOTAL"];
 
-            $command = Yii::$app->db->createCommand("DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :VAR_FAC_COD_GUIA;");
+            $command = Yii::$app->db->createCommand('DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :VAR_FAC_COD_GUIA;');
             $command->bindValue(':VAR_FAC_COD_GUIA', $model->COD_GUIA);
             $command->execute();
 
@@ -234,13 +248,14 @@ class GuiaController extends Controller
                     $command->bindValue(':CANT_DIAS', $cantidaddias[$i]);
                     $command->bindValue(':COST_TOTAL', $costototal[$i]);
                     $command->bindValue(':PESO_V_TOTAL', $pesovt[$i]);
-                    $command->bindValue(':FECH_MODI', $this->ZonaHoraria());
+                    $command->bindValue(':FECH_MODI', $this->zonaHoraria());
                     $command->bindValue(':USU_MODI', Yii::$app->user->identity->email);
                     $command->bindValue(':COD_ESTA', "1");
                     $command->bindValue(':ACTION', "2");
                     $command->execute();
                 }
             }
+
             return $this->redirect(['view', 'id' => $model->COD_GUIA]);
         } else {
             return $this->render('update', [
@@ -249,22 +264,31 @@ class GuiaController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     */
     public function actionDelete($id)
     {
         $guia = $this->findModel($id);
         $model = new Guia();
         $usuario = Yii::$app->user->identity->email;
-        $fecha = $this->ZonaHoraria();
+        $fecha = $this->zonaHoraria();
         $Numero = $model->NumeroGuia($id);
         $model->EliminarObra($guia->NUM_OBRA, $usuario, $fecha);
         $model->EliminarObraGuia($guia->NUM_GUIA, $usuario, $fecha);
         $model->EliminarGuiaDetalle($id);
         $model->EliminarGuia($id, $usuario, $fecha);
         Yii::$app->session->setFlash('success', 'Se Elimino correctamente el N° de Guía ' . $Numero);
-        return $this->redirect(['index']);
 
+        return $this->redirect(['index']);
     }
 
+    /**
+     * @param $id
+     * @return GuiaController|Guia
+     * @throws NotFoundHttpException
+     */
     protected function findModel($id)
     {
         if (($model = Guia::findOne($id)) !== null) {
@@ -274,18 +298,24 @@ class GuiaController extends Controller
         }
     }
 
-    public function ZonaHoraria()
+    /**
+     * @return false|string
+     */
+    public function zonaHoraria()
     {
         date_default_timezone_set('America/Lima');
         $Fecha_Hora = date('Y-m-d h:i:s', time());
+
         return $Fecha_Hora;
     }
 
+    /**
+     * @return string
+     */
     public function actionFormulario()
     {
         $model = new Guia();
         if ($model->load(Yii::$app->request->post())) {
-
             $NumeroGuia = $model->NUMERO_GUIA;
             $NumeroObra = $model->NUM_OBRA;
 
@@ -294,17 +324,20 @@ class GuiaController extends Controller
             } else {
                 if ($NumeroObra === '') {
                     Yii::$app->session->setFlash('error', 'El número de Obra esta vacío.');
+
                     return $this->render('formulario', ['model' => $model,]);
-                } else if ($NumeroGuia === '') {
-                    Yii::$app->session->setFlash('error', 'El número de Guía esta vacío.');
-                    return $this->render('formulario', ['model' => $model,]);
+                } else {
+                    if ($NumeroGuia === '') {
+                        Yii::$app->session->setFlash('error', 'El número de Guía esta vacío.');
+
+                        return $this->render('formulario', ['model' => $model,]);
+                    }
                 }
             }
 
         } else {
             return $this->render('formulario', ['model' => $model,]);
         }
-
     }
 
     public function actionElementos()
@@ -371,19 +404,18 @@ class GuiaController extends Controller
     {
         $guia = new Guia();
 
-        if (Empty($_POST['numeroobra'])) {
+        if (empty($_POST['numeroobra'])) {
             echo "<option value=\"\">Seleccionar una Guía</option>";
             exit();
         } else {
             $codigo = $_POST['numeroobra'];
-
             $lista = $guia->ListaGuia($codigo);
-            if ($lista !== 0 || $lista !== null || $lista !== ''):
+            if ($lista !== 0 || $lista !== null || $lista !== '') {
                 echo "<option value=\"\">Seleccionar una Guía</option>";
-                foreach ($lista as $data):
+                foreach ($lista as $data) {
                     echo '<option value="' . $data["NUM_GUIA"] . '">' . $data["NUM_GUIA"] . '</option>';
-                endforeach;
-            endif;
+                }
+            }
         }
     }
 

@@ -172,7 +172,8 @@ $(document).on("blur", "#guia-di_gracia", function () {
 
 $(document).on("change", "#guia-fech_llega-kvdate", function () {
 
-    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud, cantdias;
+    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud,
+        cantdias;
 
     fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
     fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
@@ -204,7 +205,8 @@ $(document).on("change", "#guia-fech_llega-kvdate", function () {
 
 $(document).on("change", "#guia-fech_corte-kvdate", function () {
 
-    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud, cantdias;
+    var i, fechallegada, fechacorte, diasgracia, puxdia, ud, pesoreal, rescantdias, respuxdia, rescostototal, resud,
+        cantdias;
 
     fechallegada = $("#guia-fech_llega-kvdate").find("input").val();
     fechacorte = $("#guia-fech_corte-kvdate").find("input").val();
@@ -251,9 +253,11 @@ $(document).on("keyup", "#guia-num_obra", function () {
                 data: parametros,
                 url: 'guia/numeroguia',
                 type: 'post',
+
                 beforeSend: function () {
                     numeroguia.prop('disabled', true);
                 },
+
                 success: function (response) {
                     numeroguia.prop('disabled', false);
                     numeroguia.find('option').remove();
@@ -264,9 +268,11 @@ $(document).on("keyup", "#guia-num_obra", function () {
 
                     numeroguia.prop('disabled', false);
                 },
+
                 error: function () {
                     numeroguia.prop('disabled', true);
                 },
+
             });
         } else {
             numeroguia.prop('disabled', true);

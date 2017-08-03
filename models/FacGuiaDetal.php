@@ -53,12 +53,36 @@ class FacGuiaDetal extends \yii\db\ActiveRecord
         return [
             [['FAC_COD_GUIA', 'COD_CATG', 'COD_MAE_PRODU'], 'required'],
             [['FAC_COD_GUIA', 'COD_CATG', 'COD_MAE_PRODU'], 'integer'],
-            [['PREC_X_DIA', 'PESO_REAL', 'PESO_VOL', 'UD', 'PESO_REAL_TOTAL', 'CANT_DIAS', 'COST_TOTAL', 'PESO_V_TOTAL'], 'number'],
+            [
+                [
+                    'PREC_X_DIA',
+                    'PESO_REAL',
+                    'PESO_VOL',
+                    'UD',
+                    'PESO_REAL_TOTAL',
+                    'CANT_DIAS',
+                    'COST_TOTAL',
+                    'PESO_V_TOTAL',
+                ],
+                'number',
+            ],
             [['FECH_DIGI', 'FECH_MODI', 'FECH_ELIM'], 'safe'],
             [['NUM_PROD', 'USU_DIGI', 'USU_MODI', 'USU_ELI', 'COD_ESTA'], 'string', 'max' => 45],
             [['DESC_CORTAR', 'DESC_LARGA'], 'string', 'max' => 100],
-            [['FAC_COD_GUIA'], 'exist', 'skipOnError' => true, 'targetClass' => FacGuia::className(), 'targetAttribute' => ['FAC_COD_GUIA' => 'COD_GUIA']],
-            [['COD_MAE_PRODU'], 'exist', 'skipOnError' => true, 'targetClass' => MaeProdu::className(), 'targetAttribute' => ['COD_MAE_PRODU' => 'COD_MAE_PRODU']],
+            [
+                ['FAC_COD_GUIA'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => FacGuia::className(),
+                'targetAttribute' => ['FAC_COD_GUIA' => 'COD_GUIA'],
+            ],
+            [
+                ['COD_MAE_PRODU'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => MaeProdu::className(),
+                'targetAttribute' => ['COD_MAE_PRODU' => 'COD_MAE_PRODU'],
+            ],
         ];
     }
 
@@ -116,6 +140,7 @@ class FacGuiaDetal extends \yii\db\ActiveRecord
         $query->select($expresion)->from('fac_guia_detal');
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 }

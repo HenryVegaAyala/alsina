@@ -46,11 +46,16 @@ use yii\jui\AutoComplete;
                     $data = ["" => ""];
                     echo $form->field($model, 'NUMERO_GUIA')->widget(Select2::classname(), [
                         'data' => $data,
-                        'options' => ['placeholder' => 'Seleccionar N° de Guia', 'multiple' => true, 'class' => 'form-control loginmodal-container-combo', 'disabled' => 'true'],
+                        'options' => [
+                            'placeholder' => 'Seleccionar N° de Guia',
+                            'multiple' => true,
+                            'class' => 'form-control loginmodal-container-combo',
+                            'disabled' => 'true',
+                        ],
                         'pluginOptions' => [
                             'tags' => true,
                             'tokenSeparators' => [',', ' '],
-                            'maximumInputLength' => 15
+                            'maximumInputLength' => 15,
                         ],
                     ])->label('Número Guía');
                     ?>
@@ -62,8 +67,10 @@ use yii\jui\AutoComplete;
 
     <div class="panel-footer container-fluid foo">
         <div class="col-sm-12">
-            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Generar Reporte" : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
-            <?= Html::a("<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar", ['/guia/formulario'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? "<i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i> Generar Reporte" : 'Update',
+                ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ']) ?>
+            <?= Html::a("<i class=\"fa fa-chevron-circle-left\" aria-hidden=\"true\"></i> Cancelar",
+                ['/guia/formulario'], ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>

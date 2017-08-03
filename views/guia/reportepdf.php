@@ -19,8 +19,10 @@ class PDF extends FPDF
             $row['COD_GUIA'];
 
 
-            $this->SetFont('Arial', 'B', 16);                        // $this->Cell(Ancho , Alto , cadena , bordes , posición , alinear , fondo, URL )
-            $this->Image(Yii::getAlias('@alsinaLogo'), 1, 1, 4, 1.5);// $this->Image('ruta de imagen', horizontal, vertical, ancho, alto);
+            $this->SetFont('Arial', 'B',
+                16);                        // $this->Cell(Ancho , Alto , cadena , bordes , posición , alinear , fondo, URL )
+            $this->Image(Yii::getAlias('@alsinaLogo'), 1, 1, 4,
+                1.5);// $this->Image('ruta de imagen', horizontal, vertical, ancho, alto);
             $this->Cell(19.2, 1.5, utf8_decode('Guía de Productos'), 0, 'C', 'C');
             $this->Ln(2);
 
@@ -28,18 +30,23 @@ class PDF extends FPDF
             $this->SetFillColor(150, 54, 52);                        // establece el color del fondo de la celda.
             $this->SetDrawColor(150, 54, 52);                        // establece el color del contorno de la celda.
             $this->SetTextColor(255, 255, 255);                      // Establece el color del texto.
-            $this->Cell(0.2, 0.2, utf8_decode(''), 0, 0, 'C', True);
-            $this->Cell(18.8, 0.2, utf8_decode(''), 1, 0, 'C', True);
-            $this->Cell(0.2, 0.2, utf8_decode(''), 0, 0, 'C', True);
+            $this->Cell(0.2, 0.2, utf8_decode(''), 0, 0, 'C', true);
+            $this->Cell(18.8, 0.2, utf8_decode(''), 1, 0, 'C', true);
+            $this->Cell(0.2, 0.2, utf8_decode(''), 0, 0, 'C', true);
             $this->Ln(0.6);
 
             $this->SetFont('Arial', 'B', 8);
             $this->SetTextColor(0, 0, 0);
             $this->Cell(19.2, 0.5, utf8_decode(strtoupper('N° de GuÍa: ' . $row['NUM_GUIA'])), 1, '', 'L');
             $this->Ln();
-            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE LLEGADA A OBRA: ' . Yii::$app->formatter->asDate($row['FECH_LLEGA'], "php:d-m-Y"))), 1, '', 'L');
-            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('FECHA DE CORTE: ' . Yii::$app->formatter->asDate($row['FECH_CORTE'], "php:d-m-Y"))), 1, '', 'L');
-            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('DIAS DE GRACIA: ' . number_format($row['DI_GRACIA'], 2))), 1, '', 'L');
+            $this->Cell(6.4, 0.5,
+                utf8_decode(strtoupper('FECHA DE LLEGADA A OBRA: ' . Yii::$app->formatter->asDate($row['FECH_LLEGA'],
+                        "php:d-m-Y"))), 1, '', 'L');
+            $this->Cell(6.4, 0.5,
+                utf8_decode(strtoupper('FECHA DE CORTE: ' . Yii::$app->formatter->asDate($row['FECH_CORTE'],
+                        "php:d-m-Y"))), 1, '', 'L');
+            $this->Cell(6.4, 0.5, utf8_decode(strtoupper('DIAS DE GRACIA: ' . number_format($row['DI_GRACIA'], 2))), 1,
+                '', 'L');
             $this->Ln(1);
 
             $this->Cell(19.2, 0.5, utf8_decode(strtoupper('Lista de Productos:')), 0, '', 'L');
@@ -65,7 +72,6 @@ class PDF extends FPDF
 
             $i = 1;
             while ($row = $resultado->read()) {
-
                 if (strlen($row['DESC_CORTAR']) < 33):
                     $this->SetFont('Arial', '', 7);
                     $this->Cell(0.6, 0.45, $i, 1, '', 'C');
@@ -133,7 +139,6 @@ class PDF extends FPDF
 
         }
     }
-
 
     function parametros($NumGuia)
     {

@@ -47,8 +47,20 @@ class DetalObraGuia extends \yii\db\ActiveRecord
             [['NUM_GUIA', 'NUM_OBRA'], 'string', 'max' => 15],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
             [['COD_ESTADO'], 'string', 'max' => 1],
-            [['GUIA_COD_GUIA'], 'exist', 'skipOnError' => true, 'targetClass' => Guia::className(), 'targetAttribute' => ['GUIA_COD_GUIA' => 'COD_GUIA']],
-            [['OBRA_COD_OBRA'], 'exist', 'skipOnError' => true, 'targetClass' => Obra::className(), 'targetAttribute' => ['OBRA_COD_OBRA' => 'COD_OBRA']],
+            [
+                ['GUIA_COD_GUIA'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Guia::className(),
+                'targetAttribute' => ['GUIA_COD_GUIA' => 'COD_GUIA'],
+            ],
+            [
+                ['OBRA_COD_OBRA'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Obra::className(),
+                'targetAttribute' => ['OBRA_COD_OBRA' => 'COD_OBRA'],
+            ],
         ];
     }
 
@@ -96,6 +108,7 @@ class DetalObraGuia extends \yii\db\ActiveRecord
         $query->select($expresion)->from('detal_obra_guia');
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 }

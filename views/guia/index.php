@@ -26,18 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'NUM_GUIA',
                 'label' => 'N° de Guía',
-                'value' => 'NUM_GUIA'
+                'value' => 'NUM_GUIA',
             ],
-//            [
-//                'attribute' => 'FECH_LLEGA',
-//                'label' => 'Fecha De Llegada',
-//                'format' => ['date', 'php:d-m-Y'],
-//                'value' => 'FECH_LLEGA'
-//            ],
             [
                 'attribute' => 'FECH_LLEGA',
                 'value' => 'FECH_LLEGA',
-                'format' => 'raw',
+                'format' => ['date', 'php:d-m-Y'],
                 'options' => ['style' => 'width: 20%;'],
                 'filter' => DatePicker::widget([
                     'model' => $searchModel,
@@ -45,22 +39,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['placeholder' => ''],
                     'pluginOptions' => [
                         'id' => 'FECH_LLEGA',
-                        'autoclose'=>true,
+                        'autoclose' => true,
                         'format' => 'yyyy-mm-dd',
                         'startView' => 'days',
-                    ]
-                ])
+                    ],
+                ]),
             ],
-//            [
-//                'attribute' => 'FECH_CORTE',
-//                'label' => 'Fecha De Corte',
-//                'format' => ['date', 'php:d-m-Y'],
-//                'value' => 'FECH_CORTE'
-//            ],
             [
                 'attribute' => 'FECH_CORTE',
                 'value' => 'FECH_CORTE',
-                'format' => 'raw',
+                'format' => ['date', 'php:d-m-Y'],
                 'options' => ['style' => 'width: 20%;'],
                 'filter' => DatePicker::widget([
                     'model' => $searchModel,
@@ -68,11 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['placeholder' => ''],
                     'pluginOptions' => [
                         'id' => 'FECH_CORTE',
-                        'autoclose'=>true,
+                        'autoclose' => true,
                         'format' => 'yyyy-mm-dd',
                         'startView' => 'days',
-                    ]
-                ])
+                    ],
+                ]),
             ],
             'DI_GRACIA',
             [
@@ -82,8 +70,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     $model = new \app\models\Guia();
                     $Codigo = $data->COD_GUIA;
                     $total = $model->MontoGuia($Codigo);
+
                     return $total;
-                }
+                },
             ],
             'NUM_OBRA',
             [
@@ -97,12 +86,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['class' => 'itemHide'],
                 'buttons' => [
                     'contrato' => function ($url, $model) {
-                        return Html::a('<span class="fa fa-cogs"></span>', $url, ['title' => Yii::t('app', 'Generar Contrato'), 'target' => '_blank', 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
+                        return Html::a('<span class="fa fa-cogs"></span>', $url, [
+                            'title' => Yii::t('app', 'Generar Contrato'),
+                            'target' => '_blank',
+                            'class' => 'btn btn-default',
+                            'data' => ['pjax' => 0],
+                        ]);
                     },
 
                     'archivo' => function ($url, $model) {
 //                        return Html::a('<i class="fa fa-cloud-upload"></i>', ['archivo', 'id' => $model['Codigo_venta']], ['title' => Yii::t('app', 'Subir Archivo'), 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
-                        return Html::a('<i class="fa fa-cloud-upload"></i>', $url, ['title' => Yii::t('app', 'Subir Archivo'), 'class' => 'btn btn-default', 'data' => ['pjax' => 0]]);
+                        return Html::a('<i class="fa fa-cloud-upload"></i>', $url, [
+                            'title' => Yii::t('app', 'Subir Archivo'),
+                            'class' => 'btn btn-default',
+                            'data' => ['pjax' => 0],
+                        ]);
                     },
 
                 ],
@@ -115,8 +113,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'panel' => [
             'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> ' . Html::encode($this->title) . ' </h3>',
 //            'type' => 'info',
-            'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Refrescar Lista', ['index'], ['class' => 'btn btn-primary']),
-            'showFooter' => false
+            'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Refrescar Lista', ['index'],
+                ['class' => 'btn btn-primary']),
+            'showFooter' => false,
         ],
     ]);
     Pjax::end(); ?>

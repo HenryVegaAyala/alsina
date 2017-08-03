@@ -42,7 +42,7 @@ class Guia extends \yii\db\ActiveRecord
     {
         return [
             [['FECH_LLEGA', 'FECH_CORTE'], 'required'],
-            [['FECH_LLEGA', 'FECH_CORTE', 'FECH_DIGI', 'FECH_MODI', 'FECH_ELIM','NUMERO_GUIA'], 'safe'],
+            [['FECH_LLEGA', 'FECH_CORTE', 'FECH_DIGI', 'FECH_MODI', 'FECH_ELIM', 'NUMERO_GUIA'], 'safe'],
             [['NUM_OBRA', 'NUM_GUIA'], 'string', 'max' => 12],
             [['USU_DIGI', 'USU_MODI', 'USU_ELIM'], 'string', 'max' => 45],
             [['COD_ESTA'], 'string', 'max' => 1],
@@ -102,6 +102,7 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($expresion)->from('fac_guia');
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 
@@ -112,6 +113,7 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($select)->from('mae_categ')->where(['COD_ESTA' => 1])->orderBy(['DESC_CORTA' => SORT_ASC]);
         $comando = $query->createCommand();
         $resultado = $comando->queryAll();
+
         return $resultado;
     }
 
@@ -122,6 +124,7 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($expresion)->from('fac_guia_detal')->where(["FAC_COD_GUIA" => $Codigo]);
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 
@@ -132,6 +135,7 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($expresion)->from('fac_guia_detal')->where("COD_CATG = '" . $Codigo . "' and " . "FAC_COD_GUIA = '" . $Guia . "'");
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 
@@ -142,6 +146,7 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($expresion)->from('fac_guia_detal')->where("" . "FAC_COD_GUIA = '" . $Guia . "'");
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
 
@@ -155,8 +160,9 @@ class Guia extends \yii\db\ActiveRecord
         $data = $comando->queryScalar();
         if ($data == true) {
             return 1;
-        } else
+        } else {
             return 0;
+        }
     }
 
     public function EliminarGuiaDetalle($Codigo)
@@ -165,6 +171,7 @@ class Guia extends \yii\db\ActiveRecord
         $eliminar = $connection->createCommand('DELETE FROM fac_guia_detal WHERE FAC_COD_GUIA = :FAC_COD_GUIA ');
         $eliminar->bindValue(':FAC_COD_GUIA', $Codigo);
         $resultado = $eliminar->query();
+
         return $resultado;
     }
 
@@ -177,6 +184,7 @@ class Guia extends \yii\db\ActiveRecord
         $eliminar->bindValue(':FECH_ELIM', $Fecha);
         $eliminar->bindValue(':COD_ESTA', 0);
         $resultado = $eliminar->query();
+
         return $resultado;
     }
 
@@ -189,6 +197,7 @@ class Guia extends \yii\db\ActiveRecord
         $eliminar->bindValue(':FEC_ELIM', $Fecha);
         $eliminar->bindValue(':COD_ESTA', 0);
         $resultado = $eliminar->query();
+
         return $resultado;
     }
 
@@ -201,6 +210,7 @@ class Guia extends \yii\db\ActiveRecord
         $eliminar->bindValue(':FECH_ELIM', $Fecha);
         $eliminar->bindValue(':COD_ESTADO', 0);
         $resultado = $eliminar->query();
+
         return $resultado;
     }
 
@@ -211,9 +221,10 @@ class Guia extends \yii\db\ActiveRecord
         $query->select($select)->from('fac_guia')->where(['COD_GUIA' => $Codigo]);
         $comando = $query->createCommand();
         $data = $comando->queryScalar();
+
         return $data;
     }
-    
+
     public function ListObra()
     {
         $select[] = new Expression('DISTINCT NUM_OBRA AS value, NUM_OBRA AS label');
@@ -222,18 +233,21 @@ class Guia extends \yii\db\ActiveRecord
             ->where(['COD_ESTA' => 1])
             ->asArray()
             ->all();
+
         return $data;
     }
 
     public function ListGuia()
     {
         $contenido = [];
+
         return $contenido;
     }
 
     public function ListaGuia($codigo)
     {
         $lista = Guia::find()->where("COD_ESTA = 1 and NUM_OBRA = '" . $codigo . "'")->orderBy(['NUM_GUIA' => SORT_ASC])->all();
+
         return $lista;
     }
 
